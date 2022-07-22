@@ -1,7 +1,9 @@
 import Button from "@/components/Button";
-import styles from "../styles/Home.module.scss";
+import Header from "@/components/Header";
+import { NextPage } from "next";
+import styles from "../styles/client/Home.module.scss";
 
-const Home = () => {
+const Home: NextPage = () => {
     return (
         <>
             <h1 className={styles['demo']}>Home</h1>
