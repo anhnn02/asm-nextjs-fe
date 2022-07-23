@@ -11,17 +11,21 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  @apply tw-max-w-5xl tw-mx-auto;
+  @apply tw-max-w-5xl tw-mx-auto tw-mb-[150px];
 
   &-button {
-    @apply tw-bg-primary tw-inline-flex tw-items-center tw-h-10 tw-px-5 tw-text-white tw-transition-colors tw-duration-150 tw-rounded-lg tw-font-medium
+    @apply tw-bg-primary tw-inline-flex tw-items-center tw-h-10 tw-px-6 tw-text-white tw-transition-colors tw-duration-150 tw-rounded-lg tw-font-medium
+  }
+
+  .container-text {
+    @apply tw-space-y-4
   }
 
   &-text {
     @apply tw-text-5xl tw-pt-10 tw-py-3;
 
     &-price {
-      @apply tw-text-primary tw-pb-3 tw-text-3xl tw-font-semibold tw-py-3
+      @apply tw-m-0 tw-text-primary tw-text-3xl tw-font-semibold
     }
   }
 
@@ -29,8 +33,12 @@
     @apply tw-py-5
   }
 
+  &pad {
+    @apply tw-pt-10
+  }
+
   &-info {
-    @apply tw-text-gray tw-py-3;
+    @apply tw-text-gray tw-pr-3 tw-py-5;
   }
 }
 
@@ -40,19 +48,55 @@
 }
 
 .image {
-  @apply tw-w-[80px] tw-border tw-mx-1 tw-rounded-[var(--rounded-1)] tw-p-5 tw-bg-white;
+  @apply tw-w-[80px] tw-border tw-border-[#dae1e7] tw-mx-1 tw-rounded-[var(--rounded-1)] tw-p-5 tw-bg-white;
 
   &:hover {
     @apply tw-border-primary
   }
 }
 
+/* Style the number */
+.number {
+  @apply tw-flex;
+
+  &-iconnl {
+    @apply tw-ml-2 tw-left-0;
+    font-size: var(--larger);
+  }
+
+  &-iconnr {
+    @apply tw-mr-2 tw-left-0;
+    font-size: var(--larger);
+  }
+
+}
+
+/* Style the size */
+.check {
+  @apply tw-flex ;
+  &-form {
+    @apply tw-mr-4
+  }
+  &-size {
+    @apply tw-mr-2
+  }
+}
 /* Style the desc */
 .desc {
-/* Style the img */
-  @apply tw-max-w-7xl tw-mx-auto tw-mt-[150px]
+  @apply tw-max-w-7xl tw-mx-auto 
 }
+
 .h1 {
-  @apply tw-font-medium tw-py-6 ;
+  @apply tw-font-medium tw-py-6 tw-max-w-7xl tw-mx-auto tw-mt-[50px];
   font-size: var(--largest);
+}
+/* Style the product */
+.product {
+  @apply tw-max-w-7xl tw-mx-auto  tw-grid tw-grid-cols-4 tw-gap-5 ;
+  &-item {
+    @apply tw-border tw-border-[#dae1e7] tw-rounded-[var(--rounded-1)] ;
+    &:hover{
+      @apply tw-shadow-xl ;
+    }
+  }
 }

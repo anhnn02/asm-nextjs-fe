@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "./Product.module.scss";
 import Icon from "@/components/Icon";
+import Button from "@/components/Button";
 
 const DetailProduct = () => {
   return (
@@ -24,13 +25,13 @@ const DetailProduct = () => {
             />
           </div>
         </div>
-        <div>
-          <h1 className={styles["grid-text"]}>Mi Note 11 Pro</h1>
-          <div className="">
-            <span className={styles["grid-info"]}> Brand: </span>
+        <form className={styles["container-text"]}>
+          <h3 className={styles["grid-text"]}>Mi Note 11 Pro</h3>
+          <div className={styles["grid-pad"]}>
+            <span className={styles["grid-info"]}> Category: </span>
             <span>Ziaomi</span>
           </div>
-          <div className="">
+          <div className={styles["grid-pad"]}>
             <span className={styles["grid-info"]}> Rated: </span>
             <Icon.Star />
             <Icon.Star />
@@ -38,20 +39,56 @@ const DetailProduct = () => {
             <Icon.Star />
           </div>
           <div className="">
+            <p className={styles["grid-text-price"]}>$1135.00</p>
             <p className=""> Stok Available </p>
           </div>
-          <p className={styles["grid-text-price"]}>$1135.00</p>
-          <button className={styles["grid-button"]}>
-            <span>Add to cart</span>
-          </button>
+          <div className={styles["check"]}>
+            <span>Size: &nbsp; </span>
+            <div className={styles["check-form"]}>
+              <input type="Radio" className={styles["check-size"]} />
+              <label htmlFor="">35</label>
+            </div>
+            <div className={styles["check-form"]}>
+              <input type="Radio" className={styles["check-size"]} />
+              <label htmlFor="">36</label>
+            </div>
+            <div className={styles["check-form"]}>
+              <input type="Radio" className={styles["check-size"]} />
+              <label htmlFor="">37</label>
+            </div>
+            <div className={styles["check-form"]}>
+              <input type="Radio" className={styles["check-size"]} />
+              <label htmlFor="">38</label>
+            </div>
+            <div className={styles["check-form"]}>
+              <input type="Radio" className={styles["check-size"]} />
+              <label htmlFor="">39</label>
+            </div>
+            <div className={styles["check-form"]}>
+              <input type="Radio" className={styles["check-size"]} />
+              <label htmlFor="">40</label>
+            </div>
+          </div>
+          <div className={styles["number"]}>
+            <Button.Transparent
+              className={styles["number-iconnr"]}
+              content={<Icon.PlusRegular />}
+            />
+            <Button.None content="1" />
+            <Button.Transparent
+              className={styles["number-iconnl"]}
+              content={<Icon.Dash />}
+            />
+          </div>
+          <Button.Fill className="tw-px-8" content={"Add to cart"} />
           <div className={styles["grid-heith"]}>
             <span className={styles["grid-info"]}> Sold By: </span>
             <span>Mobile Store</span>
           </div>
-        </div>
+        </form>
       </div>
+      <h1 className={styles["h1"]}>Description</h1>
       <div className={styles["desc"]}>
-        <h1 className={styles["h1"]}>Description</h1>
         <div className="">
           <p>Brand: Beats</p>
           <p>Model: S450</p>
@@ -60,6 +97,13 @@ const DetailProduct = () => {
           <p>Feature: FM Radio, Card Supported (Micro SD / TF)</p>
           <p>Made in China</p>
         </div>
+      </div>
+      <h1 className={styles["h1"]}>Realted Products</h1>
+      <div className={styles["product"]}>
+        <div className={styles["product-item"]}>abc</div>
+        <div className={styles["product-item"]}>abc</div>
+        <div className={styles["product-item"]}>abc</div>
+        <div className={styles["product-item"]}>abc</div>
       </div>
     </div>
   );

@@ -13,6 +13,9 @@ const Icon = {
   PlusRegular({ className, ...props }) {
     return <i {...props} className={`bi bi-plus ${className}`}></i>;
   },
+  Dash({ className, ...props }) {
+    return <i {...props} className={`bi bi-dash-lg ${className}`}></i>;
+  },
 
   Tag({ className, ...props }) {
     return <i {...props} className={`bi bi-tag ${className}`}></i>;
@@ -122,9 +125,9 @@ const Icon = {
   Fb({ className, ...props }) {
     return <i {...props} className={`bi bi-facebook ${className}`}></i>;
   },
-  Star({className,...props}){
-      return <i {...props} className={`bi bi-star-fill ${className}`}></i>;
-  }
+  Star({ className, ...props }) {
+    return <i {...props} className={`bi bi-star-fill ${className}`}></i>;
+  },
 };
 
 export default Icon;
