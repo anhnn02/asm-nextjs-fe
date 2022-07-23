@@ -1,4 +1,9 @@
 const Icon = {
+    Star({ className, ...props }) {
+        return (
+            <i {...props} className={`bi bi-star ${className}`}></i>
+        );
+    },
     Close({ className, ...props }) {
         return (
             <i {...props} className={`bi bi-x ${className}`}></i>

@@ -40,12 +40,12 @@
                 }
 
                 .cart-sidebar__price {
-                    @apply tw-text-gray;
+                    @apply tw-text-my-gray;
                     font-size: var(--smaller)
                 }
 
                 .cart-sidebar__size {
-                    @apply tw-text-gray
+                    @apply tw-text-my-gray
                 }
 
                 .cart-sidebar__sub-total {
