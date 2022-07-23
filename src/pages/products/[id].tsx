@@ -1,19 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React from "react";
 import styles from "./Product.module.scss";
 import Icon from "@/components/Icon";
-
-
 
 const DetailProduct = () => {
   return (
     <div className={styles["container"]}>
       <div className={styles["grid"]}>
         <div>
-          <img
-            className=""
-            src="https://i.imgur.com/hdxSFAS.png"
-          />
+          <img className="" src="https://i.imgur.com/hdxSFAS.png" />
           <div className={styles["box"]}>
             <img
               className={styles["image"]}
@@ -55,8 +50,19 @@ const DetailProduct = () => {
           </div>
         </div>
       </div>
+      <div className={styles["desc"]}>
+        <h1 className={styles["h1"]}>Description</h1>
+        <div className="">
+          <p>Brand: Beats</p>
+          <p>Model: S450</p>
+          <p>Wireless Bluetooth Headset</p>
+          <p> FM Frequency Response: 87.5 – 108 MHz</p>
+          <p>Feature: FM Radio, Card Supported (Micro SD / TF)</p>
+          <p>Made in China</p>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
-export default DetailProduct
+export default DetailProduct;
