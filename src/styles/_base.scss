@@ -4,6 +4,11 @@
 
 html {
     line-height: 1.6rem;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
     box-sizing: border-box;
+    font-size: var(--base)
+}
+
+img {
+    max-width: 100%;
 }
