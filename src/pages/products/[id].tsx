@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import styles from "./Product.module.scss";
 import Icon from "@/components/Icon";
@@ -10,7 +11,7 @@ const DetailProduct = () => {
       <div className={styles["grid"]}>
         <div>
           <img
-            className="w-[550px] h-[606px]"
+            className=""
             src="https://i.imgur.com/hdxSFAS.png"
           />
           <div className={styles["box"]}>
@@ -36,10 +37,10 @@ const DetailProduct = () => {
           </div>
           <div className="">
             <span className={styles["grid-info"]}> Rated: </span>
-            <Icon.MoonStar />
-            <Icon.MoonStar />
-            <Icon.MoonStar />
-            <Icon.MoonStar />
+            <Icon.Star />
+            <Icon.Star />
+            <Icon.Star />
+            <Icon.Star />
           </div>
           <div className="">
             <p className=""> Stok Available </p>
