@@ -1,0 +1,70 @@
+.cart-sidebar__header {
+    @apply tw-border-b tw-border-[#e9eaee] tw-p-4 tw-font-bold
+}
+
+.cart-sidebar__list {
+    @apply tw-px-4 tw-h-[calc(100vh-127.5px-55px)] tw-overflow-auto;
+
+    .cart-sidebar__item {
+        @apply tw-grid tw-grid-cols-[28px_3fr_1fr] tw-gap-4 tw-py-5 tw-border-b tw-border-[#e9eaee];
+
+        .cart-sidebar__action-quantity {
+            @apply tw-flex tw-flex-col tw-justify-between tw-items-center;
+
+            .cart-sidebar__button {
+                @apply tw-normal-case tw-bg-transparent tw-text-primary tw-border tw-border-opacity-20
+                 tw-w-8 tw-h-8 tw-rounded-full;
+            }
+
+            .cart-sidebar__button:hover {
+                @apply tw-bg-primary tw-text-white tw-border-primary
+            }
+
+            .cart-sidebar__quantity {
+                @apply tw-font-bold
+            }
+        }
+
+        .cart-sidebar__info {
+            @apply tw-grid tw-grid-cols-[80px_1fr] tw-gap-2;
+
+            .cart-sidebar__img {
+                @apply tw-w-20 tw-h-[84px] tw-max-h-full tw-object-cover tw-rounded-sm
+            }
+
+            .cart-sidebar__text {
+                @apply tw-flex tw-flex-col tw-justify-start;
+
+                .cart-sidebar__title {
+                    @apply tw-font-bold tw-block tw-max-w-[200px] tw-truncate tw-leading-[1]
+                }
+
+                .cart-sidebar__price {
+                    @apply tw-text-gray;
+                    font-size: var(--smaller)
+                }
+
+                .cart-sidebar__size {
+                    @apply tw-text-gray
+                }
+
+                .cart-sidebar__sub-total {
+                    @apply tw-font-bold tw-text-primary
+                }
+            }
+        }
+
+        .cart-sidebar__action-del {
+            @apply tw-flex tw-flex-col tw-justify-between tw-items-center;
+
+        }
+    }
+
+    .cart-sidebar__item:hover {
+        @apply tw-bg-white
+    }
+}
+
+.cart-sidebar__footer {
+    @apply tw-space-y-2 tw-p-4 tw-fixed tw-bottom-0 tw-left-0 tw-right-0 tw-bg-white
+}
