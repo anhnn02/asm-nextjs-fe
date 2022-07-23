@@ -1,0 +1,19 @@
+::-webkit-scrollbar-track {
+    // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    // background-color: var(--bgr);
+}
+
+::-webkit-scrollbar {
+    width: var(--w-scroll);
+    background-color: var(--bgr);
+}
+
+::-webkit-scrollbar-thumb {
+    margin: 10px;
+    background-image: -webkit-gradient(linear,
+            left bottom,
+            left top,
+            color-stop(0.44, rgb(207, 104, 114)),
+            color-stop(0.72, rgb(180, 51, 51)),
+            color-stop(0.86, rgb(176, 38, 38)));
+}

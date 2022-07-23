@@ -1,5 +1,5 @@
 .header{
-    @apply tw-fixed tw-left-0 tw-right-0 tw-top-0 tw-bg-white tw-z-10
+    @apply tw-fixed tw-left-0 tw-right-[var(--w-scroll)] tw-top-0 tw-bg-white tw-z-10
 }
 .header-top {
     @apply tw-bg-secondary;
