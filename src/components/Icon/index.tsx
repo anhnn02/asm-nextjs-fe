@@ -182,6 +182,9 @@ const Icon = {
             <i {...props} className={`bi bi-facebook ${className}`}></i>
         );
     },
+    // star({className,...props}){
+    //     return <i {...props} className={`bi bi-star ${className}`}></i>;
+    // }
 }
 
 export default Icon;
