@@ -40,11 +40,6 @@ const Icon = {
         );
     },
 
-    Computer({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-pc-display-horizontal ${className}`}></i>
-        );
-    },
 
     Email({ className, ...props }) {
         return (
@@ -57,13 +52,6 @@ const Icon = {
             <i {...props} className={`bi bi-search ${className}`}></i>
         );
     },
-
-    Window({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-window ${className}`}></i>
-        );
-    },
-
     CheckFill({ className, ...props }) {
         return (
             <i {...props} className={`bi bi-check-circle-fill ${className}`}></i>
@@ -75,13 +63,6 @@ const Icon = {
             <i {...props} className={`bi bi-check-circle ${className}`}></i>
         );
     },
-
-    ThreeDot({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-three-dots-vertical ${className}`}></i>
-        );
-    },
-
     Info({ className, ...props }) {
         return (
             <i {...props} className={`bi bi-info-circle-fill ${className}`}></i>
@@ -122,46 +103,6 @@ const Icon = {
             <i {...props} className={`bi bi-arrow-left-short ${className}`}></i>
         );
     },
-    Save({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-file-earmark-post-fill ${className}`}></i>
-        );
-    },
-    Brush({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-brush ${className}`}></i>
-        );
-    },
-    Smartphone({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-phone ${className}`}></i>
-        );
-    },
-    Laptop({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-laptop ${className}`}></i>
-        );
-    },
-    MoonStar({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-moon-stars ${className}`}></i>
-        );
-    },
-    Github({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-github ${className}`}></i>
-        );
-    },
-    Linkedin({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-linkedin ${className}`}></i>
-        );
-    },
-    Figma({ className, ...props }) {
-        return (
-            <i {...props} className={`fa-brands fa-figma ${className}`}></i>
-        );
-    },
     List({ className, ...props }) {
         return (
             <i {...props} className={`bi-brands bi-list-task ${className}`}></i>
@@ -177,9 +118,29 @@ const Icon = {
             <i {...props} className={`bi-brands bi-geo-alt ${className}`}></i>
         );
     },
+    Person({ className, ...props }) {
+        return (
+            <i {...props} className={`bi bi-person ${className}`}></i>
+        );
+    },
+    Cart({ className, ...props }) {
+        return (
+            <i {...props} className={`bi bi-cart ${className}`}></i>
+        );
+    },
     Fb({ className, ...props }) {
         return (
             <i {...props} className={`bi bi-facebook ${className}`}></i>
+        );
+    },
+    Youtube({ className, ...props }) {
+        return (
+            <i {...props} className={`bi bi-youtube ${className}`}></i>
+        );
+    },
+    Ig({ className, ...props }) {
+        return (
+            <i {...props} className={`bi bi-instagram ${className}`}></i>
         );
     },
 }
