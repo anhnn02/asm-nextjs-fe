@@ -4,11 +4,13 @@
 
 html {
     line-height: 1.6rem;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif !important;
     box-sizing: border-box;
-    font-size: var(--base)
+    font-size: var(--base);
+
 }
 
 img {
     max-width: 100%;
 }
+
