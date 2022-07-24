@@ -1,62 +1,56 @@
 const Icon = {
-    Close({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-x ${className}`}></i>
-        );
-    },
-    Minus({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-dash ${className}`}></i>
-        );
-    },
-    BellOutline({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-bell ${className}`}></i>
-        );
-    },
+  Close({ className, ...props }) {
+      return (
+          <i {...props} className={`bi bi-x ${className}`}></i>
+      );
+  },
+  Minus({ className, ...props }) {
+      return (
+          <i {...props} className={`bi bi-dash ${className}`}></i>
+      );
+  },
+  BellOutline({ className, ...props }) {
+      return (
+          <i {...props} className={`bi bi-bell ${className}`}></i>
+      );
+  },
+  BellSlash({ className, ...props }) {
+    return <i {...props} className={`bi bi-bell-slash-fill ${className}`}></i>;
+  },
 
-    BellSlash({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-bell-slash-fill ${className}`}></i>
-        );
-    },
+  PlusCircle({ className, ...props }) {
+    return <i {...props} className={`bi bi-plus-circle ${className}`}></i>;
+  },
+  PlusRegular({ className, ...props }) {
+    return <i {...props} className={`bi bi-plus ${className}`}></i>;
+  },
+  Dash({ className, ...props }) {
+    return <i {...props} className={`bi bi-dash-lg ${className}`}></i>;
+  },
 
-    PlusCircle({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-plus-circle ${className}`}></i>
-        );
-    },
-    PlusRegular({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-plus ${className}`}></i>
-        );
-    },
+  Tag({ className, ...props }) {
+    return <i {...props} className={`bi bi-tag ${className}`}></i>;
+  },
 
-    Tag({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-tag ${className}`}></i>
-        );
-    },
+  Bookmark({ className, ...props }) {
+    return <i {...props} className={`bi bi-bookmark-plus ${className}`}></i>;
+  },
 
-    Bookmark({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-bookmark-plus ${className}`}></i>
-        );
-    },
-
-    House({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-house ${className}`}></i>
-        );
-    },
+  House({ className, ...props }) {
+    return <i {...props} className={`bi bi-house ${className}`}></i>;
+  },
 
 
-    Email({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-envelope ${className}`}></i>
-        );
-    },
+  Computer({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-pc-display-horizontal ${className}`}></i>
+    );
+  },
 
+
+  Email({ className, ...props }) {
+    return <i {...props} className={`bi bi-envelope ${className}`}></i>;
+  },
     Search({ className, ...props }) {
         return (
             <i {...props} className={`bi bi-search ${className}`}></i>
