@@ -17,15 +17,16 @@
 
 }
 
+
 .form {
     @apply tw-px-[60px] tw-pt-[48px];
 
     &__label {
-        @apply tw-text-[#2b3445];
+        @apply tw-text-[#2b3445] tw-mt-4 ;
     }
 
     &-input {
-        @apply tw-form-control tw-border tw-outline-0 tw-outline-primary tw-w-[380px] tw-p-2 tw-mt-2 tw-mb-4 tw-rounded-[5px] tw-border-[#dae1e7];
+        @apply tw-form-control tw-border tw-outline-0 tw-outline-primary tw-w-[380px] tw-p-2 tw-mt-2  tw-rounded-[5px] tw-border-[#dae1e7];
     }
 
     &-udline {
@@ -42,7 +43,7 @@
 
 /* ----------- check form*/
 .label {
-    @apply tw-flex tw-items-center tw-space-x-1 tw-cursor-pointer tw-mb-3;
+    @apply tw-flex tw-items-center tw-mt-4 tw-space-x-1 tw-cursor-pointer tw-mb-3;
 
     &-sty {
         @apply tw-checkbox;
