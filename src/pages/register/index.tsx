@@ -12,46 +12,54 @@ const Register = () => {
           <h3 className={styles["text"]}>Create Your Account</h3>
           <p className={styles["tep"]}>Please fill all forms to continued</p>
           <div className="">
-            <label htmlFor="exampleInputPassword1" className="form-label">
+            <label
+              htmlFor="exampleInputPassword1"
+              className={styles["form__label"]}
+            >
               Full Name
             </label>
             <input
               type="text"
               className={styles["form-input"]}
-              id="exampleInputPassword1"
               placeholder="RalphAdwards"
             />
           </div>
           <div className="">
-            <label htmlFor="exampleInputPassword1" className="form-label">
+            <label
+              htmlFor="exampleInputPassword1"
+              className={styles["form__label"]}
+            >
               Email or Phone Number
             </label>
             <input
               type="text"
               className={styles["form-input"]}
-              id="exampleInputPassword1"
               placeholder="Exmple@gmail.com"
             />
           </div>
           <div className="">
-            <label htmlFor="exampleInputPassword1" className="form-label">
+            <label
+              htmlFor="exampleInputPassword1"
+              className={styles["form__label"]}
+            >
               Password
             </label>
             <input
               type="Password"
               className={styles["form-input"]}
-              id="exampleInputPassword1"
               placeholder="********"
             />
           </div>
           <div className="">
-            <label htmlFor="exampleInputPassword1" className="form-label">
+            <label
+              htmlFor="exampleInputPassword1"
+              className={styles["form__label"]}
+            >
               Confirm Password
             </label>
             <input
               type="Password"
               className={styles["form-input"]}
-              id="exampleInputPassword1"
               placeholder="********"
             />
           </div>
@@ -79,6 +87,8 @@ const Register = () => {
         <div className={styles["lg"]}>
           Already have account?
           <span className={styles["lg-1"]}>
+           
+            &nbsp;
             <Link href="">Log in</Link>
           </span>
         </div>
