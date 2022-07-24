@@ -1,0 +1,36 @@
+.footer {
+    @apply tw-bg-secondary;
+
+    &-content {
+        @apply tw-w-[var(--container)] tw-m-auto tw-py-12 tw-px-3 tw-grid tw-grid-cols-[360px_1fr_1.5fr_1.5fr] tw-gap-5 tw-text-[#aeb4be];
+
+        .footer-title {
+            @apply tw-text-white tw-font-bold tw-mb-5;
+
+            font-size: var(--largest);
+        }
+
+        .footer-list {
+            @apply tw-space-y-2;
+
+            .footer-item {
+                @apply tw-block hover:tw-text-white;
+                font-size: var(--base)
+            }
+        }
+        .footer-social{
+            @apply tw-mt-4 tw-space-x-2;
+
+            &__icon {
+                @apply tw-bg-[#0c2a4d] tw-p-2 tw-px-[10px] tw-rounded-full
+            }
+        }
+    }
+    &-copyright{
+        @apply tw-bg-[#0c2a4d] tw-py-3 tw-text-center;
+
+        &-content {
+            @apply tw-text-white
+        }
+    }
+}

@@ -1,0 +1,94 @@
+.header{
+    @apply tw-fixed tw-left-0 tw-right-[var(--w-scroll)] tw-top-0 tw-bg-white tw-z-10
+}
+.header-top {
+    @apply tw-bg-secondary;
+
+    &-info {
+        @apply tw-w-[var(--container)] tw-m-auto tw-flex tw-justify-between tw-items-center tw-text-white tw-py-2;
+        font-size: var(--smaller);
+
+        &__item {
+            @apply tw-space-x-2
+        }
+
+        &__item+&__item {
+            @apply tw-ml-4
+        }
+    }
+}
+
+.header-main {
+    &__top {
+        @apply tw-w-[var(--container)] tw-m-auto tw-py-4 tw-flex tw-justify-between tw-items-center
+    }
+
+    .header-logo {
+        @apply tw-w-[200px]
+    }
+
+    .header-form-search {
+        @apply tw-relative tw-border tw-border-[#dae1e7] tw-p-2 tw-duration-[var(--trans-duration)] tw-max-w-[670px] tw-w-full tw-rounded-[var(--rounded-2)];
+
+        &__input {
+            @apply tw-px-3 tw-outline-none tw-w-full
+        }
+
+        &__button {
+            @apply tw-absolute tw-bg-primary tw-h-full tw-top-0 tw-right-0 tw-rounded-br-[var(--rounded-2)] tw-rounded-tr-[var(--rounded-2)] tw-px-[55px] tw-text-white;
+        }
+
+        &:hover {
+            @apply tw-border-primary
+        }
+    }
+
+    .header-action {
+        @apply tw-w-[200px] tw-space-x-2 tw-flex tw-justify-end tw-items-center;
+
+        &-link:hover {
+            @apply tw-text-red-500 tw-duration-[var(--trans-duration)]
+        }
+
+        &__button {
+            @apply tw-bg-bgr tw-p-3 tw-rounded-full;
+
+        }
+    }
+
+    &__nav {
+        @apply tw-pt-2 tw-w-[var(--container)] tw-m-auto tw-text-center;
+
+        .menu {
+            @apply tw-inline-flex tw-space-x-5;
+
+            &__item {
+                @apply tw-py-2;
+                position: relative;
+                font-size: var(--base)
+            }
+
+            &__item:hover {
+                @apply tw-text-primary 
+            }
+
+            &__item::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background-color: var(--primary);
+                transform-origin: bottom right;
+                transform: scaleX(0);
+                transition: transform 0.5s ease;
+            }
+
+            &__item:hover::before {
+                transform-origin: bottom left;
+                transform: scaleX(1);
+            }
+        }
+    }
+}

@@ -2,6 +2,7 @@
     //color
     --primary: #E94560;
     --secondary: #19365d;
+    --blue: #4582F4;
     --bgr: #F6F9FC;
     --title: #2b3445;
     --gray: #7d879c;
@@ -12,7 +13,7 @@
     --smallest: 11px;
     --smaller: 12px;
     --small: 13px;
-    --base: 14px;
+    --base: 15px;
     --large: 16px;
     --larger: 18px;
     --largest: 24px;
@@ -23,4 +24,10 @@
 
     //trans-duration
     --trans-duration: 0.3s;
+
+    //width container
+    --container: 1200px;
+
+    //width scrollbar
+    --w-scroll: 8px;
 }
