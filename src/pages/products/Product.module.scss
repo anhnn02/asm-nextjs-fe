@@ -14,7 +14,7 @@
   @apply tw-max-w-5xl tw-mx-auto tw-mb-[150px];
 
   &-button {
-    @apply tw-bg-primary tw-inline-flex tw-items-center tw-h-10 tw-px-6 tw-text-white tw-transition-colors tw-duration-150 tw-rounded-lg tw-font-medium
+    @apply tw-bg-primary tw-inline-flex tw-items-center tw-h-10 tw-px-12 tw-text-white tw-transition-colors tw-duration-150 tw-rounded-lg tw-font-medium
   }
 
   .container-text {
@@ -61,12 +61,12 @@
 
   &-iconnl {
     @apply tw-ml-2 tw-left-0;
-    font-size: var(--larger);
+    font-size: var(--base);
   }
 
   &-iconnr {
     @apply tw-mr-2 tw-left-0;
-    font-size: var(--larger);
+    font-size: var(--base);
   }
 
 }

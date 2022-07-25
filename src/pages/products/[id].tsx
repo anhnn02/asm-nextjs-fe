@@ -33,10 +33,10 @@ const DetailProduct = () => {
           </div>
           <div className={styles["grid-pad"]}>
             <span className={styles["grid-info"]}> Rated: </span>
-            <Icon.Star />
-            <Icon.Star />
-            <Icon.Star />
-            <Icon.Star />
+            <Icon.StarFill />
+            <Icon.StarFill />
+            <Icon.StarFill />
+            <Icon.StarFill />
           </div>
           <div className="">
             <p className={styles["grid-text-price"]}>$1135.00</p>
