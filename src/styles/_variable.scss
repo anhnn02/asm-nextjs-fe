@@ -2,6 +2,7 @@
     //color
     --primary: #E94560;
     --secondary: #19365d;
+    --blue: #4582F4;
     --bgr: #F6F9FC;
     --title: #2b3445;
     --gray: #7d879c;
@@ -25,5 +26,8 @@
     --trans-duration: 0.3s;
 
     //width container
-    --container: 1200px
+    --container: 1200px;
+
+    //width scrollbar
+    --w-scroll: 8px;
 }

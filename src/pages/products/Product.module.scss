@@ -1,0 +1,119 @@
+.container {
+  @apply tw-bg-bgr tw-py-[50px]
+}
+
+.demo1 {
+  @apply tw-bg-star;
+  font-size: var(--small)
+}
+
+/* Style the grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @apply tw-max-w-5xl tw-mx-auto tw-mb-[150px];
+
+  &-button {
+    @apply tw-bg-primary tw-inline-flex tw-items-center tw-h-10 tw-px-12 tw-text-white tw-transition-colors tw-duration-150 tw-rounded-lg tw-font-medium
+  }
+
+  .container-text {
+    @apply tw-space-y-4
+  }
+
+  &-text {
+    @apply tw-text-5xl tw-pt-10 tw-py-3;
+
+    &-price {
+      @apply tw-m-0 tw-text-primary tw-text-3xl tw-font-semibold ;
+    }
+  }
+
+  &-heith {
+    @apply tw-py-5
+  }
+
+  &pad {
+    @apply tw-pt-10
+  }
+
+  &-info {
+    @apply tw-text-my-gray tw-pr-3 tw-py-5;
+  }
+}
+
+/* Style the img */
+.box {
+  @apply tw-flex tw-mx-[30px] tw-mt-[100px]
+}
+
+.image {
+  @apply tw-w-[80px] tw-border tw-border-[#dae1e7] tw-mx-1 tw-rounded-[var(--rounded-1)] tw-p-5 tw-bg-white;
+
+  &:hover {
+    @apply tw-border-primary
+  }
+}
+
+/* Style the number */
+.number {
+  @apply tw-flex;
+
+  &-iconnl {
+    @apply tw-ml-2 tw-left-0;
+    font-size: var(--base);
+  }
+
+  &-iconnr {
+    @apply tw-mr-2 tw-left-0;
+    font-size: var(--base);
+  }
+
+}
+.shop-product-price{
+  @apply tw-px-2 ;
+}
+.shop-product-price--sale {
+  @apply tw-text-primary tw-font-bold tw-pr-1;
+    font-size: var(--largest);
+  
+}
+
+.shop-product-price--regular {
+  @apply tw-text-my-gray tw-line-through;
+}
+.shop-product__item-float--tag-sale {
+  @apply tw-left-2 tw-top-2 tw-py-[1px] tw-px-2 tw-bg-primary tw-rounded-[var(--rounded-2)] tw-text-white;
+  font-size: var(--smaller)
+}
+ 
+
+/* Style the size */
+.check {
+  @apply tw-flex ;
+  &-form {
+    @apply tw-mr-4
+  }
+  &-size {
+    @apply tw-mr-2
+  }
+}
+/* Style the desc */
+.desc {
+  @apply tw-max-w-7xl tw-mx-auto 
+}
+
+.h1 {
+  @apply tw-font-medium tw-py-6 tw-max-w-7xl tw-mx-auto tw-mt-[50px];
+  font-size: var(--largest);
+}
+/* Style the product */
+.product {
+  @apply tw-max-w-7xl tw-mx-auto  tw-grid tw-grid-cols-4 tw-gap-8 ;
+  &-item {
+    @apply tw-border tw-border-[#dae1e7] tw-rounded-[var(--rounded-1)] ;
+    &:hover{
+      @apply tw-shadow-xl ;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+.cont {
+    @apply tw-bg-bgr tw-py-[40px];
+}
+
+.content {
+    @apply tw-w-[500px] tw-bg-white tw-shadow-2xl tw-mx-auto tw-border tw-rounded-[var(--rounded-1)] tw-border-[#dae1e7];
+
+}
+
+.text {
+    @apply tw-text-center tw-font-medium tw-text-3xl;
+
+}
+
+.tep {
+    @apply tw-text-center tw-font-medium tw-text-[#373F50];
+
+}
+
+
+.form {
+    @apply tw-px-[60px] tw-pt-[48px];
+
+    &__label {
+        @apply tw-text-[#2b3445] tw-mt-4 ;
+    }
+
+    &-input {
+        @apply tw-form-control tw-border tw-outline-0 tw-outline-primary tw-w-[380px] tw-p-2 tw-mt-2  tw-rounded-[5px] tw-border-[#dae1e7];
+    }
+
+    &-udline {
+        @apply tw-underline tw-text-black tw-font-medium;
+    }
+
+
+}
+
+.on {
+    @apply tw-text-center tw-text-gray tw-py-3;
+    font-size: var(--base)
+}
+
+/* ----------- check form*/
+.label {
+    @apply tw-flex tw-items-center tw-mt-4 tw-space-x-1 tw-cursor-pointer tw-mb-3;
+
+    &-sty {
+        @apply tw-checkbox;
+    }
+
+    &-text {
+        @apply tw-label-text tw-left-0 tw-text-gray;
+    }
+}
+
+/* ----------- check button*/
+.btn {
+    @apply tw-w-[380px]
+}
+
+/* ----------- check login*/
+.lg {
+    @apply tw-text-center tw-py-5 tw-bg-[#dae1e7] tw-text-gray tw-mt-5;
+
+    &-1 {
+        @apply tw-text-black tw-font-medium;
+    }
+}

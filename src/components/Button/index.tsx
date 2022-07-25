@@ -22,6 +22,17 @@ const Button = {
       </button>
     );
   },
+  None({ className, content, ...props }) {
+    return (
+      <button
+        {...props}
+        className={` font-medium  border-0 tw-text-primary  tw-p-3 tw-px-4 ${className}`}
+      >
+        {content}
+      </button>
+    );
+  },
+
   Fill1({ className, content, ...props }) {
     return (
       <button
@@ -37,7 +48,7 @@ const Button = {
     return (
       <button
         {...props}
-        className={`tw-normal-case tw-btn tw-bg-[#4582F4]  tw-text-white tw-border tw-border-[#4582F4] tw-p-3 tw-px-4 
+        className={`tw-normal-case tw-btn tw-bg-[#4582F4] tw-text-white tw-border tw-border-[#4582F4] tw-p-3 tw-px-4 
                 hover:tw-bg-[#4582F4] hover:tw-text-white hover:tw-border-[#4582F4] ${className}`}
       >
         {content}

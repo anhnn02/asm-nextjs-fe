@@ -22,7 +22,7 @@ export const useAuth = (options?) => {
     mutate(`/users/${id}`);
   };
   //login
-  
+
   //logout
 
   return {
@@ -32,3 +32,4 @@ export const useAuth = (options?) => {
     profile,
   };
 };
+

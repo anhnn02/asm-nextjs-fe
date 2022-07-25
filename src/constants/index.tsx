@@ -10,10 +10,7 @@ export const path = {
     },
     private: {
         rootRoute: '/admin',
-        zoomRoute: '/admin/zooms',
-        listUserManager: '/admin/accounts',
-        listBoxChat: '/admin/webchats',
-        addBoxChat: '/admin/webchats/create',
-        updateBoxChat: '/admin/webchats/:id/update',
+        categoriesRoute: '/admin/categories',
+        productsRoute: '/admin/products',
     }
 }
