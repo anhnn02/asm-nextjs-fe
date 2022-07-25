@@ -1,8 +1,8 @@
 .header{
-    @apply tw-fixed tw-left-0 tw-right-[var(--w-scroll)] tw-top-0 tw-bg-white tw-z-10
+    @apply tw-fixed tw-left-0 tw-right-[var(--w-scroll)] tw-top-0 tw-z-10
 }
 .header-top {
-    @apply tw-bg-secondary;
+    @apply tw-bg-secondary ;
 
     &-info {
         @apply tw-w-[var(--container)] tw-m-auto tw-flex tw-justify-between tw-items-center tw-text-white tw-py-2;
@@ -18,7 +18,8 @@
     }
 }
 
-.header-main {
+.header-main  {
+    @apply tw-bg-white;
     &__top {
         @apply tw-w-[var(--container)] tw-m-auto tw-py-4 tw-flex tw-justify-between tw-items-center
     }
@@ -35,7 +36,7 @@
         }
 
         &__button {
-            @apply tw-absolute tw-bg-primary tw-h-full tw-top-0 tw-right-0 tw-rounded-br-[var(--rounded-2)] tw-rounded-tr-[var(--rounded-2)] tw-px-[55px] tw-text-white;
+            @apply tw-absolute tw-bg-primary tw-border tw-border-primary tw-h-full tw-top-0 tw-right-0 tw-rounded-br-[var(--rounded-2)] tw-rounded-tr-[var(--rounded-2)] tw-px-[55px] tw-text-white;
         }
 
         &:hover {

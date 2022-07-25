@@ -11,7 +11,7 @@ module.exports = {
         "secondary": "var(--secondary)",
         "bgr": "var(--bgr)",
         "title": "var(--title)",
-        "gray": "var(--gray)",
+        "my-gray": "var(--gray)",
         "disable": "var(--disable)",
         "star": "var(--star)",
       },
