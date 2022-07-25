@@ -1,74 +1,3 @@
-/* FORM CHECKOUT */
-.content_checkout {
-    display: grid;
-    grid-template-columns: 66.6667% 33.3333%;
-}
-
-;
-
-.form_checkout,
-.sidebar_checkout {
-    padding: 12px;
-}
-
-.form_checkout_inside,
-.sidebar_checkout_inside {
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    padding: 24px 28px;
-}
-
-.header-form_checkout {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.form_checkout-row {
-    margin-top: 16px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 28px;
-}
-
-.submit-form_checkout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 28px;
-}
-
-.input-form_checkout {
-    padding: 8px 12px;
-    height: 40px;
-    font-size: inherit;
-    color: rgb(43, 52, 69);
-    border-radius: 5px;
-    border: 1px solid rgb(218, 225, 231);
-    width: 100%;
-    outline: none;
-    margin-bottom: 1rem;
-}
-
-.label-form_checkout {
-    display: block;
-    margin-bottom: 6px;
-    text-transform: capitalize;
-}
-
-.textarea-form_checkout {
-    width: 100%;
-    padding: 8px 12px;
-    font-size: inherit;
-    color: rgb(43, 52, 69);
-    border-radius: 5px;
-    border: 1px solid rgb(218, 225, 231);
-    width: 100%;
-    outline: none;
-}
-
 /* Sidebar Checkout*/
 .infor_checkout {
     border-bottom: 1px solid rgb(243, 245, 249);
@@ -101,6 +30,7 @@
 
 .format_progress_of_customer {
     display: flex;
+    padding-top: 30px;
     align-items: center;
 }
 
