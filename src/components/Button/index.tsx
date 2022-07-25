@@ -16,7 +16,6 @@ const Button = {
       <button
         {...props}
         className={`tw-normal-case tw-btn tw-bg-primary tw-text-white tw-border tw-border-primary tw-p-3 tw-px-4 
-
                 hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary ${className}`}
       >
         {content}

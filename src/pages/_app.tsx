@@ -4,7 +4,6 @@ import instance from "@/api/instance";
 import Layout from "@/components/Layout";
 import { AppPropsWithLayout } from "@/models/layout";
 import Head from "next/head";
-import 'antd/dist/antd.css'; //Ant Design
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const LayoutWrapper = Component.Layout ?? Layout;

@@ -25,7 +25,7 @@
     @apply tw-text-5xl tw-pt-10 tw-py-3;
 
     &-price {
-      @apply tw-m-0 tw-text-primary tw-text-3xl tw-font-semibold
+      @apply tw-m-0 tw-text-primary tw-text-3xl tw-font-semibold ;
     }
   }
 
@@ -38,7 +38,7 @@
   }
 
   &-info {
-    @apply tw-text-gray tw-pr-3 tw-py-5;
+    @apply tw-text-my-gray tw-pr-3 tw-py-5;
   }
 }
 
@@ -70,6 +70,23 @@
   }
 
 }
+.shop-product-price{
+  @apply tw-px-2 ;
+}
+.shop-product-price--sale {
+  @apply tw-text-primary tw-font-bold tw-pr-1;
+    font-size: var(--largest);
+  
+}
+
+.shop-product-price--regular {
+  @apply tw-text-my-gray tw-line-through;
+}
+.shop-product__item-float--tag-sale {
+  @apply tw-left-2 tw-top-2 tw-py-[1px] tw-px-2 tw-bg-primary tw-rounded-[var(--rounded-2)] tw-text-white;
+  font-size: var(--smaller)
+}
+ 
 
 /* Style the size */
 .check {
@@ -92,7 +109,7 @@
 }
 /* Style the product */
 .product {
-  @apply tw-max-w-7xl tw-mx-auto  tw-grid tw-grid-cols-4 tw-gap-5 ;
+  @apply tw-max-w-7xl tw-mx-auto  tw-grid tw-grid-cols-4 tw-gap-8 ;
   &-item {
     @apply tw-border tw-border-[#dae1e7] tw-rounded-[var(--rounded-1)] ;
     &:hover{

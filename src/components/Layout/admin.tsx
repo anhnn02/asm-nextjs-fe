@@ -2,7 +2,7 @@ import React from 'react'
 import { LayoutProps } from '../../models/layout'
 import Navbar from '../admin/Navbar/Navbar'
 import Sidebar from '../admin/Sidebar'
-
+import 'antd/dist/antd.css'; //Ant Design
 
 const LayoutAdmin = ({ children }: LayoutProps) => {
   return (
