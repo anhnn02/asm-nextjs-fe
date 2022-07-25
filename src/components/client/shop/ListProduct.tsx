@@ -13,7 +13,6 @@ type Props = {
 
 const ListProduct = ({ data }: Props) => {
     if (!data) return <div className="">Loading...</div>
-    console.log(data);
     return (
         <>
             {data?.map((item, index) => (
