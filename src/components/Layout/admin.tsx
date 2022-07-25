@@ -1,18 +1,21 @@
 import React from 'react'
 import { LayoutProps } from '../../models/layout'
+import Navbar from '../admin/Navbar/Navbar'
+import Sidebar from '../admin/Sidebar'
 
-const LayoutAdmin = ({children}: LayoutProps) => {
+
+const LayoutAdmin = ({ children }: LayoutProps) => {
   return (
-    <div>
-        <div className='grid grid-cols-[200px,auto]'>
-            <div>
-                Sidebar
-            </div>
-            <div>
-                {children}
-            </div>
-        </div>
-        
+    <div className="admin-container tw-flex tw-h-screen tw-text-black tw-bg-gray-50 :tw-bg-gray-900">
+      <Sidebar />
+      <div className="tw-flex tw-flex-col tw-flex-1 tw-w-full">
+        <Navbar />
+        <main className="tw-h-full tw-overflow-y-auto">
+          <div className='tw-p-5'>
+            {children}
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
