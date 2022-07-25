@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import React from 'react'
 import styles from "./Header.module.scss";
-import Icon from '../Icon';
+import Icon from '../../Icon';
 import { MenuList } from "./data-menu";
 import { path } from '@/constants';
 import clsx from 'clsx';
@@ -60,9 +60,9 @@ const Header = (props: Props) => {
             </div> */}
             <div className="tw-indicator">
               <span className="tw-indicator-item tw-badge tw-badge-secondary tw-bg-primary">99+</span>
-              <button>
-                <Icon.Cart className={styles['header-action__button']} />
-              </button>
+              <label htmlFor="my-drawer-4" className="drawer-button btn btn-primary tw-cursor-pointer">
+                  <Icon.Cart className={styles['header-action__button']} />
+              </label>
             </div>
           </div>
         </div>

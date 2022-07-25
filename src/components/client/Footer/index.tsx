@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
-import Icon from '../Icon';
+import Icon from '../../Icon';
 import styles from "./Footer.module.scss";
 
 type Props = {}
