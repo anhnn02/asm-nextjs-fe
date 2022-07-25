@@ -39,7 +39,7 @@ const CartSidebar = (props: Props) => {
                             </div>
                         </div>
                         <div className={styles['cart-sidebar__action-del']}>
-                            <Icon.Close className="tw-text-3xl tw-m-auto tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600"/>
+                            <Icon.Close className="tw-text-3xl tw-m-auto tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
                         </div>
                     </div>
                     <div className={styles['cart-sidebar__item']}>
@@ -64,7 +64,7 @@ const CartSidebar = (props: Props) => {
                             </div>
                         </div>
                         <div className={styles['cart-sidebar__action-del']}>
-                            <Icon.Close className="tw-text-3xl tw-m-auto tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600"/>
+                            <Icon.Close className="tw-text-3xl tw-m-auto tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
                         </div>
                     </div>
                     <div className={styles['cart-sidebar__item']}>
@@ -89,7 +89,7 @@ const CartSidebar = (props: Props) => {
                             </div>
                         </div>
                         <div className={styles['cart-sidebar__action-del']}>
-                            <Icon.Close className="tw-text-3xl tw-m-auto tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600"/>
+                            <Icon.Close className="tw-text-3xl tw-m-auto tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
                         </div>
                     </div>
                     <div className={styles['cart-sidebar__item']}>
@@ -114,13 +114,17 @@ const CartSidebar = (props: Props) => {
                             </div>
                         </div>
                         <div className={styles['cart-sidebar__action-del']}>
-                            <Icon.Close className="tw-text-3xl tw-m-auto tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600"/>
+                            <Icon.Close className="tw-text-3xl tw-m-auto tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
                         </div>
                     </div>
                 </div>
                 <div className={styles['cart-sidebar__footer']}>
-                    <Button.Fill className="tw-block tw-w-full !tw-h-3 !tw-p-1" content={`Checkout now $${abc}`} />
-                    <Button.Transparent className="tw-block tw-w-full" content={`View cart`} />
+                    <Link href="/abc">
+                        <Button.Fill className="tw-block tw-w-full !tw-h-3 !tw-p-1" content={`Checkout now $${abc}`} />
+                    </Link>
+                    <Link href="/abc">
+                        <Button.Transparent className="tw-block tw-w-full" content={`View cart`} />
+                    </Link>
                 </div>
             </div>
         </div>
