@@ -8,7 +8,7 @@ import styles from "./CartSidebar.module.scss";
 type Props = {}
 
 const CartSidebar = (props: Props) => {
-    const abc = 12 + 12
+    const abc = 10
     return (
         <div className="tw-drawer-side">
             <label htmlFor="my-drawer-4" className="tw-drawer-overlay"></label>
