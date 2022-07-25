@@ -1,13 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import Button from '@/components/Button'
+import ListProduct from '@/components/client/shop/ListProduct'
 import Icon from '@/components/Icon'
+import { GetStaticProps, GetStaticPropsContext } from 'next'
 import Link from 'next/link'
 import React from 'react'
 import styles from './Shop.module.scss'
 
 type Props = {}
-
-const Shop = (props: Props) => {
+type ProductProps = {
+  products: any[]
+}
+const Shop = ({products}: ProductProps) => {
   return (
     <div className={styles['shop']}>
       <div className={styles['shop-search']}>
@@ -54,7 +58,7 @@ const Shop = (props: Props) => {
             <div className={styles['shop-sidebar-variation']}>
               <form>
                 <div className={`${styles['form-group']} ${styles['form-group-35']}`}>
-                  <input type="checkbox" id="size-35" defaultValue="2"/>
+                  <input type="checkbox" id="size-35" defaultValue="2" />
                   <label htmlFor="size-35"></label>
                 </div>
                 <div className={`${styles['form-group']} ${styles['form-group-36']}`}>
@@ -95,112 +99,7 @@ const Shop = (props: Props) => {
         </div>
         <div className={styles['shop-product']}>
           <div className={styles['shop-product-list']}>
-            <div className={styles['shop-product__item']}>
-              <div className={styles['shop-product__item-img']}>
-                <span className="tw-badge tw-bg-primary tw-border-none tw-py-1 tw-text-xs">
-                  50% off
-                </span>
-                <img src="https://picsum.photos/200/300" alt="" />
-              </div>
-              <div className={styles['shop-product__item-text']}>
-                <h3><Link href=""><a href="" className={styles["product__item-title"]}></a></Link></h3>
-                <div className={styles['shop-product__item-row']}>
-                  <span className={styles['shop-product-start']}>
-                    <Icon.Star />
-                    <Icon.Star />
-                    <Icon.Star />
-                    <Icon.Star />
-                    <Icon.Star />
-                  </span>
-                  <div className={styles['shop-product__item-variation']}>
-                    <span className={styles['shop-product-variation__item']}>36</span>
-                    <span className={styles['shop-product-variation__item']}>38</span>
-                  </div>
-                </div>
-                <div className={styles['shop-product__item-row']}>
-                  <div className="">
-                    
-                    <span className={`${styles['shop-product-price']} ${styles['shop-product-price--sale']}`}>
-                      $125.00
-                    </span>
-                    <span className={`${styles['shop-product-price']} ${styles['shop-product-price--regular']}`}>
-                      $150.00
-                    </span>
-                  </div>
-                  <Button.Transparent className="!tw-py-1 !tw-px-2" content={<Icon.PlusRegular className="tw-text-3xl" />} />
-                </div>
-              </div>
-            </div>
-            <div className={styles['shop-product__item']}>
-              <div className={styles['shop-product__item-img']}>
-                <span className="tw-badge tw-bg-primary tw-border-none tw-py-1 tw-text-xs">
-                  50% off
-                </span>
-                <img src="https://picsum.photos/200/300" alt="" />
-              </div>
-              <div className={styles['shop-product__item-text']}>
-                <h3><Link href=""><a href="" className={styles["product__item-title"]}></a></Link></h3>
-                <div className={styles['shop-product__item-row']}>
-                  <span className={styles['shop-product-start']}>
-                    <Icon.Star />
-                    <Icon.Star />
-                    <Icon.Star />
-                    <Icon.Star />
-                    <Icon.Star />
-                  </span>
-                  <div className={styles['shop-product__item-variation']}>
-                    <span className={styles['shop-product-variation__item']}>36</span>
-                    <span className={styles['shop-product-variation__item']}>38</span>
-                  </div>
-                </div>
-                <div className={styles['shop-product__item-row']}>
-                  <div className="">
-                    <span className={styles['shop-product-price shop-product-price--sale']}>
-                      $125.00
-                    </span>
-                    <span className={styles['shop-product-price shop-product-price--regular']}>
-                      $150.00
-                    </span>
-                  </div>
-                  <Button.Transparent className="!tw-py-1 !tw-px-2" content={<Icon.PlusRegular className="tw-text-3xl" />} />
-                </div>
-              </div>
-            </div>
-            <div className={styles['shop-product__item']}>
-              <div className={styles['shop-product__item-img']}>
-                <span className="tw-badge tw-bg-primary tw-border-none tw-py-1 tw-text-xs">
-                  50% off
-                </span>
-                <img src="https://picsum.photos/200/300" alt="" />
-              </div>
-              <div className={styles['shop-product__item-text']}>
-                <h3><Link href=""><a href="" className={styles["product__item-title"]}></a></Link></h3>
-                <div className={styles['shop-product__item-row']}>
-                  <span className={styles['shop-product-start']}>
-                    <Icon.Star />
-                    <Icon.Star />
-                    <Icon.Star />
-                    <Icon.Star />
-                    <Icon.Star />
-                  </span>
-                  <div className={styles['shop-product__item-variation']}>
-                    <span className={styles['shop-product-variation__item']}>36</span>
-                    <span className={styles['shop-product-variation__item']}>38</span>
-                  </div>
-                </div>
-                <div className={styles['shop-product__item-row']}>
-                  <div className="">
-                    <span className={styles['shop-product-price shop-product-price--sale']}>
-                      $125.00
-                    </span>
-                    <span className={styles['shop-product-price shop-product-price--regular']}>
-                      $150.00
-                    </span>
-                  </div>
-                  <Button.Transparent className="!tw-py-1 !tw-px-2" content={<Icon.PlusRegular className="tw-text-3xl" />} />
-                </div>
-              </div>
-            </div>
+            <ListProduct data={products} />
           </div>
           <div className={styles['shop-product-pagination']}>
 
@@ -209,6 +108,19 @@ const Shop = (props: Props) => {
       </div>
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps<ProductProps> = async (context: GetStaticPropsContext) => {
+  const data = await (await fetch("http://localhost:3001/api/products")).json()
+  if(!data) return {
+    notFound: true
+  }
+  return {
+    props: {
+      products: data
+    },
+    revalidate: 5
+  }
 }
 
 export default Shop

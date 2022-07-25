@@ -1,5 +1,5 @@
 .shop {
-    @apply tw-pt-10;
+    @apply tw-py-10;
 
     &-search {
         @apply tw-flex tw-justify-between tw-items-center tw-w-[var(--container)] tw-bg-white tw-mb-10 tw-rounded-[var(--rounded-1)] tw-p-5;
@@ -22,7 +22,7 @@
         @apply tw-grid tw-grid-cols-[1fr_3.5fr] tw-gap-10;
 
         .shop-sidebar {
-            @apply tw-bg-white tw-mb-10 tw-rounded-[var(--rounded-1)] tw-p-5;
+            @apply tw-bg-white tw-mb-10 tw-rounded-[var(--rounded-1)] tw-p-5 tw-h-fit tw-sticky tw-top-[180px];
             box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
 
             &-section {
@@ -90,36 +90,44 @@
                     padding: 6px 8px;
                     display: inline-block;
                     position: relative;
+                    margin-right: 6px;
                     vertical-align: middle;
                     cursor: pointer;
-                    margin-right: 5px;
                 }
 
                 .form-group {
                     &-35 label:before {
                         content: '35';
                     }
+
                     &-36 label:before {
                         content: '36';
                     }
+
                     &-37 label:before {
                         content: '37';
                     }
+
                     &-38 label:before {
                         content: '38';
                     }
+
                     &-39 label:before {
                         content: '39';
                     }
+
                     &-40 label:before {
                         content: '40';
                     }
+
                     &-41 label:before {
                         content: '41';
                     }
+
                     &-42 label:before {
                         content: '42';
                     }
+
                     &-43 label:before {
                         content: '43';
                     }
@@ -136,7 +144,7 @@
                     position: relative;
                     vertical-align: middle;
                     cursor: pointer;
-                    margin-right: 5px;
+                    margin-right: 6px;
                     color: var(--primary)
                 }
             }
@@ -147,10 +155,7 @@
                 @apply tw-grid tw-grid-cols-3 tw-gap-10;
             }
 
-            &__item {
-                @apply tw-bg-white tw-w-full tw-mb-10 tw-rounded-[var(--rounded-1)] tw-p-5;
-                box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
-            }
+            
         }
     }
 }

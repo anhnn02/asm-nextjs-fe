@@ -1,0 +1,76 @@
+.shop-product {
+    &__item {
+        @apply tw-bg-white tw-w-full tw-rounded-[var(--rounded-1)] tw-overflow-hidden;
+        box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+
+        &-img {
+            @apply tw-relative;
+
+            .shop-product__item-float {
+                @apply tw-absolute;
+            }
+
+            .shop-product__item-float--tag-sale {
+                @apply tw-left-2 tw-top-2 tw-py-[1px] tw-px-2 tw-bg-primary tw-rounded-[var(--rounded-2)] tw-text-white;
+                font-size: var(--smaller)
+            }
+
+            .shop-product__item-float--action {
+                @apply tw-right-2 tw-top-2 tw-invisible tw-text-my-gray;
+            }
+
+            img {
+                @apply tw-w-full tw-h-72 tw-object-cover tw-cursor-pointer;
+            }
+
+        }
+
+        &-text {
+            @apply tw-px-4 tw-pb-4;
+
+            .shop-product__item-title {
+                @apply tw-block tw-font-bold tw-w-[96%] tw-truncate;
+                font-size: var(--small)
+            }
+
+            .shop-product__item-row {
+                @apply tw-flex tw-justify-between tw-items-center;
+
+                .shop-product-star {
+                    @apply tw-space-x-1 tw-text-star
+                }
+
+                .shop-product__item-variation {
+                    @apply tw-space-x-1 tw-text-my-gray;
+                }
+                .shop-product-variation__item + .shop-product-variation__item {
+                    @apply tw-border-l-[1.5px] tw-pl-1
+                }
+                .shop-product-price {
+                    font-size: var(--small)
+                }
+
+                .shop-product-price--sale {
+                    @apply tw-text-primary tw-font-bold tw-pr-1;
+                }
+
+                .shop-product-price--regular {
+                    @apply tw-text-my-gray tw-line-through;
+                }
+            }
+
+            .shop-product__item-row+.shop-product__item-row {
+                @apply tw-mt-1
+            }
+        }
+
+
+        &-float {}
+    }
+
+    &__item:hover {
+        .shop-product__item-float--action {
+            @apply tw-visible;
+        }
+    }
+}

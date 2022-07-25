@@ -1,4 +1,9 @@
 const Icon = {
+    HeartFill({ className, ...props }) {
+        return (
+            <i {...props} className={`bi bi-heart-fill ${className}`}></i>
+        );
+    },
     Star({ className, ...props }) {
         return (
             <i {...props} className={`bi bi-star ${className}`}></i>
