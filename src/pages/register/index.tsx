@@ -116,11 +116,10 @@ const Register = () => {
             className={styles["btn"]}
             content="Continue with Facebook"
           />
-          <p> </p>
-          <Button.Fill2
+          <div className={styles["google"]}>  <Button.Fill2
             className={styles["btn"]}
             content="Continue with Google"
-          />
+          /></div>
         </form>
         <div className={styles["lg"]}>
           Already have account?

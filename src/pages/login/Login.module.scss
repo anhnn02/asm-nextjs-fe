@@ -3,15 +3,15 @@
 }
 
 .content {
-    @apply tw-w-[500px] tw-bg-white tw-shadow-2xl tw-mx-auto tw-border tw-rounded-[var(--rounded-1)] tw-border-[#dae1e7];
+    @apply tw-w-[500px] tw-bg-white tw-shadow-2xl tw-mx-auto tw-rounded-[var(--rounded-1)] tw-border-[#dae1e7] tw-overflow-hidden;
 }
 
 .text {
-    @apply tw-text-center tw-font-medium tw-text-3xl;
+    @apply tw-text-center tw-font-bold tw-text-xl;
 }
 
 .tep {
-    @apply tw-text-center tw-font-medium tw-text-[#373F50];
+    @apply tw-text-center tw-font-medium tw-text-[#373F50] tw-text-sm;
 }
 
 .form {
@@ -28,7 +28,7 @@
 }
 
 .on {
-    @apply tw-text-center tw-text-gray tw-py-3;
+    @apply tw-text-center tw-text-my-gray tw-py-3;
     font-size: var(--base)
 }
 
@@ -41,7 +41,7 @@
         @apply tw-checkbox;
     }
     &-text {
-        @apply tw-label-text tw-left-0 tw-text-gray;
+        @apply tw-label-text tw-left-0 tw-text-my-gray;
     }
 }
 
@@ -56,14 +56,14 @@
 /* ----------- check login*/
 
 .lg {
-    @apply tw-text-center tw-py-5 tw-bg-[#dae1e7] tw-text-gray tw-mt-5;
+    @apply tw-text-center tw-py-5 tw-bg-[#f3f5f9] tw-text-my-gray;
     &-1 {
         @apply tw-text-black tw-font-medium;
     }
 }
 
 .lg1 {
-    @apply tw-text-center tw-py-5 tw-text-gray tw-mt-5;
+    @apply tw-text-center tw-py-5 tw-text-my-gray tw-mt-1;
     &-1 {
         @apply tw-text-black tw-font-medium;
     }

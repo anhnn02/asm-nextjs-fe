@@ -1,5 +1,4 @@
 import Button from "@/components/Button";
-import Header from "@/components/Header";
 import Icon from "@/components/Icon";
 import { NextPage } from "next";
 import styles from "../styles/client/Home.module.scss";
