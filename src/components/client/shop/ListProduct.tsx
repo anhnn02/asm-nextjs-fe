@@ -102,8 +102,8 @@ const ListProduct = ({ data }: Props) => {
                   </span>
                 </div>
                 <Button.Transparent
-                  className="!tw-py-[1px] !tw-px-1 !tw-min-h-0 !tw-h-[32px]"
-                  content={<Icon.PlusRegular className="tw-text-2xl" />}
+                  className="!tw-py-[1px] !tw-px-1 !tw-min-h-0 !tw-h-[30px]"
+                  content={<Icon.PlusRegular className="tw-text-[21px]" />}
                 />
               </div>
             </div>
