@@ -1,30 +1,30 @@
 const Icon = {
 
-    HeartFill({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-heart-fill ${className}`}></i>
-        );
-    },
-    Star({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-star ${className}`}></i>
-        );
-    },
-    Close({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-x ${className}`}></i>
-        );
-    },
-    Minus({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-dash ${className}`}></i>
-        );
-    },
-    BellOutline({ className, ...props }) {
-        return (
-            <i {...props} className={`bi bi-bell ${className}`}></i>
-        );
-    },
+  HeartFill({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-heart-fill ${className}`}></i>
+    );
+  },
+  Star({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-star ${className}`}></i>
+    );
+  },
+  Close({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-x ${className}`}></i>
+    );
+  },
+  Minus({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-dash ${className}`}></i>
+    );
+  },
+  BellOutline({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-bell ${className}`}></i>
+    );
+  },
   PlusCircle({ className, ...props }) {
     return <i {...props} className={`bi bi-plus-circle ${className}`}></i>;
   },
@@ -118,6 +118,42 @@ const Icon = {
   },
   StarFill({ className, ...props }) {
     return <i {...props} className={`bi bi-star-fill ${className}`}></i>;
+  },
+  ArrowRight({ className, ...props }) {
+    return <i {...props} className={`bi bi-arrow-right ${className}`}></i>;
+  },
+  Order({ className, ...props }) {
+    return <i {...props} className={`bi bi-clipboard ${className}`}></i>;
+  },
+  OrderFill({ className, ...props }) {
+    return <i {...props} className={`bi bi-clipboard-fill ${className}`}></i>;
+  },
+  Headset({ className, ...props }) {
+    return <i {...props} className={`bi bi-headset ${className}`}></i>;
+  },
+  User({ className, ...props }) {
+    return <i {...props} className={`bi bi-person ${className}`}></i>;
+  },
+  HouseDoor({ className, ...props }) {
+    return <i {...props} className={`bi bi-house-door ${className}`}></i>;
+  },
+  Payment({ className, ...props }) {
+    return <i {...props} className={`bi bi-credit-card-2-back ${className}`}></i>;
+  },
+  Heart({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-heart ${className}`}></i>
+    );
+  },
+  ChevronLeft({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-chevron-left ${className}`}></i>
+    );
+  }, 
+  ChevronRight({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-chevron-right ${className}`}></i>
+    );
   },
 };
 
