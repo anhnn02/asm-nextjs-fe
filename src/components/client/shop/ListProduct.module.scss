@@ -26,10 +26,10 @@
         }
 
         &-text {
-            @apply tw-px-4 tw-pb-4;
+            @apply tw-p-4;
 
             .shop-product__item-title {
-                @apply tw-block tw-font-bold tw-w-[96%] tw-truncate;
+                @apply tw-block tw-font-semibold tw-w-[96%] tw-truncate;
                 font-size: var(--small)
             }
 
@@ -64,8 +64,6 @@
             }
         }
 
-
-        &-float {}
     }
 
     &__item:hover {
