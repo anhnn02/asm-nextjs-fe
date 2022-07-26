@@ -1,0 +1,65 @@
+/*Aside_user*/
+
+.aside_user {
+    width: 25%;
+    padding: 0.75rem 0.75rem 0.75rem 0;
+}
+
+.boder-aside_user {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    border-radius: 8px;
+    color: rgb(43, 52, 69);
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 1.5rem;
+}
+
+.header-aside_user {
+    padding: 26px 30px 16px 30px;
+    color: rgb(125, 135, 156);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.row-aside_user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    margin-bottom: 20px;
+    border-left: 4px solid transparent;
+    text-transform: capitalize;
+    font-size: 14px;
+    transition: all 150ms ease-in-out 0s;
+}
+
+.row-aside_user:hover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    font-size: 14px;
+    border-left: 4px solid var(--primary);
+    color: var(--primary);
+    transition: all 150ms ease-in-out 0s;
+}
+
+.row-aside_user_actived {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    font-size: 14px;
+    border-left: 4px solid var(--primary);
+    color: var(--primary);
+}
+
+
+.icon-aside_user {
+    margin-right: 10px;
+}
