@@ -13,3 +13,8 @@ html {
 img {
     max-width: 100%;
 }
+
+.my-error {
+    @apply tw-text-red-500;
+    font-size: var(--small)
+}

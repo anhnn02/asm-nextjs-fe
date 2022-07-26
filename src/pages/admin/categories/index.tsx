@@ -1,3 +1,4 @@
+import LayoutAdmin from '@/components/Layout/admin'
 import React from 'react'
 
 type Props = {}
@@ -7,5 +8,6 @@ const CategoryList = (props: Props) => {
     <div>CategoryList</div>
   )
 }
+CategoryList.Layout = LayoutAdmin
 
 export default CategoryList

@@ -1,8 +1,8 @@
 import instance from "./instance";
 
-// export const getAll = () => {
-//     return instance.get('/products');
-// }
+export const getAll = () => {
+    return instance.get('/products');
+}
 export const add = (product: any) => {
     return instance.post("/products", product);
 };
