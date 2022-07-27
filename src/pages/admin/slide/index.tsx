@@ -26,7 +26,7 @@ const columns = [
 
 const SlideList = (props: Props) => {
     const { data, remove, error } = useSlide()
-    console.log(data);
+    // console.log(data);
     if (!data) return <div>Loading...</div>
     if (error) return <div>Failed to loading</div>
     const dataSource = data.map((item, index) => {
@@ -34,8 +34,8 @@ const SlideList = (props: Props) => {
             key: index + 1,
             img: <img src={item.img} alt=""  /> ,
             action: <div>
-                <Button className='button-action' type="primary" danger size='large'><i className="bi bi-trash3"></i></Button>
-                <Button className='tw-mx-1 button-action' type="primary" size='large'><Link href="/admin/slides"><a href=""><i className="bi bi-pencil-square"></i></a></Link></Button>
+                <Button onClick={() => remove(item._id)} className='button-action' type="primary" danger size='large'><i className="bi bi-trash3"></i></Button>
+                <Button className='tw-mx-1 button-action' type="primary" size='large'><Link href={`/admin/slide/${item._id}`}><a href=""><i className="bi bi-pencil-square"></i></a></Link></Button>
             </div >
         }
     })
