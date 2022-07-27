@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import { add, removeItem, update } from "../api/slide";
+import { removeItem, update, add } from "../api/slide";
 
 const useSlide = () => {
   const { data, error, mutate } = useSWR(`/banners`);
@@ -14,7 +14,7 @@ const useSlide = () => {
         }
     }
 
-  const add = async (item: any) => {
+  const create = async (item: any) => {
     const addSlide = await add(item);
     mutate([...data, addSlide]);
   };
@@ -28,7 +28,7 @@ const useSlide = () => {
     data,
     error,
     remove,
-    add,
+    create,
     edit,
   };
 };
