@@ -37,6 +37,14 @@ const Sidebar = (props: Props) => {
                             </a>
                         </Link>
                     </div>
+                    <div className="tw-px-2">
+                        <Link href={path.private.slidesRoute}>
+                            <a href='' className="!tw-text-black admin-nav__link tw-block tw-space-x-2 tw-w-full tw-p-2 tw-rounded hover:tw-bg-purple-100">
+                                <span className="!tw-text-sm tw-font-semibold">
+                                    <i className="bi bi-box-fill !tw-text-sm"></i> Slide</span>
+                            </a>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </aside >

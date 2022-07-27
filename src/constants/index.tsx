@@ -12,5 +12,6 @@ export const path = {
         rootRoute: '/admin',
         categoriesRoute: '/admin/categories',
         productsRoute: '/admin/products',
+        slidesRoute:'/admin/slide'
     }
 }
