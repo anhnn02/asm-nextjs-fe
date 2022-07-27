@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { getAll } from '@/api/product'
 import Button from '@/components/Button'
 import ListProduct from '@/components/client/shop/ListProduct'
 import Icon from '@/components/Icon'
@@ -111,7 +112,7 @@ const Shop = ({products}: ProductProps) => {
 }
 
 export const getStaticProps: GetStaticProps<ProductProps> = async (context: GetStaticPropsContext) => {
-  const data = await (await fetch("http://localhost:3001/api/products")).json()
+  const data = await (await getAll())
   if(!data) return {
     notFound: true
   }

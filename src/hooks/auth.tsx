@@ -6,12 +6,6 @@ import { list, signup, signin } from "../api/auth";
 export const useAuth = (options?) => {
   const { data, error, mutate } = useSWR("/users", { ...options });
 
-  //get list user
-  const fetcher = async (url: string) => {
-    const data = await list(url);
-    return data;
-  };
- 
   //register
   const register = async (user) => {
     const account = await signup(user);
@@ -22,7 +16,10 @@ export const useAuth = (options?) => {
     mutate(`/users/${id}`);
   };
   //login
-
+  const login = async (user) => {
+    const account = await signin(user);
+    return account
+  };
   //logout
 
   return {
@@ -30,6 +27,7 @@ export const useAuth = (options?) => {
     error,
     register,
     profile,
+    login
   };
 };
 

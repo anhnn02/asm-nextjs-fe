@@ -1,0 +1,65 @@
+.contact {
+    @apply tw-grid tw-grid-cols-2 tw-p-10;
+
+    &__img {
+        @apply tw-flex;
+
+        img {
+            @apply tw-w-96 tw-m-auto;
+            position: relative;
+            animation: leftRight;
+            animation-duration: 3s;
+            // mượt hơn
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+    }
+}
+
+.content {
+    @apply tw-w-fit tw-bg-white tw-shadow-2xl tw-rounded-[var(--rounded-1)] tw-border-[#dae1e7] tw-overflow-hidden;
+}
+
+.form {
+    @apply tw-px-10 tw-py-6 tw-space-y-4;
+
+    &__title {
+        @apply tw-font-bold;
+        font-size: var(--largest)
+    }
+
+    &__label {
+        @apply tw-text-[#2b3445];
+    }
+
+    &-input {
+        @apply tw-form-control tw-border tw-outline-0 tw-outline-primary tw-w-[320px] tw-p-2 tw-mt-2 tw-rounded-[5px] tw-border-[#dae1e7];
+    }
+
+    &-udline {
+        @apply tw-underline tw-text-black tw-font-medium;
+    }
+
+    &-textarea {
+        @apply tw-form-control tw-border tw-outline-0 tw-outline-primary tw-w-[320px] tw-p-2 tw-mt-2 tw-rounded-[5px] tw-border-[#dae1e7] tw-h-36
+    }
+
+    &__button {
+        @apply tw-text-right
+    }
+
+}
+
+@keyframes leftRight {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: -50px;
+    }
+
+    100% {
+        top: 0;
+    }
+}
