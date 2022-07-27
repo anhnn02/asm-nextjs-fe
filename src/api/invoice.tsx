@@ -10,7 +10,7 @@ export const removeItem = (id: any) => {
   return instance.delete(`/invoices/${id}`);
 };
 export const update = (invoice: any) => {
-  return instance.put(`/invoices/${invoice.id}`, invoice);
+  return instance.put(`/invoice/${invoice._id}`, invoice);
 };
 export const read = (id: any) => {
   return instance.get(`/invoices/${id}`);
