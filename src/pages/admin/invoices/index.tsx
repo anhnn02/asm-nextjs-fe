@@ -6,20 +6,29 @@ import Link from "next/link";
 import styles from "./Invoice.module.scss";
 import Icon from "@/components/Icon";
 import { path } from "@/constants";
+import { GetStaticProps, GetStaticPropsContext } from "next";
+import { userInfo } from "os";
+import useInvoice from "@/hooks/invoice";
 
-
-type Props = {};
+type InvoiceProps = {
+  data: {}[];
+};
 
 const columns = [
+  {
+    title: "Fullname",
+    dataIndex: "fullname",
+    key: "fullname",
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+    key: "email",
+  },
   {
     title: "Date",
     dataIndex: "date",
     key: "date",
-  },
-  {
-    title: "Quanlity",
-    dataIndex: "quanlity",
-    key: "quanlity",
   },
   {
     title: "Status",
@@ -28,8 +37,13 @@ const columns = [
   },
   {
     title: "Total Price",
-    dataIndex: "totalPrice",
-    key: "totalPrice",
+    dataIndex: "total",
+    key: "total",
+  },
+  {
+    title: "Note",
+    dataIndex: "note",
+    key: "note",
   },
   {
     title: "Action",
@@ -43,45 +57,18 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: "0",
-    date: "John Brown",
-    quanlity: 32,
-    totalPrice: 123,
-    status: 0,
+const InvoicePage = () => {
+  const { data, error } = useInvoice();
+  if (!data) return <div>Loading...</div>;
 
-  },
-  {
-    key: "1",
-    date: "John Brown",
-    quanlity: 32,
-    totalPrice: 123,
-    status: 1,
-  },
-  {
-    key: "2",
-    date: "John Brown",
-    quanlity: 32,
-    totalPrice: 123,
-    status: 2,
-  },
-  {
-    key: "3",
-    date: "John Brown",
-    quanlity: 32,
-    totalPrice: 123,
-    status: 3,
-  },
-];
-
-const InvoicePage = (props: Props) => {
-  const dataSource = data.map((item, index) => {
+    const dataSource = data.map((item, index) => {
     return {
       key: index + 1,
-      date: item.date,
-      quanlity: item.quanlity,
-      totalPrice: item.totalPrice,
+      fullname: item.fullname,
+      email: item.email,
+      date: item.createdAt.split("", 10),
+      total: item.total,
+      note: item.note,
       status: (
         <div>
           {item.status === 0 ? (
@@ -116,11 +103,12 @@ const InvoicePage = (props: Props) => {
 
       action: (
         <div>
-          <Button className="button-action" type="primary" danger size="large">
-            <i className="bi bi-trash3"></i>
-          </Button>
-          <Button className="tw-mx-1 button-action" type="primary" size="large">
-            <Link href="/admin/products">
+          <Button
+            className="tw-mx-1 button-action tw-rounded-[var(--rounded-1)] "
+            type="primary"
+            size="large"
+          >
+            <Link href={`/admin/invoices/edit/${item._id}`}>
               <a href="">
                 <i className="bi bi-pencil-square"></i>
               </a>
@@ -130,11 +118,11 @@ const InvoicePage = (props: Props) => {
       ),
 
       detail: (
-        // <Link href={`${path.private.invoiceRoute}/${item._id}`}>
-        <Link href="">
-
-          <Icon.Eye className="tw-text-xl" />
-        </Link>
+        <button>
+          <Link href={`${path.private.invoiceRoute}/${item._id}`}>
+            <Icon.Eye className="tw-text-xl" />
+          </Link>
+        </button>
       ),
     };
   });
