@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
-import Header from "@/components/Header";
 import Icon from "@/components/Icon";
+import Product from "@/features/products/product.component";
 import { NextPage } from "next";
 import styles from "../styles/client/Home.module.scss";
 
@@ -12,6 +12,7 @@ const Home: NextPage = () => {
             <i className="bi bi-wrench-adjustable-circle-fill"></i>
             <Button.Transparent content={"Add"} />
             <Button.Fill content={<Icon.Search />} />
+            <Product/>
         </>
     )
 };
