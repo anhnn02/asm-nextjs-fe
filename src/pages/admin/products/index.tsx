@@ -5,6 +5,7 @@ import { Table, Tag, Space } from 'antd';
 import { Button, Menu, Dropdown } from 'antd';
 import Link from 'next/link';
 import useProduct from '@/hooks/use-product';
+import styles from '../AdminContent.module.scss'
 
 type Props = {}
 
@@ -15,6 +16,11 @@ const columns = [
         key: 'name',
     },
     {
+        title: 'Image',
+        dataIndex: 'img',
+        key: 'img',
+    },
+    {
         title: 'RegularPrice',
         dataIndex: 'regularPrice',
         key: 'regularPrice',
@@ -23,11 +29,6 @@ const columns = [
         title: 'SalePrice',
         dataIndex: 'salePrice',
         key: 'salePrice',
-    },
-    {
-        title: 'Image',
-        dataIndex: 'img',
-        key: 'img',
     },
     {
         title: 'Size',
@@ -59,23 +60,28 @@ const ProductList = (props: Props) => {
             regularPrice: item.regularPrice,
             salePrice: item.salePrice,
             img: <div><img src={item.img} height={50} width={50} alt="" /></div>,
-            size: item.size,
+            size: <div>{item.size.map((item, index) => {
+                return <span className={styles['size_product']} key={index}>{item}</span>
+            })}</div>,
             category: item.category?.name,
             action:
                 <div>
-                    <Button onClick={() => remove(item._id)} className='button-action' type="primary" danger size='large' ><i className="bi bi-trash3"></i></Button>
                     <Button className='tw-mx-1 button-action' type="primary" size='large'><Link href={`/admin/products/${item._id}`}><a href=""><i className="bi bi-pencil-square"></i></a></Link></Button>
+                    <Button onClick={() => remove(item._id)} className='button-action' type="primary" danger size='large' ><i className="bi bi-trash3"></i></Button>
                 </div >
         }
     })
     return (
         <div>
-            <Link href='/admin/products/add'>
+            <div className={styles['header_content']}>
                 <div>
-                    <button className="tw-btn tw-gap-2">Add product
-                    </button>
+                    <h1 className={styles['title_table']}>list product</h1>
                 </div>
-            </Link>
+                <Link href='/admin/products/add'>
+                    <button className={styles['btn-multichoice_item']}>Add product +
+                    </button>
+                </Link>
+            </div>
             <Table columns={columns} dataSource={dataSource}
                 pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['10', '20', '30'] }} />
         </div>
