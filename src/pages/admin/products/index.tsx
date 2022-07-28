@@ -6,6 +6,7 @@ import { Button, Menu, Dropdown } from 'antd';
 import Link from 'next/link';
 import useProduct from '@/hooks/use-product';
 import styles from '../AdminContent.module.scss'
+import { formatPercent, formatPrice } from '@/utils/formatNumber';
 
 type Props = {}
 
@@ -21,12 +22,12 @@ const columns = [
         key: 'img',
     },
     {
-        title: 'RegularPrice',
+        title: 'Regular Price',
         dataIndex: 'regularPrice',
         key: 'regularPrice',
     },
     {
-        title: 'SalePrice',
+        title: 'Sale Price',
         dataIndex: 'salePrice',
         key: 'salePrice',
     },
@@ -57,8 +58,8 @@ const ProductList = (props: Props) => {
         return {
             key: index + 1,
             name: item.name,
-            regularPrice: item.regularPrice,
-            salePrice: item.salePrice,
+            regularPrice: formatPrice(item.regularPrice),
+            salePrice: formatPrice(item.salePrice),
             img: <div><img src={item.img} height={50} width={50} alt="" /></div>,
             size: <div className={styles['grid-size_product']}>{item.size.map((item, index) => {
                 return <span className={styles['size_product']} key={index}>{item}</span>
