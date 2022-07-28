@@ -39,7 +39,7 @@ const OrderList = () => {
                                     <div className={styles['order_item']}><span className={styles['order_status_pending-progress']}>pending</span></div>
                                     <div className={styles['order_item']}><span className={styles['order_date']}>jul 26, 2022</span></div>
                                     <div className={styles['order_item']}><span className={styles['order_total']}>$350.00</span></div>
-                                    <div className={styles['order_item_none-flex']}><Link href="/"><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
+                                    <div className={styles['order_item_none-flex']}><Link href="/orders/1"><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
                                 </div>
                             </Link>
                             <Link href="/" className=''>
