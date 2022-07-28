@@ -60,7 +60,7 @@ const ProductList = (props: Props) => {
             regularPrice: item.regularPrice,
             salePrice: item.salePrice,
             img: <div><img src={item.img} height={50} width={50} alt="" /></div>,
-            size: <div>{item.size.map((item, index) => {
+            size: <div className={styles['grid-size_product']}>{item.size.map((item, index) => {
                 return <span className={styles['size_product']} key={index}>{item}</span>
             })}</div>,
             category: item.category?.name,

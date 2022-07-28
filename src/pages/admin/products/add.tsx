@@ -47,55 +47,58 @@ const AddProduct = (props: Props) => {
             </div>
             <form action="" onSubmit={handleSubmit(onSubmit)}>
                 <div className={stylesAdmin['content-form_admin']}>
-                    <div>
-                        {/* NAME PRODUCT */}
-                        <div className={stylesAdmin['row-input_form']}>
-                            <label className={stylesAdmin['label_form']}>
-                                <span className={stylesAdmin['label-span_form']}>product name</span>
-                            </label>
-                            <input type="text" placeholder="Type here" className="tw-my-1 tw-my-1 tw-input tw-input-bordered tw-w-full tw-max-w-xs" {...register('name', { required: true })} />
-                            {errors.name &&
-                                <div className={`${stylesAdmin['input-validate_form']} ${'my-error'}`}>
-                                    <span>Product name is required</span>
-                                </div>
-                            }
+                    <div className={stylesAdmin['inside_form_admin']}>
+                        <div className={stylesAdmin['row_2-col']}>
+                            {/* NAME PRODUCT */}
+                            <div className={`${stylesAdmin['row-input_form']} ${'tw-w-2/4'}`}>
+                                <label className={stylesAdmin['label_form']}>
+                                    <span className={stylesAdmin['label-span_form']}>product name</span>
+                                </label>
+                                <input type="text" placeholder="Type here" className="tw-my-1 tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full" {...register('name', { required: true })} />
+                                {errors.name &&
+                                    <div className={`${stylesAdmin['input-validate_form']} ${'my-error'}`}>
+                                        <span>Product name is required</span>
+                                    </div>
+                                }
+                            </div>
+                            {/* REGULAR PRICE  */}
+                            <div className={`${stylesAdmin['row-input_form']} ${'tw-w-2/4'}`}>
+                                <label className={stylesAdmin['label_form']}>
+                                    <span className={stylesAdmin['label-span_form']}>regular price</span>
+                                </label>
+                                <input type="text" placeholder="Type here" className="tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full" {...register('regularPrice', { required: true })} />
+                                {errors.regularPrice &&
+                                    <div className={`${stylesAdmin['input-validate_form']} ${'my-error'}`}>
+                                        <span>Regular Price is required</span>
+                                    </div>
+                                }
+                            </div>
                         </div>
-                        {/* REGULAR PRICE  */}
-                        <div className={stylesAdmin['row-input_form']}>
-                            <label className={stylesAdmin['label_form']}>
-                                <span className={stylesAdmin['label-span_form']}>regular price</span>
-                            </label>
-                            <input type="text" placeholder="Type here" className="tw-my-1 tw-input tw-input-bordered tw-w-full tw-max-w-xs" {...register('regularPrice', { required: true })} />
-                            {errors.regularPrice &&
-                                <div className={`${stylesAdmin['input-validate_form']} ${'my-error'}`}>
-                                    <span>Regular Price is required</span>
-                                </div>
-                            }
-                        </div>
-
-                        {/* SALE PRICE  */}
-                        <div className={stylesAdmin['row-input_form']}>
-                            <label className={stylesAdmin['label_form']}>
-                                <span className={stylesAdmin['label-span_form']}>sale price</span>
-                            </label>
-                            <input type="text" placeholder="Type here" className="tw-my-1 tw-input tw-input-bordered tw-w-full tw-max-w-xs" {...register('salePrice', { required: true })} />
-                            {errors.salePrice &&
-                                <div className={`${stylesAdmin['input-validate_form']} ${'my-error'}`}>
-                                    <span>Sale Price is required</span>
-                                </div>
-                            }
-                        </div>
-                        {/* IMAGE  */}
-                        <div className={stylesAdmin['row-input_form']}>
-                            <label className={stylesAdmin['label_form']}>
-                                <span className={stylesAdmin['label-span_form']}>image</span>
-                            </label>
-                            <input type="text" placeholder="Type here" className="tw-my-1 tw-input tw-input-bordered tw-w-full tw-max-w-xs" {...register('img', { required: true })} />
-                            {errors.img &&
-                                <div className={`${stylesAdmin['input-validate_form']} ${'my-error'}`}>
-                                    <span>Image is required</span>
-                                </div>
-                            }
+                        <div className={stylesAdmin['row_2-col']}>
+                            {/* SALE PRICE  */}
+                            <div className={`${stylesAdmin['row-input_form']} ${'tw-w-2/4'}`}>
+                                <label className={stylesAdmin['label_form']}>
+                                    <span className={stylesAdmin['label-span_form']}>sale price</span>
+                                </label>
+                                <input type="text" placeholder="Type here" className="tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full" {...register('salePrice', { required: true })} />
+                                {errors.salePrice &&
+                                    <div className={`${stylesAdmin['input-validate_form']} ${'my-error'}`}>
+                                        <span>Sale Price is required</span>
+                                    </div>
+                                }
+                            </div>
+                            {/* IMAGE  */}
+                            <div className={`${stylesAdmin['row-input_form']} ${'tw-w-2/4'}`}>
+                                <label className={stylesAdmin['label_form']}>
+                                    <span className={stylesAdmin['label-span_form']}>image</span>
+                                </label>
+                                <input type="text" placeholder="Type here" className="tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full" {...register('img', { required: true })} />
+                                {errors.img &&
+                                    <div className={`${stylesAdmin['input-validate_form']} ${'my-error'}`}>
+                                        <span>Image is required</span>
+                                    </div>
+                                }
+                            </div>
                         </div>
                         {/* SIZE  */}
                         <div className={stylesAdmin['row-input_form']}>
@@ -155,7 +158,7 @@ const AddProduct = (props: Props) => {
                             <label className={stylesAdmin['label_form']}>
                                 <span className={stylesAdmin['label-span_form']}>Category product</span>
                             </label>
-                            <select className="tw-my-1 tw-input tw-input-bordered tw-w-full tw-max-w-xs" {...register('category', { required: true })}>
+                            <select className="tw-my-1 tw-input tw-input-bordered tw-w-full " {...register('category', { required: true })}>
                                 {
                                     categories.map((item, index) => {
                                         return <option key={index + 1} value={item._id}>{item?.name}</option>
@@ -169,18 +172,20 @@ const AddProduct = (props: Props) => {
                             }
                         </div>
                         {/* DESCRIPTION  */}
-                        <div className={stylesAdmin['row-input_form']}>
+                        <div className={`${stylesAdmin['row-input_form']}`}>
                             <label className={stylesAdmin['label_form']}>
                                 <span className={stylesAdmin['label-span_form']}>Description</span>
                             </label>
-                            <textarea rows={5} className='tw-textarea tw-textarea-bordered tw-w-full tw-max-w-xs tw-h-24' {...register('desc')}></textarea>
+                            <textarea rows={5} className='tw-textarea tw-textarea-bordered tw-w-full tw-h-24' {...register('desc')}></textarea>
                         </div>
                         {/* BUTTON */}
                         <div className={stylesAdmin['row-input_form']}>
-                            <Button.Fill className='tw-w-full tw-max-w-xs' content={'Add'} />
+                            <Button.Fill className='tw-w-full' content={'Add'} />
                         </div>
                     </div>
-                    <div>
+
+                    {/* PREVIEW IMAGE  */}
+                    {/* <div>
                         <Image.PreviewGroup>
                             <Image className='tw-block'
                                 width={200}
@@ -188,7 +193,7 @@ const AddProduct = (props: Props) => {
                                 alt='thumb'
                             />
                         </Image.PreviewGroup>
-                    </div>
+                    </div> */}
                 </div>
 
 

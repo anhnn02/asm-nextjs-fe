@@ -22,25 +22,25 @@
     border-radius: 10px;
     margin-bottom: 1.5rem;
 }
-
+.grid-size_product{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
 .size_product {
     background: var(--primary);
-    padding: 0.25rem 0.4rem;
-    margin: 0 0.25rem;
+    padding: 0.25rem 0.25rem;
+    text-align: center;
     color: #fff;
     border-radius: 5px;
     font-weight: 600;
 }
 
-.image-preview_form{
+.image-preview_form {
     display: block;
 }
 
-.content-form_admin{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 30px;
-}
+.content-form_admin {}
 
 .size_row {
     padding: 0;
@@ -53,11 +53,13 @@
 .label_form {
     display: block;
 }
+
 .label-span_form {
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
 }
+
 .row-input_form {
     position: relative;
     margin-bottom: 1.5rem;
@@ -69,4 +71,14 @@
     text-transform: uppercase;
     // font-weight: 600;
     // color: red;
+}
+
+.row_2-col {
+    display: flex;
+    grid-gap: 15px;
+}
+
+.inside_form_admin {
+    width: 50%;
+    margin: 0 auto;
 }
