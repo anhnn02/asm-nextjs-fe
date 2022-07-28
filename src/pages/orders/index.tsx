@@ -7,7 +7,7 @@ import styles from './Orders.module.scss'
 
 const OrderList = () => {
     return (
-        <div className='tw-'>
+        <div className=''>
             <div className={styles['main-user_multichoice']}>
                 <AsideUser />
                 <div className={styles['content-user_multichoice']}>
