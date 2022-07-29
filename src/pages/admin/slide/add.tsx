@@ -29,7 +29,7 @@ const AddSlide = (props: Props) => {
             <form action="" onSubmit={handleSubmit(onSubmit)}>
               
                 {/* IMAGE  */}
-                <div className="tw-form-control tw-w-full tw-max-w-xs">
+                <div className="tw-form-control tw-w-full tw-max-w-xs text-center">
                     <label className="tw-label">
                         <span className="tw-label-text tw-capitalize">image</span>
                     </label>

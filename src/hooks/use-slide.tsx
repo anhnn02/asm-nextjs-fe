@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { add, removeItem, update , read} from "../api/slide";
 
 const useSlide = () => {
-  const { data, error, mutate } = useSWR(`/slides`);
+  const { data, error, mutate } = useSWR(`/banners`);
 
   const remove = async (id: any) => {
         const confirmItem = window.confirm('Bạn có muốn xóa không?')

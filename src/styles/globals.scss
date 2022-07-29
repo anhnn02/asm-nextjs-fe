@@ -1,9 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@import './variable.scss';
-@import './base.scss';
-@import './customScrollbar.scss';
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import './variable.scss';
+    @import './base.scss';
+    @import './customScrollbar.scss';
+    .img-admin-slide {
+        max-width: 600px;
+    }
+    
+    .head-admin-slide {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 2fr));
+    }
+    
+    .btn-add-slide {
+        background-color: mediumslateblue;
+        padding: 5px;
+        color: rgb(253, 249, 249);
+        width: 120px;
+        height: 40px;
+        margin-top: 16px;
+        margin-left: 500px;
+    }
+    
+    .add-slide {
+        color: rgb(252, 248, 248);
+        text-underline-offset: 4px;
+    }
+    
+    .title-admin-slide {
+        text-align: left;
+        font-size: 40px;
+        font-weight: bolder
+    }
