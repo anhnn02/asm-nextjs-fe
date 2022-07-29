@@ -13,5 +13,6 @@ export const path = {
     categoriesRoute: "/admin/categories",
     productsRoute: "/admin/products",
     invoiceRoute: "/admin/invoices",
+    slidesRoute:'/admin/slide'
   },
 };
