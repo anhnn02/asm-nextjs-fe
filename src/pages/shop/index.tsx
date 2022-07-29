@@ -8,7 +8,6 @@ import Link from 'next/link'
 import React from 'react'
 import styles from './Shop.module.scss'
 
-type Props = {}
 type ProductProps = {
   products: any[]
 }
