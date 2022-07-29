@@ -7,7 +7,7 @@ import rootReducer from "./root";
 const persistConfig = {
     key: "mainStore",
     storage,
-    // whitelist: ["user", "cart"]
+    whitelist: ["cart"]
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -20,7 +20,9 @@ export const store = configureStore({
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
         }),
-})
+});
+
+store.subscribe(() => console.log(store.getState()))
 
 
 

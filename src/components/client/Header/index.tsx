@@ -6,10 +6,13 @@ import Icon from '../../Icon';
 import { MenuList } from "./data-menu";
 import { path } from '@/constants';
 import clsx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
 
 type Props = {}
 
 const Header = (props: Props) => {
+  const { totalQuantity } = useSelector((state) => state.cart)
+
   return (
     <div className={styles['header']}>
       <div className={styles['header-top']}>
@@ -55,13 +58,10 @@ const Header = (props: Props) => {
             {/* <button>
               <Icon.Person className={styles['header-action__button']} />
             </button> */}
-            {/* <div className={styles['header-action__button--cart']}>
-              <span className={styles['header-action__quantity-cart']}>99+</span>
-            </div> */}
             <div className="tw-indicator">
-              <span className="tw-indicator-item tw-badge tw-badge-secondary tw-bg-primary">99+</span>
+              <span className="tw-indicator-item tw-badge tw-badge-secondary tw-bg-primary">{totalQuantity}</span>
               <label htmlFor="my-drawer-4" className="drawer-button btn btn-primary tw-cursor-pointer">
-                  <Icon.Cart className={styles['header-action__button']} />
+                <Icon.Cart className={styles['header-action__button']} />
               </label>
             </div>
           </div>
@@ -69,19 +69,17 @@ const Header = (props: Props) => {
         <nav className={styles['header-main__nav']}>
           <ul className={styles['menu']}>
             {MenuList.map((menu, index) => (
-              <>
-                <li className={styles['menu__item']}>
-                  <Link className={styles['menu__item-link']} href={menu.path}>
-                    <a
-                    // className={clsx({
-                    //   active: router.pathname === menu.path,
-                    // })}
-                    >
-                      {menu.label}
-                    </a>
-                  </Link>
-                </li>
-              </>
+              <li key={index} className={styles['menu__item']}>
+                <Link className={styles['menu__item-link']} href={menu.path}>
+                  <a
+                  // className={clsx({
+                  //   active: router.pathname === menu.path,
+                  // })}
+                  >
+                    {menu.label}
+                  </a>
+                </Link>
+              </li>
             ))}
           </ul>
         </nav>
