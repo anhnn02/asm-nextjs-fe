@@ -1,11 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 import LayoutAdmin from "@/components/Layout/admin";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Edit.module.scss";
 import Button from "@/components/Button";
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import useInvoice from "@/hooks/use-invoice";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useSWR from "swr";
+import { formatPrice } from "@/utils/formatNumber";
 
 
 const EditInvoice = () => {
@@ -15,6 +17,8 @@ const EditInvoice = () => {
 
   const router = useRouter()
   const id = router.query.id
+  const [invoice, setInvoice] = useState();
+  const [total, setTotal] = useState();
   // console.log(id);
 
   const {register, handleSubmit, formState: {errors}, reset} = useForm()
@@ -23,12 +27,23 @@ const EditInvoice = () => {
   useEffect(() => {
     if(!id) return
     detail(id).then((res: any) => reset(res.invoice));
+     const get = async () => {
+       const data: any = await detail(id);
+       let totalPrice = 0;
+
+       const cart = data.invoiceDetails;
+       cart.forEach((element) => {
+         totalPrice += element.total;
+       });
+       setTotal(totalPrice);
+       setInvoice(data);
+     };
+     get();
     
-  }, [id])
+  }, [id]) ;
   const onSubmit : SubmitHandler<any> = async (data: any ) => {
    try {
      await editInvoice(data);
-    //  console.log(data);
      router.push("/admin/invoices");
    } catch (error) {
     console.log(error);
@@ -121,100 +136,89 @@ const EditInvoice = () => {
       <div className={styles["invoice"]}>
         <div className={styles["tab1"]}>
           <div className="tw-pt-4">
-            <span className="tw-text-my-gray">Order ID:</span> 9001997718074513
+            <span className="tw-text-my-gray"> Order Id: &nbsp;</span>
+            {invoice?.invoice._id}
           </div>
           <div className="">
-            <span className="tw-text-my-gray">Product ID:</span>{" "}
-            9001997718074513
+            <span className="tw-text-my-gray"> Phone:&nbsp;</span>
+            {invoice?.invoice.phoneNumber}
           </div>
           <div className="">
-            <span className="tw-text-my-gray">Delivered on:</span> 27 Jul, 2022
+            <span className="tw-text-my-gray">Delivered on:&nbsp;</span>
+            {invoice?.invoice.createdAt.split("", 10)}
           </div>
         </div>
-        <div className="">
-          <div className={styles["tab-img"]}>
-            <div className="tw-flex tw-space-x-5 ">
-              <div className="">
-                <img width={70} src="https://i.imgur.com/VPUCDBi.png" alt="" />
+        {invoice?.invoiceDetails?.map((item, index) => (
+          <div key={index} className="">
+            <div className={styles["tab-img"]}>
+              <div className="tw-flex tw-space-x-5 ">
+                <div className="">
+                  <img
+                    width={70}
+                    className="tw-rounded-[var(--rounded-1)] tw-h-20 tw-object-cover"
+                    src={item.img}
+                    alt=""
+                  />
+                </div>
+                <div className="tw-pt-5">
+                  <h6>{item.name}</h6>
+                </div>
               </div>
               <div className="">
-                <h6>Premium Grocery Collection</h6>
-                <span className="tw-text-my-gray">$250 x 1</span>
+                <span className="tw-text-my-gray">Size: {item.size}</span>
               </div>
-            </div>
-            <div className="">
-              <span className="tw-text-my-gray">
-                Product properties: Black, L
-              </span>
-            </div>
-            <div className="">
-              <Button.Transparent content={"Write A Review"} />
+              <div className="">
+                <span className="tw-text-my-gray">
+                  {" "}
+                  Price: &nbsp;
+                  {item.salePrice
+                    ? formatPrice(item.salePrice)
+                    : formatPrice(item.regularPrice)}
+                </span>
+              </div>
+              <div className="">
+                <span className="tw-text-my-gray">
+                  Quantity: {item.quantity}
+                </span>
+              </div>
+              <div className="">
+                <span className="tw-text-my-gray">Total: &nbsp;</span>
+                <span className="tw-text-red-500 tw-font-medium">
+                  {formatPrice(item.total)}
+                </span>
+              </div>
+              {/* <div className="">
+                  <Button.Transparent content={"Write A Review"} />
+                </div> */}
             </div>
           </div>
-          <div className={styles["insite"]}>
-            <div className="tw-flex tw-space-x-5 ">
-              <div className="">
-                <img width={70} src="https://i.imgur.com/VPUCDBi.png" alt="" />
-              </div>
-              <div className="">
-                <h6>Premium Grocery Collection</h6>
-                <span className="tw-text-my-gray">$250 x 1</span>
-              </div>
-            </div>
-            <div className="">
-              <span className="tw-text-my-gray">
-                Product properties: Black, L
-              </span>
-            </div>
-            <div className="">
-              <Button.Transparent content={"Write A Review"} />
-            </div>
-          </div>
-          <div className={styles["insite1"]}>
-            <div className="tw-flex tw-space-x-5 ">
-              <div className="">
-                <img width={70} src="https://i.imgur.com/VPUCDBi.png" alt="" />
-              </div>
-              <div className="">
-                <h6>Premium Grocery Collection</h6>
-                <span className="tw-text-my-gray">$250 x 1</span>
-              </div>
-            </div>
-            <div className="">
-              <span className="tw-text-my-gray">
-                Product properties: Black, L
-              </span>
-            </div>
-            <div className="">
-              <Button.Transparent content={"Write A Review"} />
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
-      <div className="tw-flex tw-gap-6 tw-my-6 tw-mx-5">
+      <div className="tw-flex tw-gap-6 tw-my-6">
         <div className={styles["tab2"]}>
           <span className="tw-block tw-font-medium tw-text-xl">
             Shipping Address
           </span>
-          <span>Kelly Williams 777 Brockton Avenue, Abington MA 2351</span>
+          <span>{invoice?.invoice.address}</span>
         </div>
         <div className={styles["tab2"]}>
           <span className=" tw-font-medium  tw-text-xl">Total Summary</span>
           <div className="">
             <div className="tw-pt-4 tw-flex  tw-justify-between">
-              <span className="tw-text-my-gray">Subtotal:</span> $335
+              <span className="tw-text-my-gray">Subtotal:</span>
+              {formatPrice(total)}
             </div>
             <div className="tw-pt-4 tw-flex  tw-justify-between">
-              <span className="tw-text-my-gray">Shipping fee:</span> $10
-            </div>
-            <div className="tw-pt-4 tw-flex  tw-justify-between">
-              <span className="tw-text-my-gray">Discount:</span> -$30
+              <span className="tw-text-my-gray">Shipping fee:</span>
+              {formatPrice(5)}
             </div>
           </div>
           <hr />
           <div className="tw-pt-4 tw-flex  tw-justify-between">
             <span className="tw-font-medium  tw-text-base tw-pb-4">Total</span>
-            <span>$315</span>
+            <span id="total_detail" className="tw-font-medium tw-text-xl">
+              {formatPrice(total + 5)}
+            </span>
           </div>
           <span>Paid by Credit/Debit Card</span>
         </div>

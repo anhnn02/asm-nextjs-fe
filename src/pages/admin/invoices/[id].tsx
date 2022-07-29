@@ -23,53 +23,57 @@ const DetailInvoice = (props: Props) => {
     if (!id) return;
     const get = async () => {
       const data: any = await detail(id);
-      console.log(data.invoiceDetails);
       let totalPrice = 0;
 
       const cart = data.invoiceDetails;
       cart.forEach((element) => {
         totalPrice += element.total;
       });
-      console.log(totalPrice);
       setTotal(totalPrice);
       setInvoice(data);
-      // console.log("abc", invoice);
     };
     get();
   }, [id]);
 
   return (
-    // <div className="">hihi</div>
     <div>
       <div className="">
-        <div className="tw-ml-4 tw-flex">
-          <Link href={`${path.private.invoiceRoute}/edit/${id}`}>
-            {/* <Link href=""> */}
-            <Button.Fill content="Edit" />
-          </Link>
+        <div className="tw-flex tw-justify-between tw-items-center">
+          <h4 className="title-admin">Invoice Detail</h4>
           <div className="">
-            <div>
+            <Link href={`${path.private.invoiceRoute}/edit/${id}`}>
+              <Button.Fill content="Edit" />
+            </Link>
+            <div className="tw-inline-block">
               {invoice?.invoice.status === 0 ? (
                 <button className={styles["order_item"]}>
-                  <span className={styles["order_status_pending-progress"]}>
+                  <span
+                    className={`${styles["order_status_pending-progress"]} ${styles["stt-custom"]}`}
+                  >
                     Pending
                   </span>
                 </button>
               ) : invoice?.invoice.status === 1 ? (
                 <button className={styles["order_item"]}>
-                  <span className={styles["order_status_pending-shipping"]}>
+                  <span
+                    className={`${styles["order_status_pending-shipping"]} ${styles["stt-custom"]}`}
+                  >
                     Shipping
                   </span>
                 </button>
               ) : invoice?.invoice.status === 2 ? (
                 <button className={styles["order_item"]}>
-                  <span className={styles["order_status_delivered"]}>
+                  <span
+                    className={`${styles["order_status_delivered"]} ${styles["stt-custom"]}`}
+                  >
                     Delivered
                   </span>
                 </button>
               ) : invoice?.invoice.status === 3 ? (
                 <button className={styles["order_item"]}>
-                  <span className={styles["order_status_cancelled"]}>
+                  <span
+                    className={`${styles["order_status_cancelled"]} ${styles["stt-custom"]}`}
+                  >
                     Cancelled
                   </span>
                 </button>
@@ -78,12 +82,12 @@ const DetailInvoice = (props: Props) => {
               )}
             </div>
           </div>
-          <div className="">
-            <button className={styles["order_items"]}>
-              <span className={styles["order_status_delivere"]}>
-                {invoice?.invoice.fullname}
-              </span>
-            </button>
+        </div>
+        <p></p>
+        <div className="">
+          <div className={styles["fullname"]}>
+            Fullname:{" "}
+            <span className="tw-font-bold">{invoice?.invoice.fullname}</span>
           </div>
         </div>
         <p></p>
@@ -148,7 +152,7 @@ const DetailInvoice = (props: Props) => {
             </div>
           ))}
         </div>
-        <div className="tw-flex tw-gap-6 tw-my-6 tw-mx-5">
+        <div className="tw-flex tw-gap-6 tw-my-6">
           <div className={styles["tab2"]}>
             <span className="tw-block tw-font-medium tw-text-xl">
               Shipping Address

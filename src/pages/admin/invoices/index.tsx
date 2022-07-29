@@ -128,6 +128,8 @@ const InvoicePage = () => {
   });
   return (
     <div>
+      <h4 className="title-admin">Invoice List</h4>
+
       <Table
         columns={columns}
         dataSource={dataSource}
