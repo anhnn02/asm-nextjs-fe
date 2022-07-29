@@ -5,3 +5,33 @@
 @import './variable.scss';
 @import './base.scss';
 @import './customScrollbar.scss';
+
+.img-admin-slide {
+    max-width: 600px;
+}
+
+.head-admin-slide {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 2fr));
+}
+
+.btn-add-slide {
+    background-color: mediumslateblue;
+    padding: 5px;
+    color: rgb(253, 249, 249);
+    width: 120px;
+    height: 40px;
+    margin-top: 16px;
+    margin-left: 500px;
+}
+
+.add-slide {
+    color: rgb(252, 248, 248);
+    text-underline-offset: 4px;
+}
+
+.title-admin-slide {
+    text-align: left;
+    font-size: 40px;
+    font-weight: bolder
+}

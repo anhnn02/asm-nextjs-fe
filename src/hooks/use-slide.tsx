@@ -1,22 +1,25 @@
 import React from "react";
 import useSWR from "swr";
-import { removeItem, update, add } from "../api/slide";
+import { add, removeItem, update , read} from "../api/slide";
 
 const useSlide = () => {
   const { data, error, mutate } = useSWR(`/banners`);
 
   const remove = async (id: any) => {
-        const confirmItem = confirm('Bạn có muốn xóa không?')
+        const confirmItem = window.confirm('Bạn có muốn xóa không?')
         if (confirmItem) {
             await removeItem(id)
-            const newSlide = data.filter((item: any) => item.id != id)
-            mutate(newSlide)
+             mutate(data.filter((item: any) => item.id !== id));
         }
     }
 
   const create = async (item: any) => {
     const addSlide = await add(item);
     mutate([...data, addSlide]);
+  };
+   const detail = async (id: any) => {
+    const detailSlide = await read(id);
+    return detailSlide;
   };
   
   const edit = async (slide: any) => {
@@ -30,6 +33,7 @@ const useSlide = () => {
     remove,
     create,
     edit,
+    detail
   };
 };
 
