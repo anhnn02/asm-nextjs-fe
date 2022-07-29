@@ -22,3 +22,64 @@
     @apply tw-p-4  tw-rounded-[var(--rounded-1)] tw-bg-white tw-w-1/2 ;
     box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
 }
+.order_status_pending-progress {
+    padding: 0.25rem 1rem;
+    display: inline-block;
+    border-radius: 30px;
+    transition: all 150ms ease-in-out 0s;
+    background-color: rgba(15, 52, 96, 0.2);
+    font-size: 12px;
+}
+
+.order_status_pending-shipping {
+    padding: 0.25rem 1rem;
+    display: inline-block;
+    border-radius: 30px;
+    transition: all 150ms ease-in-out 0s;
+    font-size: 12px;
+    @apply tw-text-blue-500 tw-bg-blue-100  ;
+}
+
+.order_status_delivered {
+    padding: 0.25rem 1rem;
+    display: inline-block;
+    border-radius: 30px;
+    transition: all 150ms ease-in-out 0s;
+    background-color: rgba(51, 208, 103, 0.15);
+    font-size: 12px;
+    color: rgb(51, 208, 103)
+}
+
+.order_status_cancelled {
+    padding: 0.25rem 1rem;
+    display: inline-block;
+    border-radius: 30px;
+    transition: all 150ms ease-in-out 0s;
+    background-color: rgb(255, 225, 230);
+    font-size: 12px;
+    color: var(--primary);
+    padding: 10px 20px;
+}
+.order_item {
+    margin: 6px;
+    flex: 1 1 0px;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+///@at-root
+.order_status_delivere {
+    padding: 0.25rem 1rem;
+    display: inline-block;
+    border-radius: 30px;
+    transition: all 150ms ease-in-out 0s;
+    background-color: rgba(133, 227, 235, 0.15);
+    font-size: 12px;
+    color: rgb(26, 239, 239)
+}
+.order_items {
+    margin: 6px;
+    flex: 1 1 0px;
+    text-transform: capitalize;
+    font-size: 14px;
+}

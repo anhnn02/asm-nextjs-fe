@@ -12,6 +12,6 @@ export const path = {
     rootRoute: "/admin",
     categoriesRoute: "/admin/categories",
     productsRoute: "/admin/products",
-    invoiceRoute: "/admin/invoices"
+    invoiceRoute: "/admin/invoices",
   },
 };
