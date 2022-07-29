@@ -1,8 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 import LayoutAdmin from '@/components/Layout/admin'
 import React from 'react'
 import { Table, Tag, Space } from 'antd';
 import { Button, Menu, Dropdown } from 'antd';
 import Link from 'next/link';
+import useProduct from '@/hooks/use-product';
+import styles from '../AdminContent.module.scss'
+import { formatPercent, formatPrice } from '@/utils/formatNumber';
 
 type Props = {}
 
@@ -13,14 +17,29 @@ const columns = [
         key: 'name',
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
+        title: 'Image',
+        dataIndex: 'img',
+        key: 'img',
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
+        title: 'Regular Price',
+        dataIndex: 'regularPrice',
+        key: 'regularPrice',
+    },
+    {
+        title: 'Sale Price',
+        dataIndex: 'salePrice',
+        key: 'salePrice',
+    },
+    {
+        title: 'Size',
+        dataIndex: 'size',
+        key: 'size',
+    },
+    {
+        title: 'Category',
+        dataIndex: 'category',
+        key: 'category',
     },
     {
         title: 'Action',
@@ -29,45 +48,43 @@ const columns = [
     },
 ];
 
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-    },
-];
-
 const ProductList = (props: Props) => {
-    const dataSource = data.map((item, index) => {
+    const { data: products, error, remove } = useProduct();
+    if (error) return <div className="">{error}</div>
+    if (!products) return <div>Loading...</div>
+    console.log(products);
+    // const dataSource = products;
+    const dataSource = products.map((item, index) => {
         return {
             key: index + 1,
             name: item.name,
-            age: item.age,
-            address: item.address,
-            action: <div>
-                <Button className='button-action' type="primary" danger size='large'><i className="bi bi-trash3"></i></Button>
-                <Button className='tw-mx-1 button-action' type="primary" size='large'><Link href="/admin/products"><a href=""><i className="bi bi-pencil-square"></i></a></Link></Button>
-            </div >
+            regularPrice: formatPrice(item.regularPrice),
+            salePrice: formatPrice(item.salePrice),
+            img: <div><img src={item.img} height={50} width={50} alt="" /></div>,
+            size: <div className={styles['grid-size_product']}>{item.size.map((item, index) => {
+                return <span className={styles['size_product']} key={index}>{item}</span>
+            })}</div>,
+            category: item.category?.name,
+            action:
+                <div>
+                    <Button className='tw-mx-1 button-action' type="primary" size='large'><Link href={`/admin/products/${item._id}`}><a href=""><i className="bi bi-pencil-square"></i></a></Link></Button>
+                    <Button onClick={() => remove(item._id)} className='button-action' type="primary" danger size='large' ><i className="bi bi-trash3"></i></Button>
+                </div >
         }
     })
     return (
         <div>
+            <div className={styles['header_content']}>
+                <div>
+                    <h1 className={styles['title_table']}>list product</h1>
+                </div>
+                <Link href='/admin/products/add'>
+                    <button className={styles['btn-multichoice_item']}>Add product +
+                    </button>
+                </Link>
+            </div>
             <Table columns={columns} dataSource={dataSource}
-                pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['10', '20', '30'] }}
-            />
+                pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['10', '20', '30'] }} />
         </div>
     )
 }

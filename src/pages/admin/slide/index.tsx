@@ -34,8 +34,8 @@ const SlideList = (props: Props) => {
             key: index + 1,
             img: <img src={item.img} className='img-admin-slide' alt=""  /> ,
             action: <div>
-                <Button onClick={() => remove(item._id)} className='button-action' type="primary" danger size='large'><i className="bi bi-trash3"></i></Button>
-                <Button className='tw-mx-1 button-action' type="primary" size='large'><Link href={`/admin/slide/${item._id}`}><a href=""><i className="bi bi-pencil-square"></i></a></Link></Button>
+                <Button  className='button-action' type="primary" danger size='large'><i  onClick={() => remove(item.id)} className="bi bi-trash3"></i></Button>
+                <Button className='tw-mx-1 button-action' type="primary" size='large'><Link href="/admin/slides/add"><a href=""><i className="bi bi-pencil-square"></i></a></Link></Button>
             </div >
         }
     })

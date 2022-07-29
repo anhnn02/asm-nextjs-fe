@@ -10,7 +10,7 @@ const LayoutAdmin = ({ children }: LayoutProps) => {
       <Sidebar />
       <div className="tw-flex tw-flex-col tw-flex-1 tw-w-full">
         <Navbar />
-        <main className="tw-h-full tw-overflow-y-auto">
+        <main className="tw-h-full tw-bg-white tw-overflow-y-auto">
           <div className='tw-p-5'>
             {children}
           </div>
