@@ -7,11 +7,11 @@ export const add = (product: any) => {
     return instance.post("/products", product);
 };
 export const removeItem = (id: any) => {
-    return instance.delete(`/products/${id}`);
+    return instance.delete(`/product/${id}`);
 };
 export const update = (product: any) => {
-  return instance.put(`/products/${product.id}`, product);
+  return instance.put(`/product/${product._id}`, product);
 };
 export const read = (id: any) => {
-  return instance.get(`/products/${id}`);
+  return instance.get(`/product/${id}`);
 };
