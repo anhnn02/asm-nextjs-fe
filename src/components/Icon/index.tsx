@@ -64,6 +64,10 @@ const Icon = {
       <i {...props} className={`bi bi-check-circle-fill ${className}`}></i>
     );
   },
+  
+  Eye({ className, ...props }) {
+    return <i {...props} className={`bi bi-eye ${className}`}></i>;
+  },
 
   Check({ className, ...props }) {
     return <i {...props} className={`bi bi-check-circle ${className}`}></i>;

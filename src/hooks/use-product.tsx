@@ -6,8 +6,11 @@ const useProduct = () => {
   const { data, error, mutate } = useSWR(`/products`);
 
   const remove = async (id: any) => {
-    await removeItem(id);
-    mutate(data.filter((item: any) => item.id !== id));
+    const confirm = window.confirm('Do u want to remove this product ?')
+    if (confirm) {
+      await removeItem(id);
+      mutate(data.filter((item: any) => item.id !== id));
+    }
   };
   const create = async (product: any) => {
     const addProduct = await add(product);

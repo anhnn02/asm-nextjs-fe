@@ -1,0 +1,30 @@
+.invoice {
+    @apply tw-mx-5 tw-rounded-[var(--rounded-1)];
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+}
+
+.tab1 {
+    @apply tw-flex tw-rounded-tl-[var(--rounded-1)] tw-rounded-tr-[var(--rounded-1)] tw-space-y-4 tw-pb-4 tw-bg-[#F3F5F9] tw-justify-around;
+}
+
+.tab-img {
+    @apply tw-flex tw-space-y-4 tw-py-5 tw-bg-white tw-justify-around tw-rounded-bl-[var(--rounded-1)] tw-rounded-br-[var(--rounded-1)];
+}
+
+.insite {
+    @apply tw-flex tw-space-y-4 tw-py-5 tw-bg-white tw-justify-around tw-rounded-bl-[var(--rounded-1)] tw-rounded-br-[var(--rounded-1)]
+}
+
+.insite1 {
+    @apply tw-flex tw-space-y-4 tw-py-5 tw-bg-white tw-justify-around tw-rounded-bl-[var(--rounded-1)] tw-rounded-br-[var(--rounded-1)]
+}
+
+.tab2 {
+    @apply tw-h-fit tw-rounded-[var(--rounded-1)] tw-p-4 tw-bg-white tw-w-1/2;
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+}
+
+.tab3 {
+    @apply tw-p-4 tw-rounded-[var(--rounded-1)] tw-bg-white tw-w-1/2;
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+}
