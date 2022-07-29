@@ -74,7 +74,15 @@ const DetailInvoice = (props: Props) => {
                   <span
                     className={`${styles["order_status_cancelled"]} ${styles["stt-custom"]}`}
                   >
-                    Cancelled
+                    Cancel
+                  </span>
+                </button>
+              ) : invoice?.invoice.status === 4 ? (
+                <button className={styles["order_item"]}>
+                  <span
+                    className={`${styles["order_status_cancelled"]} ${styles["stt-custom"]}`}
+                  >
+                    Order canceled
                   </span>
                 </button>
               ) : (
