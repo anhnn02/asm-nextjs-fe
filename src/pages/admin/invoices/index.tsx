@@ -92,7 +92,13 @@ const InvoicePage = () => {
           ) : item.status === 3 ? (
             <button className={styles["order_item"]}>
               <span className={styles["order_status_cancelled"]}>
-                Cancelled
+                Cancel
+              </span>
+            </button>
+          ) : item.status === 4 ? (
+            <button className={styles["order_item"]}>
+              <span className={styles["order_status_cancelled"]}>
+                Order canceled
               </span>
             </button>
           ) : (

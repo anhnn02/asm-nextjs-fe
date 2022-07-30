@@ -9,47 +9,47 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useSWR from "swr";
 import { formatPrice } from "@/utils/formatNumber";
 
-
 const EditInvoice = () => {
-   const { data, error, detail, editInvoice } = useInvoice();
+  const { data, error, detail, editInvoice } = useInvoice();
   //  if (!data) return <div>Loadinggg...</div>
   //  if (error) return <div>Falese</div>  ;
-
-  const router = useRouter()
-  const id = router.query.id
+  const router = useRouter();
+  const id = router.query.id;
   const [invoice, setInvoice] = useState();
   const [total, setTotal] = useState();
   // console.log(id);
 
-  const {register, handleSubmit, formState: {errors}, reset} = useForm()
- 
-  
-  useEffect(() => {
-    if(!id) return
-    detail(id).then((res: any) => reset(res.invoice));
-     const get = async () => {
-       const data: any = await detail(id);
-       let totalPrice = 0;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
-       const cart = data.invoiceDetails;
-       cart.forEach((element) => {
-         totalPrice += element.total;
-       });
-       setTotal(totalPrice);
-       setInvoice(data);
-     };
-     get();
-    
-  }, [id]) ;
-  const onSubmit : SubmitHandler<any> = async (data: any ) => {
-   try {
-     await editInvoice(data);
-     router.push("/admin/invoices");
-   } catch (error) {
-    console.log(error);
-   }
-    
-  }
+  useEffect(() => {
+    if (!id) return;
+    detail(id).then((res: any) => reset(res.invoice));
+    const get = async () => {
+      const data: any = await detail(id);
+      let totalPrice = 0;
+
+      const cart = data.invoiceDetails;
+      cart.forEach((element) => {
+        totalPrice += element.total;
+      });
+      setTotal(totalPrice);
+      setInvoice(data);
+    };
+    get();
+  }, [id]);
+  const onSubmit: SubmitHandler<any> = async (data: any) => {
+    try {
+      await editInvoice(data);
+      router.push("/admin/invoices");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -67,9 +67,11 @@ const EditInvoice = () => {
                 type="text"
                 placeholder="Type here"
                 className="tw-input tw-input-bordered tw-w-full tw-max-w-xs"
-                {...register("fullname", { required: false })}
-                name="fullname"
+                {...register("fullname", { required: true })}
               />
+              {errors.fullname && (
+                <span style={{ color: "red" }}>Email cannot be blank</span>
+              )}
             </div>
             {/* Email */}
             <div className="tw-form-control tw-w-full tw-max-w-xs">
@@ -80,8 +82,11 @@ const EditInvoice = () => {
                 type="email"
                 placeholder="Type here"
                 className="tw-input tw-input-bordered tw-w-full tw-max-w-xs"
-                {...register("email", { required: false })}
+                {...register("email", { required: true })}
               />
+              {errors.email && (
+                <span style={{ color: "red" }}>Email cannot be blank</span>
+              )}
             </div>
             {/* Your Phone  */}
             <div className="tw-form-control tw-w-full tw-max-w-xs">
@@ -92,8 +97,11 @@ const EditInvoice = () => {
                 type="number"
                 placeholder="Type here"
                 className="tw-input tw-input-bordered tw-w-full tw-max-w-xs"
-                {...register("phoneNumber", { required: false })}
+                {...register("phoneNumber", { required: true })}
               />
+              {errors.phoneNumber && (
+                <span style={{ color: "red" }}>Email cannot be blank</span>
+              )}
             </div>
           </div>
           <div className="">
@@ -102,7 +110,71 @@ const EditInvoice = () => {
               <label className="tw-label">
                 <span className="tw-label-text tw-capitalize">Status</span>
               </label>
-              <select
+              {(() => {
+                if (invoice?.invoice.status === 0) {
+                  return (
+                    <select
+                      className="tw-select tw-select-secondary tw-w-full tw-max-w-xs"
+                      {...register("status", { required: true })}
+                    >
+                      <option selected value={0}>
+                        {" "}
+                        Pending{" "}
+                      </option>
+                      <option value={1}>Shipping</option>
+                      <option value={2}>Delivered</option>
+                      <option value={3}>Cancel</option>
+                      <option value={4}>Order canceled</option>
+                    </select>
+                  );
+                }
+                if (invoice?.invoice.status === 1) {
+                  return (
+                    <select
+                      className="tw-select tw-select-secondary tw-w-full tw-max-w-xs"
+                      {...register("status", { required: true })}
+                    >
+                      <option selected value={1}>
+                        Shipping{" "}
+                      </option>
+                      <option value={2}>Delivered</option>
+                      <option value={3}>Cancel</option>
+                      <option value={4}>Order canceled</option>
+                    </select>
+                  );
+                }
+                if (invoice?.invoice.status === 2) {
+                  return (
+                    <select
+                      className="tw-select tw-select-secondary tw-w-full tw-max-w-xs"
+                      {...register("status", { required: true })}
+                    >
+                      <option value={2}>Delivered</option>
+                    </select>
+                  );
+                }
+                if (invoice?.invoice.status === 3) {
+                  return (
+                    <select
+                      className="tw-select tw-select-secondary tw-w-full tw-max-w-xs"
+                      {...register("status", { required: true })}
+                    >
+                      <option value={3}>Cancel</option>
+                    </select>
+                  );
+                }
+                if (invoice?.invoice.status === 4) {
+                  return (
+                    <select
+                      className="tw-select tw-select-secondary tw-w-full tw-max-w-xs"
+                      {...register("status", { required: true })}
+                    >
+                      <option value={4}>Order canceled</option>
+                    </select>
+                  );
+                }
+              })()}
+              {/* <select
                 className="tw-select tw-select-secondary tw-w-full tw-max-w-xs"
                 name="status"
                 {...register("status", { required: false })}
@@ -110,8 +182,9 @@ const EditInvoice = () => {
                 <option value={0}>Pending</option>
                 <option value={1}>Shipping</option>
                 <option value={2}>Delivered</option>
-                <option value={3}>Cancelled</option>
-              </select>
+                <option value={3}>Cancel</option>
+                <option value={4}>Order canceled</option>
+              </select> */}
             </div>
             {/* Address  */}
             <div className="tw-form-control tw-w-full tw-max-w-xs">
@@ -124,6 +197,9 @@ const EditInvoice = () => {
                 className="tw-input tw-input-bordered tw-w-full tw-max-w-xs"
                 {...register("address", { required: false })}
               />
+              {errors.address && (
+                <span style={{ color: "red" }}>Email cannot be blank</span>
+              )}
             </div>
 
             <div className="tw-form-control tw-pt-6 tw-w-full tw-max-w-xs tw-my-3">
