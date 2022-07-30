@@ -1,10 +1,55 @@
+import { getDistrict, getDistrictByProvince, getProvince, getProvinces, getWard, getWardByDistrict } from '@/api/addressCheckout'
 import Button from '@/components/Button'
-import React from 'react'
+import useInvoice from '@/hooks/use-invoice'
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import styles from './Checkout.module.scss'
 
 type Props = {}
 
 const CheckOut = (props: Props) => {
+    const { create } = useInvoice();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [provinces, setProvinces] = useState([]);
+    const [districts, setDistricts] = useState([]);
+    const [wards, setWards] = useState([]);
+    useEffect(() => {
+        const getDataProvince = async () => {
+            const { data } = await getProvinces();
+            setProvinces(data)
+        }
+        getDataProvince()
+    }, [])
+    const handleChangeProvince = async (code: number | string) => {
+        if (code == "") {
+            setDistricts([]);
+            setWards([]);
+        } else {
+            const { data: { districts } } = await getDistrictByProvince(code);
+            setDistricts(districts);
+        }
+    }
+    const handleChangeDistrict = async (code: number | string) => {
+        if (code == "") {
+            setWards([]);
+        } else {
+            const { data: { wards } } = await getWardByDistrict(code);
+            setWards(wards);
+        }
+        
+    }
+    const addressDataTotal = async (codeP, codeD, codeW) => {
+        const province = await getProvince(+codeP)
+        const district = await getDistrict(+codeD)
+        const ward = await getWard(+codeW)
+        return `${province.data.name}, ${district.data.name}, ${ward.data.name}`
+    }
+    const onSubmit = async (data) => {
+        const address = await addressDataTotal(data.province, data.district, data.ward) + ", " + data.address
+        const dataInvoice = {...data, address}
+        console.log(dataInvoice);
+        // await create()
+    }
     return (
         <div>
             <div className={styles['row_progress_of_customer']}>
@@ -20,73 +65,142 @@ const CheckOut = (props: Props) => {
                 <div className={styles['clone_sidebar_invisible']}></div>
             </div>
             <div className={styles['content_checkout']}>
-                <div className={styles['form_checkout']}>
-                    <form action="">
-                        <div className={styles['form_checkout_inside']}>
-                            <div className={styles['header-form_checkout']}>
-                                <h3 className='tw-capitalize tw-font-semibold'>shipping address</h3>
-                                <div>
-                                    <label htmlFor="my-modal" className='tw-font-semibold tw-text-red-600 tw-underline tw-modal-button tw-cursor-pointer'>Use other Address</label>
-                                    <input type="checkbox" id="my-modal" className="tw-modal-toggle" />
-                                    <div className="tw-modal">
-                                        <div className="tw-modal-box">
-                                            <h3 className="tw-font-bold text-lg">Congratulations random Internet user!</h3>
-                                            <p className="tw-py-4">You have been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-                                            <div className="tw-modal-action">
-                                                <label htmlFor="my-modal" className="tw-btn">Yay!</label>
-                                            </div>
+                <form action="" className={styles['form_checkout']} onSubmit={handleSubmit(onSubmit)}>
+                    <div className={styles['form_checkout_inside']}>
+                        <div className={styles['header-form_checkout']}>
+                            <h3 className='tw-capitalize tw-font-semibold'>shipping address</h3>
+                            <div>
+                                <label htmlFor="my-modal" className='tw-font-semibold tw-text-red-600 tw-underline tw-modal-button tw-cursor-pointer'>Use other Address</label>
+                                <input type="checkbox" id="my-modal" className="tw-modal-toggle" />
+                                <div className="tw-modal">
+                                    <div className="tw-modal-box">
+                                        <h3 className="tw-font-bold text-lg">Congratulations random Internet user!</h3>
+                                        <p className="tw-py-4">You have been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+                                        <div className="tw-modal-action">
+                                            <label htmlFor="my-modal" className="tw-btn">Yay!</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className={styles['form_checkout-row']}>
-                                <div>
-                                    <label className={styles['label-form_checkout']} htmlFor="">full name</label>
-                                    <input className={styles['input-form_checkout']} type="text" />
-                                    <label className={styles['label-form_checkout']} htmlFor="">phone number</label>
-                                    <input className={styles['input-form_checkout']} type="text" />
-                                </div>
-                                <div>
-                                    <label className={styles['label-form_checkout']} htmlFor="">email</label>
-                                    <input className={styles['input-form_checkout']} type="text" />
-                                    <label className={styles['label-form_checkout']} htmlFor="">address</label>
-                                    <input className={styles['input-form_checkout']} type="text" />
-                                </div>
+                        </div>
+                        <div className={styles['form__row']}>
+                            <div>
+                                <label className={styles['label-form_checkout']} htmlFor="">full name</label>
+                                <input className={styles['input-form_checkout']} type="text"
+                                    {...register('fullname', { required: true })} />
+                                {errors?.fullname?.type == 'required' && (<span className="my-error">Full name is required</span>)}
+
+                            </div>
+                        </div>
+                        <div className={styles['form__row--2-cols']}>
+                            <div>
+                                <label className={styles['label-form_checkout']} htmlFor="">phone number</label>
+                                <input className={styles['input-form_checkout']} type="text"
+                                    {...register('phoneNumber', { required: true })} />
+                                {errors?.phoneNumber?.type == 'required' && (<span className="my-error">Phone number is required</span>)}
                             </div>
                             <div>
-                                <label className={styles['label-form_checkout']} htmlFor="">note</label>
-                                <textarea className={styles['textarea-form_checkout']} rows="4"></textarea>
+                                <label className={styles['label-form_checkout']} htmlFor="">email</label>
+                                <input className={styles['input-form_checkout']} type="text"
+                                    {...register("email", { required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ })} />
+                                {errors?.email?.type == 'required' && (<span className="my-error">Email is required</span>)}
+                                {errors?.email?.type == 'pattern' && (<span className="my-error">Field must be a valid email</span>)}
                             </div>
                         </div>
-                        <div className={styles['submit-form_checkout']}>
-                            <Button.Transparent className="tw-bg-white" content={"Back to Cart"} />
-                            <Button.Fill content={"Proceed to Payment"} />
+                        <div className={styles['form__row--3-cols']}>
+                            <div>
+                                <label className={styles['label-form_checkout']} htmlFor="">province</label>
+                                {provinces ?
+                                    <select className={styles['select-form_checkout']} name="" id=""
+                                        {...register('province', { required: true })}
+                                        onChange={(e) => handleChangeProvince(e.target.value)}>
+
+                                        <option value="">--Choose province--</option>
+                                        {provinces?.map((item, index) => (
+                                            <option key={index} value={item?.code}>{item?.name}</option>
+                                        ))}
+                                    </select>
+                                    : <select className={styles['select-form_checkout']} name="" id="">
+                                        <option value="">--Choose province--</option>
+                                    </select>}
+                                {errors?.province?.type == 'required' && (<span className="my-error">Province is required</span>)}
+                            </div>
+                            <div>
+                                <label className={styles['label-form_checkout']} htmlFor="">district</label>
+                                {districts && districts.length > 0 ?
+                                    <select className={styles['select-form_checkout']} name="" id=""
+                                        {...register('district', { required: true })}
+                                        onChange={(e) => handleChangeDistrict(e.target.value)}>
+                                        <option value="">--Choose district--</option>
+                                        {districts?.map((item, index) => (
+                                            <option key={index} value={item?.code}>{item?.name}</option>
+                                        ))}
+                                    </select>
+                                    : <select className={styles['select-form_checkout']} {...register('district', { required: true })} name="" id="" disabled>
+                                        <option value="">--Choose district--</option>
+                                    </select>}
+
+                                {errors?.district?.type == 'required' && (<span className="my-error">District is required</span>)}
+                            </div>
+                            <div>
+                                <label className={styles['label-form_checkout']} htmlFor="">ward</label>
+                                {wards && wards.length > 0 ?
+                                    <select className={styles['select-form_checkout']} name="" id=""
+                                        {...register('ward', { required: true })}>
+                                        <option value="">--Choose ward--</option>
+                                        {wards?.map((item, index) => (
+                                            <option key={index} value={item?.code}>{item?.name}</option>
+                                        ))}
+                                    </select>
+                                    : <select className={styles['select-form_checkout']} {...register('ward', { required: true })} name="" id="" disabled>
+                                        <option value="" disabled selected>--Choose ward--</option>
+                                    </select>}
+                                {errors?.ward?.type == 'required' && (<span className="my-error">Ward is required</span>)}
+                            </div>
                         </div>
-                    </form>
-                </div >
+                        <div className={styles['form__row']}>
+                            <div>
+                                <label className={styles['label-form_checkout']} htmlFor="">address detail</label>
+                                <input className={styles['input-form_checkout']} type="text"
+                                    {...register('address', { required: true, minLength: 2 })} />
+                                {errors?.address?.type == 'required' && (<span className="my-error">Address is required</span>)}
+                                {errors?.address?.type == 'minLength' && (<span className="my-error">Min length must be at least 2</span>)}
+                            </div>
+                        </div>
+                        <div className={styles['form__row']}>
+                            <label className={styles['label-form_checkout']} htmlFor="">note</label>
+                            <textarea className={styles['textarea-form_checkout']} {...register('note', { minLength: 2 })}></textarea>
+                            {errors?.note?.type == 'minLength' && (<span className="my-error">Min length must be at least 2</span>)}
+
+                        </div>
+                    </div>
+                    <div className={styles['submit-form_checkout']}>
+                        <Button.Transparent className="tw-bg-white" content={"Back to Cart"} />
+                        <Button.Fill content={"Proceed to Complete"} />
+                    </div>
+                </form>
                 <div className={styles['sidebar_checkout']}>
                     <div className={styles['sidebar_checkout_inside']}>
                         <div>
                             <div className={styles['infor_checkout']} >
                                 <div className={styles['row-infor_checkout']}>
-                                    <div><span className={styles['color-text-infor_checkout']}>Subtotal:</span></div>
-                                    <div><span className='tw-font-semibold'><span className='tw-text-xl'>$9999</span>.00</span></div>
+                                    <span className={styles['color-text-infor_checkout']}>Subtotal:</span>
+                                    <span className='tw-font-semibold tw-text-xl'>$99</span>
                                 </div>
                                 <div className={styles['row-infor_checkout']}>
-                                    <div><span className={styles['color-text-infor_checkout']}>Shipping:</span></div>
-                                    <div><span className='tw-font-semibold'><span className='tw-text-xl'>$00</span>.00</span></div>
+                                    <span className={styles['color-text-infor_checkout']}>Shipping:</span>
+                                    <span className='tw-font-semibold tw-text-xl'>$00</span>
                                 </div>
                                 <div className={styles['row-infor_checkout']}>
-                                    <div><span className={styles['color-text-infor_checkout']}>Tax:</span></div>
-                                    <div><span className='tw-font-semibold'><span className='tw-text-xl'>$40</span>.00</span></div>
-                                </div>
-                                <div className={styles['row-infor_checkout']}>
-                                    <div><span className={styles['color-text-infor_checkout']}>Discount:</span></div>
-                                    <div><span className='tw-font-semibold'><span className='tw-text-xl'>$00</span>.00</span></div>
+                                    <span className={styles['color-text-infor_checkout']}>Discount:</span>
+                                    <span className='tw-font-semibold tw-text-xl'>$00</span>
                                 </div>
                             </div>
                         </div>
-                        <div className='tw-text-right tw-mb-6'><span className='tw-text-2xl tw-font-semibold'>$10039.00</span></div>
+                        <div className={styles['row-infor_checkout']}>
+                            <span className={styles['color-text-infor_checkout']}>Total:</span>
+                            <span className='tw-font-semibold tw-text-2xl tw-text-primary'>$00</span>
+                        </div>
                         <form action="">
                             <input type="text" placeholder='Voucher' className={styles['input-form_checkout']} />
                             <Button.Transparent className='tw-w-full' content={'Apply Voucher'} />

@@ -11,13 +11,13 @@ import { addItemToCart, decrementQuantity, incrementQuantity, removeItemFromCart
 import { toast } from 'react-toastify';
 import { add } from '@/api/product';
 import CartEmpty from './CartEmpty';
+import { path } from '@/constants';
 
 
 type Props = {}
 
 const CartSidebar = (props: Props) => {
     const dispatch = useDispatch()
-   
 
     let totalCart = 0
     const cart = useSelector(data => data.cart.items)
@@ -55,7 +55,6 @@ const CartSidebar = (props: Props) => {
                 </div>
                 {cartTotalQuantity == 0 ? <CartEmpty /> : <>
                     <div className={styles['cart-sidebar__list']}>
-
                         {cart.map((item, index) => (
                             <div key={index} className={styles['cart-sidebar__item']}>
                                 <div className={styles['cart-sidebar__action-quantity']}>
@@ -93,10 +92,10 @@ const CartSidebar = (props: Props) => {
                     </div>
                     {cartTotalQuantity == 0 ? "" :
                         <div className={styles['cart-sidebar__footer']}>
-                            <Link href="/abc">
+                            <Link href={path.public.checkoutRoute}>
                                 <Button.Fill className="tw-block tw-w-full !tw-h-3 !tw-p-1" content={`Checkout now ${formatPrice(totalAmount)}`} />
                             </Link>
-                            <Link href="/abc">
+                            <Link href={path.public.cartRoute}>
                                 <Button.Transparent className="tw-block tw-w-full" content={`View cart`} />
                             </Link>
                         </div>

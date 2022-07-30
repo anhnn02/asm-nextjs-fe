@@ -4,12 +4,13 @@
     grid-template-columns: 66.6667% 33.3333%;
 }
 
-;
-
 .form_checkout,
 .sidebar_checkout {
     padding: 12px;
 }
+// .input-form_checkout, .select-form_checkout, .textarea-form_checkout{
+//     @apply tw-bg-slate-50;
+// }
 
 .form_checkout_inside,
 .sidebar_checkout_inside {
@@ -18,6 +19,21 @@
     border-radius: 8px;
     margin-bottom: 2rem;
     padding: 24px 28px;
+}
+
+.form__row {
+    @apply tw-mb-3;
+    &--2-cols {
+        @apply tw-grid tw-grid-cols-2 tw-gap-2 tw-mb-3
+    }
+
+    &--3-cols {
+        @apply tw-grid tw-grid-cols-3 tw-gap-2 tw-mb-3;
+
+        select {
+            @apply tw-w-full tw-border tw-border-gray-300 tw-text-gray-900 tw-text-sm tw-rounded-[5px] tw-ring-blue-500 tw-block tw-p-2.5
+        }
+    }
 }
 
 .header-form_checkout {
@@ -49,15 +65,14 @@
     border: 1px solid rgb(218, 225, 231);
     width: 100%;
     outline: none;
-    margin-bottom: 1rem;
 }
 
 .label-form_checkout {
     display: block;
-    margin-bottom: 6px;
     text-transform: capitalize;
 }
-
+.select-form_checkout{
+}
 .textarea-form_checkout {
     width: 100%;
     padding: 8px 12px;

@@ -6,6 +6,8 @@ export const path = {
     shopRoute: "/shop",
     productRoute: "/products",
     contactRoute: "/contact",
+    cartRoute: "/cart",
+    checkoutRoute: "/checkout",
     notFound: "/not-found",
   },
   private: {

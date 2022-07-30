@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import styles from "./Product.module.scss";
@@ -20,7 +21,7 @@ const DetailProduct = ({ product, related }: ProductProps) => {
     <div className={styles["container"]}>
       <div className={styles["grid"]}>
         <div>
-          <img className="" src="https://i.imgur.com/hdxSFAS.png" />
+          <img className="" src={product.img} />
           <div className={styles["box"]}>
             <img
               className={styles["image"]}
