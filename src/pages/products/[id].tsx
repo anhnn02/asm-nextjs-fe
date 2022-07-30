@@ -47,10 +47,12 @@ const DetailProduct = ({ product, related }: ProductProps) => {
           </div>
           <div className={styles["grid-pad"]}>
             <span className={styles["grid-info"]}> Rated: </span>
-            <Icon.StarFill />
-            <Icon.StarFill />
-            <Icon.StarFill />
-            <Icon.StarFill />
+            <div className="tw-inline-block tw-space-x-1">
+              <Icon.StarFill className="tw-text-star tw-text-xl" />
+              <Icon.StarFill className="tw-text-star tw-text-xl" />
+              <Icon.StarFill className="tw-text-star tw-text-xl" />
+              <Icon.StarFill className="tw-text-star tw-text-xl" />
+            </div>
           </div>
           <div className="">
             <span className={`${styles["shop-product-price--sale"]}`}>
@@ -78,40 +80,54 @@ const DetailProduct = ({ product, related }: ProductProps) => {
           </div>
           <div className={styles["check"]}>
             <span>Size: &nbsp; </span>
-            <div className={styles["check-form"]}>
-              <input type="Radio" className={styles["check-size"]} />
-              <label htmlFor="">{product.size}</label>
-            </div>
-            <div className={styles["check-form"]}>
-              <input type="Radio" className={styles["check-size"]} />
-              <label htmlFor="">36</label>
-            </div>
-            <div className={styles["check-form"]}>
-              <input type="Radio" className={styles["check-size"]} />
-              <label htmlFor="">37</label>
-            </div>
-            <div className={styles["check-form"]}>
-              <input type="Radio" className={styles["check-size"]} />
-              <label htmlFor="">38</label>
-            </div>
-            <div className={styles["check-form"]}>
-              <input type="Radio" className={styles["check-size"]} />
-              <label htmlFor="">39</label>
-            </div>
-            <div className={styles["check-form"]}>
-              <input type="Radio" className={styles["check-size"]} />
-              <label htmlFor="">40</label>
+            <div className={styles["size-product-detail"]}>
+              <div className={`${styles['form-group']} ${styles['form-group-35']}`}>
+                <input type="radio" id="size-35" name="radio-size" />
+                <label htmlFor="size-35"></label>
+              </div>
+              <div className={`${styles['form-group']} ${styles['form-group-36']}`}>
+                <input type="radio" id="size-36" name="radio-size" />
+                <label htmlFor="size-36"></label>
+              </div>
+              <div className={`${styles['form-group']} ${styles['form-group-37']}`}>
+                <input type="radio" id="size-37" name="radio-size" />
+                <label htmlFor="size-37"></label>
+              </div>
+              <div className={`${styles['form-group']} ${styles['form-group-38']}`}>
+                <input type="radio" id="size-38" name="radio-size" />
+                <label htmlFor="size-38"></label>
+              </div>
+              <div className={`${styles['form-group']} ${styles['form-group-39']}`}>
+                <input type="radio" id="size-39" name="radio-size" />
+                <label htmlFor="size-39"></label>
+              </div>
+              <div className={`${styles['form-group']} ${styles['form-group-40']}`}>
+                <input type="radio" id="size-40" name="radio-size" />
+                <label htmlFor="size-40"></label>
+              </div>
+              <div className={`${styles['form-group']} ${styles['form-group-41']}`}>
+                <input type="radio" id="size-41" name="radio-size" />
+                <label htmlFor="size-41"></label>
+              </div>
+              <div className={`${styles['form-group']} ${styles['form-group-42']}`}>
+                <input type="radio" id="size-42" name="radio-size" />
+                <label htmlFor="size-42"></label>
+              </div>
+              <div className={`${styles['form-group']} ${styles['form-group-43']}`}>
+                <input type="radio" id="size-43" name="radio-size" />
+                <label htmlFor="size-43"></label>
+              </div>
             </div>
           </div>
           <div className={styles["number"]}>
             <Button.Transparent
               className={styles["number-iconnr"]}
-              content={<Icon.PlusRegular />}
+              content={<Icon.Dash />}
             />
             <Button.None content="1" />
             <Button.Transparent
               className={styles["number-iconnl"]}
-              content={<Icon.Dash />}
+              content={<Icon.PlusRegular />}
             />
           </div>
           <Button.Fill className="tw-px-8" content={"Add to cart"} />

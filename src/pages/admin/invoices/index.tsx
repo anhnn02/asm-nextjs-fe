@@ -4,6 +4,7 @@ import { Table, Tag, Space } from "antd";
 import { Button, Menu, Dropdown } from "antd";
 import Link from "next/link";
 import styles from "./Invoice.module.scss";
+import stylesAdmin from '@/styles/admin/Admin.module.scss';
 import Icon from "@/components/Icon";
 import { path } from "@/constants";
 import { GetStaticProps, GetStaticPropsContext } from "next";
@@ -72,35 +73,35 @@ const InvoicePage = () => {
       status: (
         <div>
           {item.status === 0 ? (
-            <button className={styles["order_item"]}>
+            <span className={styles["order_item"]}>
               <span className={styles["order_status_pending-progress"]}>
                 Pending
               </span>
-            </button>
+            </span>
           ) : item.status === 1 ? (
-            <button className={styles["order_item"]}>
+            <span className={styles["order_item"]}>
               <span className={styles["order_status_pending-shipping"]}>
                 Shipping
               </span>
-            </button>
+            </span>
           ) : item.status === 2 ? (
-            <button className={styles["order_item"]}>
+            <span className={styles["order_item"]}>
               <span className={styles["order_status_delivered"]}>
                 Delivered
               </span>
-            </button>
+            </span>
           ) : item.status === 3 ? (
-            <button className={styles["order_item"]}>
+            <span className={styles["order_item"]}>
               <span className={styles["order_status_cancelled"]}>
                 Cancel
               </span>
-            </button>
+            </span>
           ) : item.status === 4 ? (
-            <button className={styles["order_item"]}>
+            <span className={styles["order_item"]}>
               <span className={styles["order_status_cancelled"]}>
                 Order canceled
               </span>
-            </button>
+            </span>
           ) : (
             ""
           )}
@@ -134,8 +135,7 @@ const InvoicePage = () => {
   });
   return (
     <div>
-      <h4 className="title-admin">Invoice List</h4>
-
+      <h4 className={stylesAdmin['title-admin']}>List Invoice</h4>
       <Table
         columns={columns}
         dataSource={dataSource}

@@ -5,8 +5,10 @@ import { Table, Tag, Space } from 'antd';
 import { Button, Menu, Dropdown } from 'antd';
 import Link from 'next/link';
 import useProduct from '@/hooks/use-product';
-import styles from '../AdminContent.module.scss'
+import styles from './Product.module.scss'
+import stylesAdmin from '@/styles/admin/Admin.module.scss';
 import { formatPercent, formatPrice } from '@/utils/formatNumber';
+import MyBtn from '@/components/Button';
 
 type Props = {}
 
@@ -52,8 +54,6 @@ const ProductList = (props: Props) => {
     const { data: products, error, remove } = useProduct();
     if (error) return <div className="">{error}</div>
     if (!products) return <div>Loading...</div>
-    console.log(products);
-    // const dataSource = products;
     const dataSource = products.map((item, index) => {
         return {
             key: index + 1,
@@ -76,11 +76,10 @@ const ProductList = (props: Props) => {
         <div>
             <div className={styles['header_content']}>
                 <div>
-                    <h1 className={styles['title_table']}>list product</h1>
+                    <h4 className={stylesAdmin['title-admin']}>List product</h4>
                 </div>
                 <Link href='/admin/products/add'>
-                    <button className={styles['btn-multichoice_item']}>Add product +
-                    </button>
+                    <MyBtn.Fill content="Add Product" />
                 </Link>
             </div>
             <Table columns={columns} dataSource={dataSource}

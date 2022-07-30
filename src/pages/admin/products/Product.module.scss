@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .title_table {
@@ -22,11 +23,13 @@
     border-radius: 10px;
     margin-bottom: 1.5rem;
 }
-.grid-size_product{
+
+.grid-size_product {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
 }
+
 .size_product {
     background: var(--primary);
     padding: 0.25rem 0.25rem;
@@ -39,8 +42,6 @@
 .image-preview_form {
     display: block;
 }
-
-.content-form_admin {}
 
 .size_row {
     padding: 0;
