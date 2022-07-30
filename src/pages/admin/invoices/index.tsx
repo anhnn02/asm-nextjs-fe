@@ -8,7 +8,7 @@ import Icon from "@/components/Icon";
 import { path } from "@/constants";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import { userInfo } from "os";
-import useInvoice from "@/hooks/invoice";
+import useInvoice from "@/hooks/use-invoice";
 
 type InvoiceProps = {
   data: {}[];
@@ -128,6 +128,8 @@ const InvoicePage = () => {
   });
   return (
     <div>
+      <h4 className="title-admin">Invoice List</h4>
+
       <Table
         columns={columns}
         dataSource={dataSource}
