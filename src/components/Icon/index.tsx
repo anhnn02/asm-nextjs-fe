@@ -174,6 +174,11 @@ const Icon = {
       <i {...props} className={`bi bi-check-lg ${className}`}></i>
     );
   },
+  XCircle({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-x-circle ${className}`}></i>
+    );
+  },
 };
 
 export default Icon;
