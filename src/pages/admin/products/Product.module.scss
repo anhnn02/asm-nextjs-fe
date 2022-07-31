@@ -23,7 +23,7 @@
 }
 
 .size_col {
-    display: inline-block;
+    @apply tw-grid-cols-1
 }
 
 .row_2-col {
@@ -34,4 +34,92 @@
 .inside_form_admin {
     width: 50%;
     margin: 0 auto;
+}
+
+.form-group {
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.form-group label {
+    position: relative;
+    cursor: pointer;
+    color: var(--gray);
+}
+
+.form-group label:before {
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 1.5px dashed var(--gray);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 6px 9px;
+    width: 40px;
+    display: inline-block;
+    position: relative;
+    margin-right: 6px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.form-group {
+    &-35 label:before {
+        content: '35';
+    }
+
+    &-36 label:before {
+        content: '36';
+    }
+
+    &-37 label:before {
+        content: '37';
+    }
+
+    &-38 label:before {
+        content: '38';
+    }
+
+    &-39 label:before {
+        content: '39';
+    }
+
+    &-40 label:before {
+        content: '40';
+    }
+
+    &-41 label:before {
+        content: '41';
+    }
+
+    &-42 label:before {
+        content: '42';
+    }
+
+    &-43 label:before {
+        content: '43';
+    }
+}
+
+.form-group input:checked+label:before {
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 1.5px solid var(--primary);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 6px 9px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 6px;
+    color: var(--primary)
 }

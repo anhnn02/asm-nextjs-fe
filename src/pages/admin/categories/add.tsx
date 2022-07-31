@@ -40,7 +40,7 @@ const AddCate = (props: Props) => {
           <input
             type="text"
             placeholder="Type here"
-            className="tw-my-1 tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full"
+            className="tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full"
             {...register("name", { required: true })}
           />
           {errors.name && (

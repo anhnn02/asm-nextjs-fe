@@ -29,8 +29,7 @@ const EditCate = (props: Props) => {
   };
   return (
     <div>
-      <h4 className={stylesAdmin["title-admin"]}>Edit Category</h4>
-
+      <h4 className={stylesAdmin["title-admin"]}>Add Category</h4>
       <Link href="/admin/categories/">
         <button className={styles["btn-multichoice_item"]}>
           List Category
@@ -49,7 +48,7 @@ const EditCate = (props: Props) => {
           <input
             type="text"
             placeholder="Type here"
-            className="tw-my-1 tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full"
+            className="tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full"
             {...register("name", { required: true })}
           />
           {errors.name && (
@@ -61,15 +60,11 @@ const EditCate = (props: Props) => {
           )}
         </div>
         {/* BUTTON */}
-        <div className={styles["row-input_form"]}>
-          <Button.Transparent
-            type="reset"
-            className="tw-w-full tw-mt-12"
-            content={"Reset"}
-          />
+        <div className={stylesAdmin["row-input_form"]}>
+          <Button.Transparent className="tw-w-full tw-mt-6" content={"Reset"} />
         </div>
-        <div className={styles["row-input_form"]}>
-          <Button.Fill className="tw-w-full tw-mt-12" content={"Edit"} />
+        <div className={stylesAdmin["row-input_form"]}>
+          <Button.Fill className="tw-w-full tw-mt-6" content={"Edit"} />
         </div>
       </form>
     </div>

@@ -57,7 +57,7 @@ const ProductList = (props: Props) => {
     const dataSource = products.map((item, index) => {
         return {
             key: index + 1,
-            name: item.name,
+            name: <div className="tw-w-40 tw-truncate">{item.name}</div>,
             regularPrice: formatPrice(item.regularPrice),
             salePrice: formatPrice(item.salePrice),
             img: <div><img src={item.img} height={50} width={50} alt="" /></div>,
@@ -74,7 +74,7 @@ const ProductList = (props: Props) => {
     })
     return (
         <div>
-            <div className={styles['header_content']}>
+            <div className={stylesAdmin['header_content']}>
                 <div>
                     <h4 className={stylesAdmin['title-admin']}>List product</h4>
                 </div>
