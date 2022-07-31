@@ -18,8 +18,9 @@ const useInvoice = () => {
     return detailInvoice;
   };
   const editInvoice = async (invoice: any) => {
-    await update(invoice);
+    const updateInvoice = await update(invoice);
     mutate(data.map((item: any) => (item.id === data.id ? invoice : item)));
+    return updateInvoice
   };
 
   return {

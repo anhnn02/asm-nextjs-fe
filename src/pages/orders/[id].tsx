@@ -34,9 +34,14 @@ const OrderDetail = () => {
     const btnCancelOrder = async () => {
         const confirm = window.confirm('You co muon huy order no ?')
         if (confirm) {
-            console.log(invoice);
+            // console.log(invoice);
             // console.log(id)
-            await editInvoice({ ...invoice.invoice, status: 4 });
+            console.log('abc', invoice)
+            const updateInvoice = await editInvoice({ ...invoice.invoice, status: 4 });
+            console.log('updateInvoice', updateInvoice);
+            const getInvoice = await detail(id);
+            console.log('getInvoice', getInvoice)
+            setInvoice(getInvoice);
         }
     }
 
@@ -53,21 +58,21 @@ const OrderDetail = () => {
                             </div>
                             <div>
                                 {
-                                    invoice?.invoice.status === 0 ? (
+                                    invoice?.invoice?.status === 0 ? (
                                         <Button.Transparent className={'tw-bg-[#ffe1e6]'} onClick={() => btnCancelOrder()} content={'Cancel Order'} />
-                                    ) : invoice?.invoice.status === 1 ? (
+                                    ) : invoice?.invoice?.status === 1 ? (
                                         <span className="tw-text-primary  tw-font-semibold">Shipping</span>
-                                    ) : invoice?.invoice.status === 2 ? (
+                                    ) : invoice?.invoice?.status === 2 ? (
                                         <span className="tw-text-primary  tw-font-semibold">Delivered</span>
-                                    ) : invoice?.invoice.status === 3 ? (
+                                    ) : invoice?.invoice?.status === 3 ? (
                                         <span className="tw-text-primary  tw-font-semibold">Cancel</span>
-                                    ) : invoice?.invoice.status === 4 ? (
+                                    ) : invoice?.invoice?.status === 4 ? (
                                         <span className="tw-text-primary tw-font-semibold">Cancelled</span>
                                     ) : ""
                                 }
                             </div>
                         </div>
-                        {invoice?.invoice.status === 0 ? (
+                        {invoice?.invoice?.status === 0 ? (
                             <div className={styles['status-note_order']}>
                                 <div className={styles['status-order_user']}>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_active']}`}><span className={styles['style_icon']}><Icon.Cart className={styles['icon-step_status']} /></span></div>
@@ -82,7 +87,7 @@ const OrderDetail = () => {
                                     <p className={styles['note-status_user']}>Estimated Delivery Date<strong> 4th October</strong></p>
                                 </div>
                             </div>
-                        ) : invoice?.invoice.status === 1 ? (
+                        ) : invoice?.invoice?.status === 1 ? (
                             <div className={styles['status-note_order']}>
                                 <div className={styles['status-order_user']}>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_active']}`}><span className={styles['style_icon']}><Icon.Cart className={styles['icon-step_status']} /></span></div>
@@ -97,7 +102,7 @@ const OrderDetail = () => {
                                     <p className={styles['note-status_user']}>Estimated Delivery Date<strong> 4th October</strong></p>
                                 </div>
                             </div>
-                        ) : invoice?.invoice.status === 2 ? (
+                        ) : invoice?.invoice?.status === 2 ? (
                             <div className={styles['status-note_order']}>
                                 <div className={styles['status-order_user']}>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_active']}`}><span className={styles['style_icon']}><Icon.Cart className={styles['icon-step_status']} /></span></div>
@@ -112,7 +117,7 @@ const OrderDetail = () => {
                                     <p className={styles['note-status_user']}>Estimated Delivery Date<strong> 4th October</strong></p>
                                 </div>
                             </div>
-                        ) : invoice?.invoice.status === 3 ? (
+                        ) : invoice?.invoice?.status === 3 ? (
                             <div className={styles['status-note_order']}>
                                 <div className={styles['status-order_user']}>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_active']}`}><span className={styles['style_icon']}><Icon.Cart className={styles['icon-step_status']} /></span></div>
@@ -123,7 +128,7 @@ const OrderDetail = () => {
                                     <p className={styles['note-status_user']}>Estimated Delivery Date<strong> 4th October</strong></p>
                                 </div>
                             </div>
-                        ) : invoice?.invoice.status === 4 ? (
+                        ) : invoice?.invoice?.status === 4 ? (
                             <div className={styles['status-note_order']}>
                                 <div className={styles['status-order_user']}>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_active']}`}><span className={styles['style_icon']}><Icon.Cart className={styles['icon-step_status']} /></span></div>
