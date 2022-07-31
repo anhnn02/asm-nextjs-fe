@@ -10,7 +10,7 @@ export const removeItem = (id: any) => {
     return instance.delete(`/categories/${id}`);
 };
 export const update = (category: any) => {
-  return instance.put(`/categories/${category.id}`, category);
+  return instance.put(`/categories/${category._id}`, category);
 };
 export const read = (id: any) => {
   return instance.get(`/categories/${id}`);
