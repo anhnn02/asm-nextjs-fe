@@ -83,9 +83,7 @@ const OrderDetail = () => {
                                     <div className={`${styles['line-status_order_user']} ${styles['line-status_order_user_unactive']}`}></div>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_unactive']}`}><span className={styles['style_icon']}><Icon.CheckLg className={styles['icon-step_status']} /></span></div>
                                 </div>
-                                <div className='tw-flex tw-justify-end'>
-                                    <p className={styles['note-status_user']}>Estimated Delivery Date<strong> 4th October</strong></p>
-                                </div>
+  
                             </div>
                         ) : invoice?.invoice?.status === 1 ? (
                             <div className={styles['status-note_order']}>
@@ -97,9 +95,6 @@ const OrderDetail = () => {
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_unactive']}`}><span className={styles['style_icon']}><Icon.Truck className={styles['icon-step_status']} /></span></div>
                                     <div className={`${styles['line-status_order_user']} ${styles['line-status_order_user_unactive']}`}></div>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_unactive']}`}><span className={styles['style_icon']}><Icon.CheckLg className={styles['icon-step_status']} /></span></div>
-                                </div>
-                                <div className='tw-flex tw-justify-end'>
-                                    <p className={styles['note-status_user']}>Estimated Delivery Date<strong> 4th October</strong></p>
                                 </div>
                             </div>
                         ) : invoice?.invoice?.status === 2 ? (
@@ -113,9 +108,7 @@ const OrderDetail = () => {
                                     <div className={`${styles['line-status_order_user']} ${styles['line-status_order_user_active']}`}></div>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_active']}`}><span className={styles['style_icon']}><Icon.CheckLg className={styles['icon-step_status']} /></span></div>
                                 </div>
-                                <div className='tw-flex tw-justify-end'>
-                                    <p className={styles['note-status_user']}>Estimated Delivery Date<strong> 4th October</strong></p>
-                                </div>
+  
                             </div>
                         ) : invoice?.invoice?.status === 3 ? (
                             <div className={styles['status-note_order']}>
@@ -124,9 +117,7 @@ const OrderDetail = () => {
                                     <div className={`${styles['line-status_order_user']} ${styles['line-status_order_user_unactive']}`}></div>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_unactive']}`}><span className={styles['style_icon']}><Icon.CheckLg className={styles['icon-step_status']} /></span></div>
                                 </div>
-                                <div className='tw-flex tw-justify-end'>
-                                    <p className={styles['note-status_user']}>Estimated Delivery Date<strong> 4th October</strong></p>
-                                </div>
+  
                             </div>
                         ) : invoice?.invoice?.status === 4 ? (
                             <div className={styles['status-note_order']}>
@@ -135,9 +126,7 @@ const OrderDetail = () => {
                                     <div className={`${styles['line-status_order_user']} ${styles['line-status_order_user_active']}`}></div>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_active']}`}><span className={styles['style_icon']}><Icon.XCircle className={styles['icon-step_status']} /></span></div>
                                 </div>
-                                <div className='tw-flex tw-justify-end'>
-                                    <p className={styles['note-status_user']}>Estimated Delivery Date<strong> 4th October</strong></p>
-                                </div>
+  
                             </div>
                         ) : (
                             ""
