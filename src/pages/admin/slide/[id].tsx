@@ -5,6 +5,7 @@ import { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 type TypeInput = {
     image: string,
@@ -27,6 +28,9 @@ const EditSlide = () => {
     const onSubmit = async (data: any) => {
         console.log(data);
         await edit(data)
+        toast.success("Edit successfully!", {
+            position: 'top-center'
+        })
         router.push("/admin/slide");
     }
     return (

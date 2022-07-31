@@ -29,7 +29,6 @@ const columns = [
 
 const SlideList = (props: Props) => {
   const { data, remove, error } = useSlide()
-  // console.log(data);
   if (!data) return <div>Loading...</div>
   if (error) return <div>Failed to loading</div>
   const dataSource = data.map((item, index) => {

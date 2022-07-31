@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form'
 import styles from './Product.module.scss'
 import stylesAdmin from '@/styles/admin/Admin.module.scss'
 import Button from '@/components/Button'
+import { toast } from 'react-toastify'
 
 type Props = {}
 type TypeInput = {
@@ -36,6 +37,9 @@ const AddProduct = (props: Props) => {
             console.log(errSalePrice);
         } else {
             await create(data);
+            toast.success("Add successfully!", {
+                position: 'top-center'
+            })
             router.push("/admin/products");
         }
     }

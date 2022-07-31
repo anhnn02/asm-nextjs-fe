@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
+import { toast } from "react-toastify";
 
 const EditUser = () => {
   const { data, error, detail, editUser } = useUser();
@@ -16,6 +17,7 @@ const EditUser = () => {
     formState: { errors },
     reset,
   } = useForm();
+
   useEffect(() => {
     if (!id) return;
     detail(id).then((res: any) => reset(res));
@@ -29,6 +31,9 @@ const EditUser = () => {
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     try {
       await editUser(data);
+      toast.success("Edit successfully", {
+        position: 'top-center'
+      })
       router.push("/admin/users");
     } catch (error) {
       console.log(error);
