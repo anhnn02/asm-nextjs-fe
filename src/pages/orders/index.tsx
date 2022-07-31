@@ -1,11 +1,32 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { read } from '@/api/auth'
 import AsideUser from '@/components/client/AsideUser'
 import Icon from '@/components/Icon'
+import { useAuth } from '@/hooks/auth'
+import { formatPrice } from '@/utils/formatNumber'
 import { IconMap } from 'antd/lib/result'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Orders.module.scss'
 
 const OrderList = () => {
+    // const { readUserOrder } = useAuth();
+    const idUser = JSON.parse(localStorage.getItem('user')).user._id;
+    const [userOrder, setUserOrder] = useState();
+    // console.log(idUser);
+    // console.log(readUserOrder(idUser))
+    // const data = readUserOrder(idUser);
+    useEffect(() => {
+        const getUserOrder = async () => {
+            const data = await read(idUser);
+            console.log(data);
+            const dataInvoice = data?.invoices;
+            console.log(dataInvoice);
+            setUserOrder(data);
+        }
+        getUserOrder()
+    }, [])
+
     return (
         <div className='tw-'>
             <div className={styles['main-user_multichoice']}>
@@ -33,60 +54,51 @@ const OrderList = () => {
                             </div>
                         </div>
                         <div className={styles['tbody_table_user']}>
-                            <Link href="/" className=''>
-                                <div className={styles['tr-tbody_table_user']}>
-                                    <h5 className={styles['order_item']}><span className={styles['order_id']}>1050017AS</span></h5>
-                                    <div className={styles['order_item']}><span className={styles['order_status_pending-progress']}>pending</span></div>
-                                    <div className={styles['order_item']}><span className={styles['order_date']}>jul 26, 2022</span></div>
-                                    <div className={styles['order_item']}><span className={styles['order_total']}>$350.00</span></div>
-                                    <div className={styles['order_item_none-flex']}><Link href="/"><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
-                                </div>
-                            </Link>
-                            <Link href="/" className=''>
-                                <div className={styles['tr-tbody_table_user']}>
-                                    <h5 className={styles['order_item']}><span className={styles['order_id']}>1050017AS</span></h5>
-                                    <div className={styles['order_item']}><span className={styles['order_status_pending-progress']}>processing</span></div>
-                                    <div className={styles['order_item']}><span className={styles['order_date']}>jul 26, 2022</span></div>
-                                    <div className={styles['order_item']}><span className={styles['order_total']}>$350.00</span></div>
-                                    <div className={styles['order_item_none-flex']}><Link href="/"><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
-                                </div>
-                            </Link>
-                            <Link href="/" className=''>
-                                <div className={styles['tr-tbody_table_user']}>
-                                    <h5 className={styles['order_item']}><span className={styles['order_id']}>1050017AS</span></h5>
-                                    <div className={styles['order_item']}><span className={styles['order_status_delivered']}>delivered</span></div>
-                                    <div className={styles['order_item']}><span className={styles['order_date']}>jul 26, 2022</span></div>
-                                    <div className={styles['order_item']}><span className={styles['order_total']}>$350.00</span></div>
-                                    <div className={styles['order_item_none-flex']}><Link href="/"><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
-                                </div>
-                            </Link>
-                            <Link href="/" className=''>
-                                <div className={styles['tr-tbody_table_user']}>
-                                    <h5 className={styles['order_item']}><span className={styles['order_id']}>1050017AS</span></h5>
-                                    <div className={styles['order_item']}><span className={styles['order_status_cancelled']}>cancelled</span></div>
-                                    <div className={styles['order_item']}><span className={styles['order_date']}>jul 26, 2022</span></div>
-                                    <div className={styles['order_item']}><span className={styles['order_total']}>$350.00</span></div>
-                                    <div className={styles['order_item_none-flex']}><Link href="/"><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
-                                </div>
-                            </Link>
-                            <Link href="/" className=''>
-                                <div className={styles['tr-tbody_table_user']}>
-                                    <h5 className={styles['order_item']}><span className={styles['order_id']}>1050017AS</span></h5>
-                                    <div className={styles['order_item']}><span className={styles['order_status_cancelled']}>cancelled</span></div>
-                                    <div className={styles['order_item']}><span className={styles['order_date']}>jul 26, 2022</span></div>
-                                    <div className={styles['order_item']}><span className={styles['order_total']}>$350.00</span></div>
-                                    <div className={styles['order_item_none-flex']}><Link href="/"><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
-                                </div>
-                            </Link>
+                            {
+                                userOrder?.invoices.map((item, index) => {
+                                    return (
+                                        <Link href={`/order/${item._id}`} className='' key={index}>
+                                            <div className={styles['tr-tbody_table_user']}>
+                                                <h5 className={`${styles['order_item']} && tw-truncate`}><span className={styles['order_id']}>{item._id}</span></h5>
+                                                {
+                                                    item.status === 0 ? (
+                                                        <div className={styles['order_item']}><span className={styles['order_status_pending-progress']}>Pending</span></div>
+                                                    )
+                                                    :
+                                                    item.status === 1 ? (
+                                                        <div className={styles['order_item']}><span className={styles['order_status_pending-progress']}>Shipping</span></div>
+                                                    )
+                                                    :
+                                                    item.status === 2 ? (
+                                                        <div className={styles['order_item']}><span className={styles['order_status_delevered']}>Delivered</span></div>
+                                                    )
+                                                    :
+                                                    item.status === 3 ? (
+                                                        <div className={styles['order_item']}><span className={styles['order_status_cancelled']}>Cancel</span></div>
+                                                    )
+                                                    :
+                                                    item.status === 4 ? (
+                                                        <div className={styles['order_item']}><span className={styles['order_status_cancelled']}>Cancelled</span></div>
+                                                    ) :
+                                                    ("")
+                                                }
+                                                <div className={styles['order_item']}><span className={styles['order_date']}>{item.createdAt.split("", 10)}</span></div>
+                                                <div className={styles['order_item']}><span className={styles['order_total']}>{formatPrice(item.total)}</span></div>
+                                                <div className={styles['order_item_none-flex']}><Link href="/"><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
+                                            </div>
+                                        </Link>
+                                    )
+                                })
+                            }
                         </div>
                         <div className={styles['pagination_page']}>
-                            <div className={styles['pagination_item-selected']}><Icon.ChevronLeft className={styles['pag_previous']}/></div>
+                            <div className={styles['pagination_item-selected']}><Icon.ChevronLeft className={styles['pag_previous']} /></div>
                             <div className={styles['pagination_item-selected']}><span>1</span></div>
                             <div className={styles['pagination_item']}><span>2</span></div>
                             <div className={styles['pagination_item']}><span>3</span></div>
                             <div className={styles['pagination_item']}><span>4</span></div>
                             <div className={styles['pagination_item']}><span>5</span></div>
-                            <div className={styles['pagination_item-selected']}><Icon.ChevronRight className={styles['pag_next']}/></div>
+                            <div className={styles['pagination_item-selected']}><Icon.ChevronRight className={styles['pag_next']} /></div>
                         </div>
                     </div>
                 </div>

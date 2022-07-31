@@ -1,7 +1,7 @@
 import { sign } from "crypto";
 import { listenerCount } from "process";
 import useSWR, { useSWRConfig } from "swr";
-import { list, signup, signin } from "../api/auth";
+import { list, signup, signin, read } from "../api/auth";
 
 export const useAuth = (options?) => {
   const { data, error, mutate } = useSWR("/users", { ...options });
@@ -11,6 +11,11 @@ export const useAuth = (options?) => {
     const account = await signup(user);
     mutate([...data, account]);
   };
+
+  const readUserOrder = async(id) => {
+    const userOrder = await read(id)
+    return userOrder;
+  }
 
   const profile = (id) => {
     mutate(`/users/${id}`);
@@ -25,6 +30,7 @@ export const useAuth = (options?) => {
   return {
     data,
     error,
+    readUserOrder,
     register,
     profile,
     login

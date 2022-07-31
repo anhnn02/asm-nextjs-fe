@@ -31,14 +31,17 @@
 .thead_table_user {
     text-transform: capitalize;
     font-size: 16px;
-    display: flex;
-    flex-wrap: wrap;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 30% 25% 20% 20% 5%;
     padding: 0 18px;
     align-items: center;
     font-weight: 600;
     color: rgb(125, 135, 156);
 }
-
+.th_table_user:first-child {
+    text-align: left !important;
+}
 .th_table_user {
     flex: 1 1 0px;
     margin: 0 6px;
@@ -51,8 +54,9 @@
 .tr-tbody_table_user {
     cursor: pointer;
     margin: 16px 0;
-    display: flex;
-    flex-wrap: wrap;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 30% 25% 20% 20% 5%;
     align-items: center;
     border-radius: 10px;
     box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
