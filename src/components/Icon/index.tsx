@@ -163,6 +163,26 @@ const Icon = {
       <i {...props} className={`bi bi-chevron-right ${className}`}></i>
     );
   },
+  BoxSeamFill({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-box-seam-fill ${className}`}></i>
+    );
+  },
+  Truck({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-truck ${className}`}></i>
+    );
+  },
+  CheckLg({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-check-lg ${className}`}></i>
+    );
+  },
+  XCircle({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-x-circle ${className}`}></i>
+    );
+  },
 };
 
 export default Icon;

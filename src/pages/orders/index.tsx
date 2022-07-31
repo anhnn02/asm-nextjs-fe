@@ -36,7 +36,7 @@ const OrderList = () => {
     }, [])
 
     return (
-        <div className='tw-'>
+        <div className=''>
             <div className={styles['main-user_multichoice']}>
                 <AsideUser />
                 <div className={styles['content-user_multichoice']}>
@@ -66,7 +66,7 @@ const OrderList = () => {
                                 {
                                     userOrder?.invoices.map((item, index) => {
                                         return (
-                                            <Link href={`/order/${item._id}`} className='' key={index}>
+                                            <Link href={`${path.public.ordersRoute}/${item._id}`} className='' key={index}>
                                                 <div className={styles['tr-tbody_table_user']}>
                                                     <h5 className={`${styles['order_item']} && tw-truncate`}><span className={styles['order_id']}>{item._id}</span></h5>
                                                     {
@@ -93,7 +93,7 @@ const OrderList = () => {
                                                     }
                                                     <div className={styles['order_item']}><span className={styles['order_date']}>{item.createdAt.split("", 10)}</span></div>
                                                     <div className={styles['order_item']}><span className={styles['order_total']}>{formatPrice(item.total)}</span></div>
-                                                    <div className={styles['order_item_none-flex']}><Link href="/"><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
+                                                    <div className={styles['order_item_none-flex']}><Link href=''><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
                                                 </div>
                                             </Link>
                                         )

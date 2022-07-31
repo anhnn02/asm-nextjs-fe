@@ -165,3 +165,154 @@
     border: 1px solid var(--primary);
     transition: all 150ms ease-in-out 0s;
 }
+
+
+// ORDER DETAIL 
+.status-note_order {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.status-order_user {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    justify-content:center;
+}
+
+.step-status_order_user {
+    position: relative;
+    height: 64px;
+    width: 64px;
+    text-align: center;
+    font-size: 32px;
+    border-radius: 50%;
+}
+
+
+.step-status_order_user_active {
+    background: var(--primary);
+    color: #fff;
+}
+
+
+.step-status_order_user_unactive {
+    background: rgb(227, 233, 239);
+    color: var(--primary);
+}
+
+.line-status_order_user {
+    height: 4px;
+    flex: 1 1 100px;
+}
+
+.line-status_order_user_active {
+    background: var(--primary);
+
+}
+
+.line-status_order_user_unactive {
+    background-color: rgb(227, 233, 239);
+}
+
+
+.icon-step_status {
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.note-status_user {
+    padding: 0.5rem;
+    border-radius: 300px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    color: var(--primary);
+    background: rgb(255, 225, 230);
+}
+
+// TABLE ORDER DETAILS
+.table_order-details {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    border-radius: 8px;
+    padding: 0px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.column-table_order-details {
+    display: flex;
+    align-items: center;
+    flex: 1 1 0px;
+    margin: 6px;
+}
+
+.thead-table_order-details {
+    display: flex;
+    flex: wrap;
+    align-items: center;
+    padding: 12px;
+    background: rgb(243, 245, 249);
+}
+
+.th_table_order-details {
+    font-size: 14px;
+    margin-right: 4px;
+    color: rgb(125, 135, 156)
+}
+
+// TR TABLE ORDER DETAILS
+.tr_table_order-details {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.td_table_order-details {
+    flex: 2 2 260px;
+    display: flex;
+    align-items: center;
+    margin: 6px;
+}
+
+.td_table_order-details_last {
+    flex: 1 1 160px;
+    margin: 6px;
+}
+
+.image-product_order-details {
+    width: 64px;
+    height: 64px;
+}
+
+.name-product_order-details {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.properties-product_order-details,
+.price_plus_quantity {
+    color: rgb(125, 135, 156);
+    font-size: 14px;
+}
+
+.shipping-total_order-details {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    border-radius: 8px;
+    padding: 20px 30px;
+}
+
+.total_order-detail {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 16px;
+}
