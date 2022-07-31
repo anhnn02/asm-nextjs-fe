@@ -22,7 +22,7 @@ const Home: NextPage = () => {
     return (
       <div className={styles["homepage"]}>
         <div className={styles["section"]}>Slide</div>
-        <div className={styles["section"]}>
+        <div className={styles["slide"]}>
           <Banner />
         </div>
         <div className={styles["section"]}>Slide</div>

@@ -77,6 +77,7 @@ const ListProduct = ({ data }: Props) => {
                     </div>
                   ) : (
                     item.size.map((sizeItem) => (
+                      // eslint-disable-next-line react/jsx-key
                       <span
                         className={styles["shop-product-variation__item"]}
                       >
@@ -172,6 +173,7 @@ const ListProduct = ({ data }: Props) => {
                     </div>
                   ) : (
                     item.size.map((sizeItem) => (
+                      // eslint-disable-next-line react/jsx-key
                       <span
                         className={styles["shop-product-variation__item"]}
                       >
