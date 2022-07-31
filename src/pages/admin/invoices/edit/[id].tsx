@@ -70,7 +70,7 @@ const EditInvoice = () => {
                 {...register("fullname", { required: true })}
               />
               {errors.fullname && (
-                <span style={{ color: "red" }}>Email cannot be blank</span>
+                <span style={{ color: "red" }}>Full name cannot be blank</span>
               )}
             </div>
             {/* Email */}

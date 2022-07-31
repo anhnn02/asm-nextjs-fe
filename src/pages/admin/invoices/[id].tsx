@@ -6,9 +6,8 @@ import styles from "./Invoice.module.scss";
 import Link from "next/link";
 import useInvoice from "@/hooks/use-invoice";
 import { path } from "@/constants";
-import useInvoiceDetail from "@/hooks/use-invoiceDetail";
+import stylesAdmin from "@/styles/admin/Admin.module.scss";
 import { useRouter } from "next/router";
-import { data } from "autoprefixer";
 import { formatPrice } from "@/utils/formatNumber";
 
 type Props = {};
@@ -39,7 +38,7 @@ const DetailInvoice = (props: Props) => {
     <div>
       <div className="">
         <div className="tw-flex tw-justify-between tw-items-center">
-          <h4 className="title-admin">Invoice Detail</h4>
+          <h4 className={stylesAdmin["title-admin"]}>List Invoice</h4>
           <div className="">
             <Link href={`${path.private.invoiceRoute}/edit/${id}`}>
               <Button.Fill content="Edit" />
