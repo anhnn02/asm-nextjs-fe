@@ -10,7 +10,8 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import useSWR from 'swr'
 import styles from '../../shop/Shop.module.scss'
-import stylesAdmin from '../AdminContent.module.scss'
+import stylesAdmin from "@/styles/admin/Admin.module.scss";
+
 import { Image } from 'antd'
 import Link from 'next/link'
 
