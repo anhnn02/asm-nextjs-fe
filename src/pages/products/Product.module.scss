@@ -22,7 +22,8 @@
   }
 
   &-text {
-    @apply tw-text-5xl tw-pt-10 tw-py-3;
+    @apply tw-pb-3 tw-font-bold;
+    font-size: var(--largest);
 
     &-price {
       @apply tw-m-0 tw-text-primary tw-text-3xl tw-font-semibold ;
@@ -57,15 +58,13 @@
 
 /* Style the number */
 .number {
-  @apply tw-flex;
+  @apply tw-flex tw-items-center tw-space-x-6 tw-font-bold tw-text-xl;
 
   &-iconnl {
-    @apply tw-ml-2 tw-left-0;
     font-size: var(--base);
   }
 
   &-iconnr {
-    @apply tw-mr-2 tw-left-0;
     font-size: var(--base);
   }
 
@@ -117,3 +116,102 @@
   //   }
   // }
 }
+
+// size
+.size-product-detail{
+  @apply tw-grid tw-grid-cols-5
+}
+.form-group {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.form-group label {
+  position: relative;
+  cursor: pointer;
+  color: var(--gray);
+}
+
+.form-group label:before {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1.5px dashed var(--gray);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 6px 8px;
+  display: inline-block;
+  position: relative;
+  margin-right: 6px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.form-group {
+  &-35 label:before {
+    content: '35';
+  }
+
+  &-36 label:before {
+    content: '36';
+  }
+
+  &-37 label:before {
+    content: '37';
+  }
+
+  &-38 label:before {
+    content: '38';
+  }
+
+  &-39 label:before {
+    content: '39';
+  }
+
+  &-40 label:before {
+    content: '40';
+  }
+
+  &-41 label:before {
+    content: '41';
+  }
+
+  &-42 label:before {
+    content: '42';
+  }
+
+  &-43 label:before {
+    content: '43';
+  }
+}
+
+.form-group input:checked+label:before {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1.5px solid var(--primary);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 6px 8px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 6px;
+  color: var(--primary)
+}
+
+ .cart-sidebar__button {
+   @apply tw-normal-case tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-w-10 tw-h-10 tw-rounded-[var(--rounded-1)];
+ }
+
+ .cart-sidebar__button:hover {
+   @apply tw-bg-primary tw-text-white tw-border-primary
+ }

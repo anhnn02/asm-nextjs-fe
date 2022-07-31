@@ -44,7 +44,7 @@
                     @apply tw-space-x-1 tw-text-my-gray;
                 }
                 .shop-product-variation__item + .shop-product-variation__item {
-                    @apply tw-border-l-[1.5px] tw-pl-1
+                    @apply tw-border-l-[1.5px] tw-pl-1 tw-ml-1
                 }
                 .shop-product-price {
                     font-size: var(--small)
