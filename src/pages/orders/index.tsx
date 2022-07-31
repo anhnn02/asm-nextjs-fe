@@ -64,23 +64,23 @@ const OrderList = () => {
                                                     item.status === 0 ? (
                                                         <div className={styles['order_item']}><span className={styles['order_status_pending-progress']}>Pending</span></div>
                                                     )
-                                                    :
-                                                    item.status === 1 ? (
-                                                        <div className={styles['order_item']}><span className={styles['order_status_pending-progress']}>Shipping</span></div>
-                                                    )
-                                                    :
-                                                    item.status === 2 ? (
-                                                        <div className={styles['order_item']}><span className={styles['order_status_delevered']}>Delivered</span></div>
-                                                    )
-                                                    :
-                                                    item.status === 3 ? (
-                                                        <div className={styles['order_item']}><span className={styles['order_status_cancelled']}>Cancel</span></div>
-                                                    )
-                                                    :
-                                                    item.status === 4 ? (
-                                                        <div className={styles['order_item']}><span className={styles['order_status_cancelled']}>Cancelled</span></div>
-                                                    ) :
-                                                    ("")
+                                                        :
+                                                        item.status === 1 ? (
+                                                            <div className={styles['order_item']}><span className={styles['order_status_pending-progress']}>Shipping</span></div>
+                                                        )
+                                                            :
+                                                            item.status === 2 ? (
+                                                                <div className={styles['order_item']}><span className={styles['order_status_delevered']}>Delivered</span></div>
+                                                            )
+                                                                :
+                                                                item.status === 3 ? (
+                                                                    <div className={styles['order_item']}><span className={styles['order_status_cancelled']}>Cancel</span></div>
+                                                                )
+                                                                    :
+                                                                    item.status === 4 ? (
+                                                                        <div className={styles['order_item']}><span className={styles['order_status_cancelled']}>Cancelled</span></div>
+                                                                    ) :
+                                                                        ("")
                                                 }
                                                 <div className={styles['order_item']}><span className={styles['order_date']}>{item.createdAt.split("", 10)}</span></div>
                                                 <div className={styles['order_item']}><span className={styles['order_total']}>{formatPrice(item.total)}</span></div>

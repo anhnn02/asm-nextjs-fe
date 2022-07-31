@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import styles from './Orders.module.scss'
 import stylesPrice from '../../components/client/shop/ListProduct.module.scss'
+import { data } from 'autoprefixer'
 
 const OrderDetail = () => {
     const { detail, editInvoice, error } = useInvoice();
@@ -21,27 +22,29 @@ const OrderDetail = () => {
         if (!id) return;
         const get = async () => {
             const data: any = await detail(id);
-            console.log('abc', data)
             let totalPrice = 0;
             let totalOneProduct = 0;
+            console.log(data)
             const cart = data.invoiceDetails;
-            console.log(cart)
+            // console.log(cart)
             cart.forEach((element) => {
                 console.log(element)
                 totalOneProduct = element.quantity * element.salePrice;
                 totalPrice += totalOneProduct;
             });
-            console.log(totalPrice)
+            // console.log(totalPrice)
             setTotal(totalPrice);
             setInvoice(data);
         };
         get();
     }, [id]);
 
-    const btnCancelOrder = () => {
+    const btnCancelOrder = async () => {
         const confirm = window.confirm('You co muon huy order no ?')
         if (confirm) {
-
+            console.log(invoice);
+            console.log(id)
+            await editInvoice()
         }
     }
 
