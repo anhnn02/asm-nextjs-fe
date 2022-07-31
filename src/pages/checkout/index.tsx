@@ -127,9 +127,9 @@ const CheckOut = () => {
             <div className={styles['row_progress_of_customer']}>
                 <div className={styles['progress_of_customer']}>
                     <div className={styles['format_progress_of_customer']}>
-                        <div className={styles['step_progress-active']}><span>1. Cart</span></div>
+                        <div className={styles['step_progress-active']}><Link href={path.public.cartRoute}>1. Cart</Link></div>
                         <div className={styles['line_progress-active']}></div>
-                        <div className={styles['step_progress-active']}><span>2. Checkout</span></div>
+                        <div className={styles['step_progress-active']}><span><Link href={path.public.checkoutRoute}>2. Checkout</Link></span></div>
                         <div className={styles['line_progress-unactive']}></div>
                         <div className={styles['step_progress-unactive']}><span>3. Order completed</span></div>
                     </div>
