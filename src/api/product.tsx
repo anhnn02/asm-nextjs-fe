@@ -15,3 +15,6 @@ export const update = (product: any) => {
 export const read = (id: any) => {
   return instance.get(`/product/${id}`);
 };
+export const filter = () => {
+  return instance.get(`/filter?limit=8`);
+};
