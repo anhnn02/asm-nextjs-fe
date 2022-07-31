@@ -8,7 +8,7 @@ export const removeItem = (id: any) => {
 }
 
 export const update = (slide: any) => {
-  return instance.put(`/banners/${slide.id}`, slide);
+  return instance.put(`/banners/${slide._id}`, slide);
 };
 export const read = (id: any) => {
   return instance.get(`/banners/${id}`);

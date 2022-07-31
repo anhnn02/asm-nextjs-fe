@@ -5,38 +5,38 @@ import { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import styles from '../../shop/Shop.module.scss'
-type Props = {}
+import { toast } from 'react-toastify'
+
 type TypeInput = {
-   
     image: string,
-    
+
 }
-const EditSlide = (props: Props) => {
+const EditSlide = () => {
+    const { detail, edit } = useSlide()
     const router = useRouter()
-    const { id } = router.query;
-   
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { id }  = router.query;
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<TypeInput>()
     useEffect(() => {
-    const getSlide = async () => {
-      const data = await read(id);
-      // console.log(data);
-      // console.log(data?._id);
-      reset(data);
-    }
-    getSlide();
-  }, [id])
-    const [size, useSize] = useState();
-   
+        const getSlide = async () => {
+            const data = await detail(id);
+            reset(data);
+        }
+        getSlide();
+    }, [id])
+
     const onSubmit = async (data: any) => {
-        // console.log(data);
-       EditSlide({ ...data});
+        console.log(data);
+        await edit(data)
+        toast.success("Edit successfully!", {
+            position: 'top-center'
+        })
         router.push("/admin/slide");
     }
     return (
         <div>
             <form action="" onSubmit={handleSubmit(onSubmit)}>
-                
+
                 {/* IMAGE  */}
                 <div className="tw-form-control tw-w-full tw-max-w-xs">
                     <label className="tw-label">
@@ -44,7 +44,7 @@ const EditSlide = (props: Props) => {
                     </label>
                     <input type="text" placeholder="Type here" className="tw-input tw-input-bordered tw-w-full tw-max-w-xs" {...register('img', { required: true })} />
                 </div>
-                
+
                 {/* BUTTON */}
                 <div className="tw-form-control tw-w-full tw-max-w-xs tw-my-3">
                     <button className='tw-btn tw-btn-primary'>Update</button>

@@ -10,6 +10,7 @@ import { path } from "@/constants";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import { userInfo } from "os";
 import useInvoice from "@/hooks/use-invoice";
+import { formatPrice } from "@/utils/formatNumber";
 
 type InvoiceProps = {
   data: {}[];
@@ -68,7 +69,7 @@ const InvoicePage = () => {
       fullname: item.fullname,
       email: item.email,
       date: item.createdAt.split("", 10),
-      total: item.total,
+      total: formatPrice(item.total),
       note: item.note,
       status: (
         <div>

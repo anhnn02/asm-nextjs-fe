@@ -11,34 +11,40 @@ import { addItemToCart, decrementQuantity, incrementQuantity, removeItemFromCart
 import { toast } from 'react-toastify';
 import { add } from '@/api/product';
 import CartEmpty from './CartEmpty';
-
+import { path } from '@/constants';
+import { confirmAlert } from 'react-confirm-alert';
+import { optionDanger, optionWarning } from '@/utils/optionToast';
 
 type Props = {}
 
 const CartSidebar = (props: Props) => {
     const dispatch = useDispatch()
-   
-
-    let totalCart = 0
+    const router = useRouter()
     const cart = useSelector(data => data.cart.items)
     const cartTotalQuantity = useSelector(data => data.cart.totalQuantity)
-    const router = useRouter()
+    const isLogin = useSelector(data => data.user.isAuthenticated)
+
+    //total cart
     let subTotal = 0;
     cart.forEach((item) => {
         subTotal += item.total;
     });
     let totalAmount = subTotal
 
+    //remove action
     const removeCart = () => {
-        const confirm = window.confirm('Are you sure you want to delete all items?')
-        if (confirm) {
-            dispatch(resetCart(""))
-        }
+        confirmAlert(optionDanger(() => dispatch(resetCart("")), 'Are you want to delete all items?', 'Are you really you want to delete all items, This process cannot be undone?'))
     }
     const removeItemCart = (id: String) => {
-        const confirm = window.confirm('Are you sure you want to delete this item?')
-        if (confirm) {
-            dispatch(removeItemFromCart(id))
+        confirmAlert(optionDanger(() => dispatch(removeItemFromCart(id))))
+    }
+
+    //check user
+    const checkUser = () => {
+        if (!isLogin) {
+            confirmAlert(optionWarning(() => router.push(path.public.loginRoute)))
+        } else {
+            router.push(path.public.checkoutRoute)
         }
     }
 
@@ -51,11 +57,10 @@ const CartSidebar = (props: Props) => {
                         <Icon.Cart /> <span>{cart.length} item(s)</span>
                     </div>
                     {cartTotalQuantity == 0 ? "" : <button onClick={() => removeCart()} className="tw-text-my-gray tw-font-normal">Clear All</button>}
-                    
+
                 </div>
                 {cartTotalQuantity == 0 ? <CartEmpty /> : <>
                     <div className={styles['cart-sidebar__list']}>
-
                         {cart.map((item, index) => (
                             <div key={index} className={styles['cart-sidebar__item']}>
                                 <div className={styles['cart-sidebar__action-quantity']}>
@@ -93,17 +98,14 @@ const CartSidebar = (props: Props) => {
                     </div>
                     {cartTotalQuantity == 0 ? "" :
                         <div className={styles['cart-sidebar__footer']}>
-                            <Link href="/abc">
-                                <Button.Fill className="tw-block tw-w-full !tw-h-3 !tw-p-1" content={`Checkout now ${formatPrice(totalAmount)}`} />
-                            </Link>
-                            <Link href="/abc">
-                                <Button.Transparent className="tw-block tw-w-full" content={`View cart`} />
-                            </Link>
+                            <Button.Fill onClick={() => checkUser()}
+                                className="tw-block tw-w-full !tw-h-3 !tw-p-1" content={`Checkout now ${formatPrice(totalAmount)}`} />
+                            <Button.Transparent className="tw-block tw-w-full !tw-h-3 !tw-p-1" content={<Link href={path.public.cartRoute}>
+                                <span>View cart</span>
+                            </Link>} />
                         </div>
                     }
                 </>}
-                
-                
             </div>
         </div>
     )

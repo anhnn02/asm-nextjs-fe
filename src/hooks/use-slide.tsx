@@ -24,7 +24,7 @@ const useSlide = () => {
   
   const edit = async (slide: any) => {
     await update(slide);
-    mutate(data.map((item: any) => (item.id === data.id ? slide : item)));
+    mutate(data.map((item: any) => (item._id === data._id ? slide : item)));
   };
 
   return {

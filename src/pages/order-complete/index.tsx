@@ -3,6 +3,7 @@ import React from 'react'
 import styles from "./OderDone.module.scss";
 import Button from "@/components/Button";
 import Link from 'next/link';
+import { path } from '@/constants';
 
 
 type Props = {}
@@ -30,7 +31,7 @@ const OderCompleted = (props: Props) => {
       </div>
       <div className="tw-text-center ">
         <span className="tw-font-medium tw-text-green-500 tw-text-xl tw-block">
-          You have order successfully paid
+          You have order successfully!
         </span>
         <span>waiting for confirmation!</span>
       </div>
@@ -42,10 +43,10 @@ const OderCompleted = (props: Props) => {
         />
       </div>
       <div className="tw-flex tw-justify-center tw-py-3">
-        <Link href="/">
+        <Link href={path.public.rootRoute}>
           <Button.Transparent className="tw-mr-3" content="Back Home" />
         </Link>
-        <Link href="/invoice-detail">
+        <Link href={path.public.ordersRoute}>
           <Button.Fill content="Invoice Detail " />
         </Link>
       </div>

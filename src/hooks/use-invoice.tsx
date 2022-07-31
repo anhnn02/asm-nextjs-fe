@@ -12,14 +12,16 @@ const useInvoice = () => {
   const create = async (invoice: any) => {
     const addInvoice = await add(invoice);
     mutate([...data, addInvoice]);
+    return addInvoice
   };
   const detail = async (id: any) => {
     const detailInvoice = await read(id);
     return detailInvoice;
   };
   const editInvoice = async (invoice: any) => {
-    await update(invoice);
+    const updateInvoice = await update(invoice);
     mutate(data.map((item: any) => (item.id === data.id ? invoice : item)));
+    return updateInvoice
   };
 
   return {

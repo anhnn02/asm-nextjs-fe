@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import LayoutAdmin from "@/components/Layout/admin";
 import React from "react";
 import { Table, Tag, Space } from "antd";
@@ -53,13 +55,7 @@ const columns = [
 const UserList = () => {
   const { data, error, remove } = useUser();
   if (!data) return <div>Loading...</div>;
-  console.log("abc", data);
-
-  const newArray = data.reverse();
-  const dataSource = newArray.map((item, index) => {
-    {
-      console.log("123", item.createdAt);
-    }
+  const dataSource = data.map((item, index) => {
     return {
       key: index + 1,
       img: (
@@ -71,7 +67,6 @@ const UserList = () => {
       ),
       name: item.name,
       date: item.createdAt.split("", 10),
-
       email: item.email,
 
       role: (
