@@ -12,5 +12,5 @@ export const signin = (user) => {
 }
 
 export const read = (id: any) => {
-    return instance.get(`/users/${id}`);
+    return instance.get(`/user/${id}`);
 }

@@ -10,5 +10,5 @@ export const update = (user: any) => {
   return instance.put(`/user/${user._id}`, user);
 };
 export const read = (id: any) => {
-  return instance.get(`/user/${id}`);
+  return instance.get(`/users/${id}`);
 };

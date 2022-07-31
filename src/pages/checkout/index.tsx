@@ -27,10 +27,7 @@ const CheckOut = () => {
     const [districts, setDistricts] = useState([]);
     const [wards, setWards] = useState([]);
 
-    // check vao trang checkout: user && cart != []
-    if (!isLogin || cart.length === 0) {
-        route.push(path.public.notFound)
-    }
+    
 
     useEffect(() => {
         const getDataProvince = async () => {
@@ -109,7 +106,10 @@ const CheckOut = () => {
                         position: 'top-center'
                     })
                 }
-                
+            } else {
+                toast.error("Your cart is empty!", {
+                    position: 'top-center'
+                })
             }
         }
         addInfoOrder()
@@ -122,6 +122,10 @@ const CheckOut = () => {
     });
     let totalAmount = subTotal + 5
 
+    // check vao trang checkout: user && cart != []
+    if (!isLogin && cart.length === 0) {
+        route.push(path.public.notFound)
+    }
     return (
         <div>
             <div className={styles['row_progress_of_customer']}>
