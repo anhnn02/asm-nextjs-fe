@@ -28,10 +28,7 @@ const columns = [
 const CategoryList = () => {
   const { data, error, remove } = useCate();
   if (!data) return <div>Loading...</div>;
-  console.log("abc", data);
-
-  const newArray = data.reverse();
-  const dataSource = newArray.map((item, index) => {
+  const dataSource = data.map((item, index) => {
     return {
       key: index + 1,
 

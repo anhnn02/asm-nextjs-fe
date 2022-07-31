@@ -55,8 +55,7 @@ const columns = [
 const UserList = () => {
   const { data, error, remove } = useUser();
   if (!data) return <div>Loading...</div>;
-  const newArray = data.reverse();
-  const dataSource = newArray.map((item, index) => {
+  const dataSource = data.map((item, index) => {
     return {
       key: index + 1,
       img: (
