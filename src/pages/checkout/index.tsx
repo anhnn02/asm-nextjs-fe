@@ -97,12 +97,12 @@ const CheckOut = () => {
 
                         await createDetail(dataInvoiceDetail)
                         dispatch(resetCart(""))
-                        toast.success("Order successfully", {
-                            position: 'top-center'
-                        })
-                        console.log("first", path.public.orderCompleteRoute)
-                        // route.push(path.public.orderCompleteRoute)
                     })
+                    toast.success("Order successfully", {
+                        position: 'top-center'
+                    })
+                    route.push(path.public.orderCompleteRoute)
+
                 } catch (error) {
                     // console.log(error.response);
                     toast.error("Can not order", {

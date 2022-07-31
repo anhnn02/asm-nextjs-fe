@@ -30,7 +30,7 @@ const OderCompleted = (props: Props) => {
       </div>
       <div className="tw-text-center ">
         <span className="tw-font-medium tw-text-green-500 tw-text-xl tw-block">
-          You have order successfully paid
+          You have order successfully!
         </span>
         <span>waiting for confirmation!</span>
       </div>

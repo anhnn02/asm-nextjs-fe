@@ -11,7 +11,7 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  @apply tw-max-w-5xl tw-mx-auto tw-mb-[150px];
+  @apply tw-max-w-5xl tw-mx-auto tw-mb-[150px] tw-gap-16;
 
   &-button {
     @apply tw-bg-primary tw-inline-flex tw-items-center tw-h-10 tw-px-12 tw-text-white tw-transition-colors tw-duration-150 tw-rounded-lg tw-font-medium
@@ -44,10 +44,15 @@
 }
 
 /* Style the img */
-.box {
-  @apply tw-flex tw-mx-[30px] tw-mt-[100px]
+.img-section {
+  @apply tw-space-y-5
 }
-
+.box {
+  @apply tw-flex tw-justify-center tw-items-center
+}
+.img-product{
+  @apply tw-w-full tw-h-[350px] tw-object-cover tw-rounded-[var(--rounded-1)]
+}
 .image {
   @apply tw-w-[80px] tw-border tw-border-[#dae1e7] tw-mx-1 tw-rounded-[var(--rounded-1)] tw-p-5 tw-bg-white;
 

@@ -59,8 +59,8 @@ const DetailProduct = ({ product, related }: ProductProps) => {
   return (
     <div className={styles["container"]}>
       <div className={styles["grid"]}>
-        <div>
-          <img className="" src={product.img} />
+        <div className={styles["img-section"]}>
+          <img className={styles["img-product"]} src={product.img} />
           <div className={styles["box"]}>
             <img
               className={styles["image"]}
