@@ -1,5 +1,9 @@
 const Icon = {
-
+  WarningSquare({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-exclamation-square ${className}`}></i>
+    );
+  },
   HeartFill({ className, ...props }) {
     return (
       <i {...props} className={`bi bi-heart-fill ${className}`}></i>

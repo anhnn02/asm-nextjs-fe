@@ -2,3 +2,43 @@
     @apply tw-text-primary tw-capitalize;
     font-size: var(--largest);
 }
+.label_form {
+    display: block;
+}
+
+.label-span_form {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.row-input_form {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-validate_form {
+    position: absolute;
+    bottom: -20px;
+    text-transform: uppercase;
+    // font-weight: 600;
+    // color: red;
+}
+
+.header_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.btn-multichoice_item {
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: var(--primary);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}

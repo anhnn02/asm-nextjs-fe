@@ -5,22 +5,38 @@ import Button from "@/components/Button";
 import Link from "next/link";
 import { useAuth } from "@/hooks/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { path } from "@/constants";
+import { useRouter } from "next/router";
 
 const Register = () => {
   const { register: signup } = useAuth();
+  const router = useRouter()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     if (data.password != data.rePassword) {
-      alert("Passwords do not match please try again");
+      toast.error("Passwords do not match please try again!", {
+        position: 'top-center'
+      })
     } else {
-      alert("Register success");
-      await signup(data);
+      try {
+        await signup(data);
+        toast.success("Register success", {
+          position: 'top-center'
+        })
+        router.push(path.public.loginRoute)
+      } catch (error) {
+        toast.error(error.response.data.msg, {
+          position: 'top-center'
+        })
+      }
+     
     }
-    // console.log(data);
   };
   return (
     <div className={styles["cont"]}>
@@ -41,29 +57,25 @@ const Register = () => {
               placeholder="RalphAdwards"
               {...register("name", { required: true, minLength: 5 })}
             />
-            {errors.name && (
-              <span style={{ color: "red" }}>Full name cannot be blank</span>
-            )}
-            {/* {errors.name.type === "minLength" && (
-              <span style={{ color: "red" }}>it nhat 5 li tu </span>
-            )} */}
+            {errors?.name?.type == 'required' && (<span className="my-error">Email is required</span>)}
+            {errors?.name?.type == 'minLength' && (<span className="my-error">Min length must be at least 5</span>)}
+
           </div>
           <div className={styles["form__label"]}>
             <label
               htmlFor="exampleInputPassword1"
               className={styles["form__label"]}
             >
-              Email or Phone Number
+              Email
             </label>
             <input
               type="text"
               className={styles["form-input"]}
               placeholder="Exmple@gmail.com"
-              {...register("email", { required: true, minLength: 5 })}
+              {...register("email", { required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ })}
             />
-            {errors.email && (
-              <span style={{ color: "red" }}>Email cannot be blank</span>
-            )}
+            {errors?.email?.type == 'required' && (<span className="my-error">Email is required</span>)}
+            {errors?.email?.type == 'pattern' && (<span className="my-error">Field must be a valid email</span>)}
           </div>
           <div className={styles["form__label"]}>
             <label
@@ -76,10 +88,10 @@ const Register = () => {
               type="Password"
               className={styles["form-input"]}
               placeholder="********"
-              {...register("password", { required: true, minLength: 5 })}
+              {...register("password", { required: true })}
             />
             {errors.password && (
-              <span style={{ color: "red" }}>Password cannot be blank</span>
+              <span className='my-error'>Password cannot be blank</span>
             )}
           </div>
           <div className={styles["form__label"]}>
@@ -93,10 +105,10 @@ const Register = () => {
               type="Password"
               className={styles["form-input"]}
               placeholder="********"
-              {...register("rePassword", { required: true, minLength: 5 })}
+              {...register("rePassword", { required: true })}
             />
             {errors.rePassword && (
-              <span style={{ color: "red" }}>
+              <span className='my-error'>
                 Re-Password name cannot be blank
               </span>
             )}
@@ -125,7 +137,7 @@ const Register = () => {
           Already have account?
           <span className={styles["lg-1"]}>
             &nbsp;
-            <Link href="">Log in</Link>
+            <Link href={path.public.loginRoute}>Log in</Link>
           </span>
         </div>
       </div>

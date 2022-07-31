@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { getAll } from '@/api/category'
 import { read } from '@/api/product'
 import Button from '@/components/Button'
 import LayoutAdmin from '@/components/Layout/admin'
@@ -8,10 +7,8 @@ import useProduct from '@/hooks/use-product'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import useSWR from 'swr'
 import styles from '../../shop/Shop.module.scss'
-import stylesAdmin from '../AdminContent.module.scss'
-import { Image } from 'antd'
+import stylesAdmin from '@/styles/admin/Admin.module.scss'
 import Link from 'next/link'
 
 type Props = {}
@@ -19,16 +16,13 @@ type Props = {}
 const EditProduct = (props: Props) => {
   const router = useRouter();
   const { id } = router.query;
-  // const { data, error } = useSWR(id ? `/product/${id}` : null);
   const { data: categories } = useCategory();
-  // const [categories, setCategories] = useState();
+  console.log("first", categories)
   const { editProduct } = useProduct();
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   useEffect(() => {
     const getProduct = async () => {
       const data = await read(id);
-      // console.log(data);
-      // console.log(data?._id);
       reset({
         ...data, category: data.category._id
       });
@@ -36,12 +30,8 @@ const EditProduct = (props: Props) => {
     getProduct();
   }, [id, reset])
 
-  // if (!data) return <div>Loading...</div>
-  // if (error) return <div>Failed</div>
-  // console.log(router);
-  // console.log(id);
+    if (!categories) return <div>Loading...</div>
   const onSubmit = async (data: any) => {
-    // console.log(data);
     editProduct({ ...data, category: data.category });
     router.push("/admin/products");
   }
@@ -49,7 +39,7 @@ const EditProduct = (props: Props) => {
     <div>
       <div className={stylesAdmin['header_content']}>
         <div>
-          <h1 className={stylesAdmin['title_table']}>Edit product</h1>
+          <h1 className={stylesAdmin['title-admin']}>Edit product</h1>
         </div>
         <Link href='/admin/products/'>
           <button className={stylesAdmin['btn-multichoice_item']}>List product

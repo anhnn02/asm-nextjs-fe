@@ -8,6 +8,7 @@ export const path = {
     contactRoute: "/contact",
     cartRoute: "/cart",
     checkoutRoute: "/checkout",
+    orderCompleteRoute: "/order-complete",
     notFound: "/not-found",
   },
   private: {

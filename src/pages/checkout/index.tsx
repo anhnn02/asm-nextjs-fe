@@ -1,25 +1,46 @@
 import { getDistrict, getDistrictByProvince, getProvince, getProvinces, getWard, getWardByDistrict } from '@/api/addressCheckout'
 import Button from '@/components/Button'
+import { path } from '@/constants'
+import { resetCart } from '@/features/cart/cart.slice'
 import useInvoice from '@/hooks/use-invoice'
+import useInvoiceDetail from '@/hooks/use-invoiceDetail'
+import { formatPrice } from '@/utils/formatNumber'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 import styles from './Checkout.module.scss'
 
-type Props = {}
-
-const CheckOut = (props: Props) => {
+const CheckOut = () => {
     const { create } = useInvoice();
+    const { create: createDetail } = useInvoiceDetail();
+    const dispatch = useDispatch()
+    const route = useRouter()
+    const userCurrent = useSelector(data => data.user.current)
+    const isLogin = useSelector(data => data.user.isAuthenticated)
+    const cartTotalQuantity = useSelector(data => data.cart.totalQuantity)
+    const cart = useSelector(data => data.cart.items)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [provinces, setProvinces] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [wards, setWards] = useState([]);
+
+    // check vao trang checkout: user && cart != []
+    if (!isLogin || cart.length === 0) {
+        route.push(path.public.notFound)
+    }
+
     useEffect(() => {
         const getDataProvince = async () => {
             const { data } = await getProvinces();
             setProvinces(data)
         }
         getDataProvince()
+
     }, [])
+    // province render
     const handleChangeProvince = async (code: number | string) => {
         if (code == "") {
             setDistricts([]);
@@ -36,7 +57,7 @@ const CheckOut = (props: Props) => {
             const { data: { wards } } = await getWardByDistrict(code);
             setWards(wards);
         }
-        
+
     }
     const addressDataTotal = async (codeP, codeD, codeW) => {
         const province = await getProvince(+codeP)
@@ -44,12 +65,63 @@ const CheckOut = (props: Props) => {
         const ward = await getWard(+codeW)
         return `${province.data.name}, ${district.data.name}, ${ward.data.name}`
     }
+
+    // checkout
     const onSubmit = async (data) => {
         const address = await addressDataTotal(data.province, data.district, data.ward) + ", " + data.address
-        const dataInvoice = {...data, address}
-        console.log(dataInvoice);
-        // await create()
+        const dataInvoice = {
+            fullname: data.fullname,
+            phoneNumber: data.phoneNumber,
+            email: data.email,
+            address,
+            note: data.note ? data.note : null,
+            total: totalAmount,
+            userId: userCurrent.user._id
+        }
+        const addInfoOrder = async () => {
+            if (cart.length > 0) {
+                try {
+                    const data = await create(dataInvoice)
+                    const invoiceId = data._id
+                    await cart.forEach(async (item) => {
+                        const dataInvoiceDetail = {
+                            name: item.name,
+                            img: item.img,
+                            size: item.size,
+                            regularPrice: item.regularPrice,
+                            salePrice: (item.salePrice) ? item.salePrice : null,
+                            quantity: item.quantity,
+                            total: item.total,
+                            invoiceId: invoiceId
+                        }
+
+                        await createDetail(dataInvoiceDetail)
+                        dispatch(resetCart(""))
+                        toast.success("Order successfully", {
+                            position: 'top-center'
+                        })
+                        console.log("first", path.public.orderCompleteRoute)
+                        // route.push(path.public.orderCompleteRoute)
+                    })
+                } catch (error) {
+                    // console.log(error.response);
+                    toast.error("Can not order", {
+                        position: 'top-center'
+                    })
+                }
+                
+            }
+        }
+        addInfoOrder()
     }
+
+    //cart, quantity, total
+    let subTotal = 0;
+    cart.forEach((item) => {
+        subTotal += item.total;
+    });
+    let totalAmount = subTotal + 5
+
     return (
         <div>
             <div className={styles['row_progress_of_customer']}>
@@ -175,7 +247,9 @@ const CheckOut = (props: Props) => {
                         </div>
                     </div>
                     <div className={styles['submit-form_checkout']}>
-                        <Button.Transparent className="tw-bg-white" content={"Back to Cart"} />
+                        <Link href={path.public.cartRoute}>
+                            <Button.Transparent type="button" className="tw-bg-white" content={"Back to Cart"} />
+                        </Link>
                         <Button.Fill content={"Proceed to Complete"} />
                     </div>
                 </form>
@@ -185,11 +259,11 @@ const CheckOut = (props: Props) => {
                             <div className={styles['infor_checkout']} >
                                 <div className={styles['row-infor_checkout']}>
                                     <span className={styles['color-text-infor_checkout']}>Subtotal:</span>
-                                    <span className='tw-font-semibold tw-text-xl'>$99</span>
+                                    <span className='tw-font-semibold tw-text-xl'>{formatPrice(subTotal)}</span>
                                 </div>
                                 <div className={styles['row-infor_checkout']}>
                                     <span className={styles['color-text-infor_checkout']}>Shipping:</span>
-                                    <span className='tw-font-semibold tw-text-xl'>$00</span>
+                                    <span className='tw-font-semibold tw-text-xl'>{formatPrice(5)}</span>
                                 </div>
                                 <div className={styles['row-infor_checkout']}>
                                     <span className={styles['color-text-infor_checkout']}>Discount:</span>
@@ -199,7 +273,7 @@ const CheckOut = (props: Props) => {
                         </div>
                         <div className={styles['row-infor_checkout']}>
                             <span className={styles['color-text-infor_checkout']}>Total:</span>
-                            <span className='tw-font-semibold tw-text-2xl tw-text-primary'>$00</span>
+                            <span className='tw-font-semibold tw-text-2xl tw-text-primary'>{formatPrice(totalAmount)}</span>
                         </div>
                         <form action="">
                             <input type="text" placeholder='Voucher' className={styles['input-form_checkout']} />

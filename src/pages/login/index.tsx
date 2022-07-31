@@ -6,32 +6,44 @@ import Link from "next/link";
 import { useAuth } from "@/hooks/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import { path } from "@/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "@/features/user/user.slice";
 
 const Login = () => {
   const router = useRouter()
-  const { login } = useAuth();
+  const dispatch = useDispatch()
+  const { login: userLogin } = useAuth();
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     try {
-      const dataUser = await login(data)
-      alert("Ok")
+      const dataUser = await userLogin(data)
+      //check account, set state and redirect
       if (dataUser && dataUser.user.status == 0) {
-        localStorage.setItem("user", JSON.stringify(dataUser))
-        if (localStorage.getItem("user")) {
-          console.log(JSON.parse(localStorage.getItem("user")))
-          if (JSON.parse(localStorage.getItem("user")).user.role === 1) {
-            router.push("/admin")
-          } else {
-            router.push("/")
-          }
+        dispatch(login(dataUser))
+        if (dataUser.user.role === 1) {
+          router.push(path.private.rootRoute)
+          toast.success("Login successfully!", {
+            position: 'top-center'
+          })
+        } else {
+          router.push(path.public.rootRoute)
+          toast.success("Login successfully!", {
+            position: 'top-center'
+          })
         }
       } else {
-        alert("Your account is locked")
+        toast.error("Your account is locked!"), {
+          position: 'top-center'
+        }
       }
+
     } catch (error) {
-      // alert(error)
-      alert(error.response.data.msg)
+      toast.error(error.response.data.msg, {
+        position: 'top-center'
+      })
     }
   };
   return (
@@ -45,7 +57,7 @@ const Login = () => {
               htmlFor="exampleInputPassword1"
               className={styles["form__label"]}
             >
-              Email or Phone Number
+              Email
             </label>
             <input
               type="text"
@@ -88,7 +100,7 @@ const Login = () => {
           Don’t have account?
           <span className={styles["lg-1"]}>
             &nbsp;
-            <Link href="">Sign Up</Link>
+            <Link href={path.public.signupRoute}>Sign Up</Link>
           </span>
         </div>
         <div className={styles["lg"]}>

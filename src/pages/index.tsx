@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Button from "@/components/Button";
 import Banner from "@/components/client/Slide banner/Slide";
 import Icon from "@/components/Icon";
@@ -8,27 +9,18 @@ import styles from "../styles/client/Home.module.scss";
 
 
 const Home: NextPage = () => {
-    const notify = () => {
-        // toast.error('🦄 Wow so easy!', {
-        //     position: "top-center",
-        //     autoClose: 5000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        // });
-    };
-    return (
-      <div className={styles["homepage"]}>
-        <div className={styles["section"]}>Slide</div>
-        <div className={styles["section"]}>
-          <Banner />
-        </div>
-        <div className={styles["section"]}>Slide</div>
-        <div className={styles["section"]}>Slide</div>
-        <div className={styles["section"]}>Slide</div>
+  return (
+    <div className={styles["homepage"]}>
+      <div className={styles["section"]}>Slide</div>
+      <div className={styles["section"]}>
+        <Banner />
       </div>
-    );
+      <div className={styles["section"]}>
+        
+      </div>
+      <div className={styles["section"]}>Slide</div>
+      <div className={styles["section"]}>Slide</div>
+    </div>
+  );
 };
 export default Home;
