@@ -35,8 +35,8 @@ const Header = (props: Props) => {
       <div className={styles['header-main']}>
         <div className={styles['header-main__top']}>
           <div className={styles['header-logo']}>
-            <Link href="/">
-              <img src="https://bonik-react.vercel.app/assets/images/logo.svg" alt="" />
+            <Link href={path.public.rootRoute}>
+              <img className="tw-cursor-pointer" src="https://bonik-react.vercel.app/assets/images/logo.svg" alt="" />
             </Link>
           </div>
           <form action="" className={styles['header-form-search']}>

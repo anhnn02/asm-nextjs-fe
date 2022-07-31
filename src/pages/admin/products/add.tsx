@@ -7,8 +7,7 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import styles from '../../shop/Shop.module.scss'
-import stylesAdmin from '../AdminContent.module.scss'
-import { Image } from 'antd'
+import stylesAdmin from '@/styles/admin/Admin.module.scss'
 import Button from '@/components/Button'
 
 type Props = {}

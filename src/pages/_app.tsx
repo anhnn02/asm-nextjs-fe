@@ -10,6 +10,7 @@ import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const LayoutWrapper = Component.Layout ?? Layout;

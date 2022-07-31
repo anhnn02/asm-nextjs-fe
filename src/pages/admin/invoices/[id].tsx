@@ -187,7 +187,6 @@ const DetailInvoice = (props: Props) => {
                 {formatPrice(total + 5)}
               </span>
             </div>
-            <span>Paid by Credit/Debit Card</span>
           </div>
         </div>
       </div>

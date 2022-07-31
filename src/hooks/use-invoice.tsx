@@ -12,6 +12,7 @@ const useInvoice = () => {
   const create = async (invoice: any) => {
     const addInvoice = await add(invoice);
     mutate([...data, addInvoice]);
+    return addInvoice
   };
   const detail = async (id: any) => {
     const detailInvoice = await read(id);

@@ -1,88 +1,31 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
-interface ICartState {
-    items: any[],
-    totalQuantity: Number,
-    totalAmount: Number
+interface IUserState {
+    isAuthenticated: Boolean,
+    current: {},
 }
 
-const initialState: ICartState = {
-    items: [],
-    totalQuantity: 0,
-    totalAmount: 0
+const initialState: IUserState = {
+    isAuthenticated: false,
+    current: {},
 };
-
-const cartSlice = createSlice({
-    name: "cart",
+const userSlice = createSlice({
+    name: "user",
     initialState,
     reducers: {
-        addItemToCart(state, action) {
-            const newItem = action.payload;
-            const existingItem = state.items.find((item) => item._id === newItem._id);
-            if (!existingItem) {
-                state.items.push(newItem);
-                state.totalQuantity++;
-            } else {
-                existingItem.quantity += newItem.quantity;
-                existingItem.total += newItem.total;
-            }
-
-        },
-        removeItemFromCart(state, action) {
-            const id = action.payload;
-            state.items = state.items.filter((item) => item._id !== id);
-            if (state.totalQuantity < 0) {
-                return state.totalQuantity = 0
-            }
-            state.totalQuantity--
-        },
-        decrementQuantity(state, action) {
-            const id = action.payload.id;
-            const currentProduct = state.items.find(item => item._id === id);
-            state.items.flat().forEach((item) => {
-                if (item._id === currentProduct._id) {
-                    let priceCurrent = 0
-                    if (item.salePrice) {
-                        priceCurrent = item.salePrice
-                    } else {
-                        priceCurrent = item.regularPrice
-                    }
-                    item.quantity--;
-                    if (item.quantity < 1) {
-                        item.quantity = 1;
-                        item.total = priceCurrent
-                    } else {
-                        item.total = priceCurrent * +(item.quantity)
-                    }
-                }
-            });
-        },
-        incrementQuantity(state, action) {
-            const id = action.payload.id;
-
-            const currentProduct = state.items.find(item => item._id === id);
-            state.items.flat().forEach((item) => {
-                if (item._id === currentProduct._id) {
-                    let priceCurrent = 0
-                    if (item.salePrice) {
-                        priceCurrent = item.salePrice
-                    } else {
-                        priceCurrent = item.regularPrice
-                    }
-                    item.quantity++;
-                    item.total = priceCurrent * +(item.quantity)
-                }
-            });
+        login(state, action) {
+            state.current = action.payload;
+            state.isAuthenticated = true;
         },
 
-        resetCart(state, action) {
-            state.items = []
-            state.totalQuantity = 0
-            state.totalAmount = 0
+        logout(state, action) {
+            state.current = {};
+            state.isAuthenticated = false;
         },
     },
-
-    
 });
 
-export default cartSlice.reducer;
+export const { login, logout } = userSlice.actions;
+export default userSlice.reducer;
