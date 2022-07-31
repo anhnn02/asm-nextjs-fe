@@ -4,13 +4,9 @@ import AsideUser from '@/components/client/AsideUser'
 import Icon from '@/components/Icon'
 import useInvoice from '@/hooks/use-invoice'
 import { formatPrice } from '@/utils/formatNumber'
-import { IconMap } from 'antd/lib/result'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import styles from './Orders.module.scss'
-import stylesPrice from '../../components/client/shop/ListProduct.module.scss'
-import { data } from 'autoprefixer'
 
 const OrderDetail = () => {
     const { detail, editInvoice, error } = useInvoice();
@@ -24,15 +20,11 @@ const OrderDetail = () => {
             const data: any = await detail(id);
             let totalPrice = 0;
             let totalOneProduct = 0;
-            console.log(data)
             const cart = data.invoiceDetails;
-            // console.log(cart)
             cart.forEach((element) => {
-                console.log(element)
                 totalOneProduct = element.quantity * element.salePrice;
                 totalPrice += totalOneProduct;
             });
-            // console.log(totalPrice)
             setTotal(totalPrice);
             setInvoice(data);
         };
@@ -43,8 +35,8 @@ const OrderDetail = () => {
         const confirm = window.confirm('You co muon huy order no ?')
         if (confirm) {
             console.log(invoice);
-            console.log(id)
-            await editInvoice()
+            // console.log(id)
+            await editInvoice({ ...invoice.invoice, status: 4 });
         }
     }
 
@@ -60,7 +52,19 @@ const OrderDetail = () => {
                                 <h2 className={styles['title-user_multichoice']}>order details</h2>
                             </div>
                             <div>
-                                <Button.Transparent className={'tw-bg-[#ffe1e6]'} onClick={() => btnCancelOrder()} content={'Cancel Order'} />
+                                {
+                                    invoice?.invoice.status === 0 ? (
+                                        <Button.Transparent className={'tw-bg-[#ffe1e6]'} onClick={() => btnCancelOrder()} content={'Cancel Order'} />
+                                    ) : invoice?.invoice.status === 1 ? (
+                                        <span className="tw-text-primary  tw-font-semibold">Shipping</span>
+                                    ) : invoice?.invoice.status === 2 ? (
+                                        <span className="tw-text-primary  tw-font-semibold">Delivered</span>
+                                    ) : invoice?.invoice.status === 3 ? (
+                                        <span className="tw-text-primary  tw-font-semibold">Cancel</span>
+                                    ) : invoice?.invoice.status === 4 ? (
+                                        <span className="tw-text-primary tw-font-semibold">Cancelled</span>
+                                    ) : ""
+                                }
                             </div>
                         </div>
                         {invoice?.invoice.status === 0 ? (
@@ -125,8 +129,6 @@ const OrderDetail = () => {
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_active']}`}><span className={styles['style_icon']}><Icon.Cart className={styles['icon-step_status']} /></span></div>
                                     <div className={`${styles['line-status_order_user']} ${styles['line-status_order_user_active']}`}></div>
                                     <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_active']}`}><span className={styles['style_icon']}><Icon.XCircle className={styles['icon-step_status']} /></span></div>
-                                    <div className={`${styles['line-status_order_user']} ${styles['line-status_order_user_unactive']}`}></div>
-                                    <div className={`${styles['step-status_order_user']} ${styles['step-status_order_user_unactive']}`}><span className={styles['style_icon']}><Icon.CheckLg className={styles['icon-step_status']} /></span></div>
                                 </div>
                                 <div className='tw-flex tw-justify-end'>
                                     <p className={styles['note-status_user']}>Estimated Delivery Date<strong> 4th October</strong></p>
