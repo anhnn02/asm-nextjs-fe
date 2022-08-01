@@ -26,7 +26,7 @@ const useProduct = () => {
   };
   const topListProduct = async () => {
     const topList = await filter();
-    return topList ;
+    return topList;
   } 
 
   return {

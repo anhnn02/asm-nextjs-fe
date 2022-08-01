@@ -7,12 +7,23 @@ import { MenuList } from "./data-menu";
 import { path } from '@/constants';
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
-type Props = {}
-
-const Header = (props: Props) => {
+const Header = () => {
   const { totalQuantity } = useSelector((state) => state.cart)
+  const router = useRouter()
+  const { register, handleSubmit, formState: { errors }, } = useForm()
+  const getValueSearch = (value) => {
+    if (value.keyword.trim() === '') {
+      toast.error("Please enter a search keyword!")
+    } else {
+      const keyword = value.keyword.trim()
+      router.push({ pathname: `${path.public.productRoute}/search`, query: { keyword: `${keyword}` } })
 
+    }
+  }
   return (
     <div className={styles['header']}>
       <div className={styles['header-top']}>
@@ -39,8 +50,8 @@ const Header = (props: Props) => {
               <img className="tw-cursor-pointer" src="https://bonik-react.vercel.app/assets/images/logo.svg" alt="" />
             </Link>
           </div>
-          <form action="" className={styles['header-form-search']}>
-            <input type="text" className={styles['header-form-search__input']} />
+          <form action="" className={styles['header-form-search']} onSubmit={handleSubmit(getValueSearch)}>
+            <input type="text" className={styles['header-form-search__input']} {...register("keyword")} required />
             <button className={styles['header-form-search__button']}>Search</button>
           </form>
           <div className={styles['header-action']}>
