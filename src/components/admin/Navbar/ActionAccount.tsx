@@ -50,11 +50,11 @@ const ActionAccount = (props: Props) => {
           </button>
         </li>
         <li className="tw-relative">
-          <button className='tw-dropdown tw-dropdown-end'>
-            <Icon.PersonFill className={stylesIcon['header-action__button']} />
-            <ul className="tw-dropdown-content tw-menu tw-p-2 tw-shadow tw-bg-white tw-rounded-box tw-w-auto tw-z-50  tw-capitalize">
-              <li className='tw-text-black'><a><i className="bi bi-person-fill"></i> {userInfor?.user?.name}</a></li>
-              <li className='tw-text-black' onClick={() => btnLogOut()}><p><i className="bi bi-box-arrow-left"></i> Logout</p></li>
+          <button className="tw-dropdown tw-dropdown-end">
+            <Icon.PersonFill className="" />
+            <ul className="tw-dropdown-content tw-menu tw-p-2 tw-shadow tw-bg-base-100 tw-rounded-box tw-w-52 tw-capitalize tw-font-semibold">
+              <li className='tw-truncate'><p><Icon.Person className={""} /> {userInfor?.user?.name}</p></li>
+              <li className=''><p className='' onClick={() => btnLogOut()}><Icon.BoxArrowLeft className={""} /> Log out</p></li>
             </ul>
           </button>
         </li>

@@ -71,7 +71,7 @@ const Header = (props: Props) => {
               <button className="tw-dropdown tw-dropdown-end">
                 <Icon.Person className={styles['header-action__button']} />
                 <ul className="tw-dropdown-content tw-menu tw-p-2 tw-shadow tw-bg-base-100 tw-rounded-box tw-w-52 tw-capitalize tw-font-semibold">
-                  <li className=''><p><Icon.Person className={""} /> {userInfor.user.name}</p></li>
+                  <li className='tw-truncate'><p><Icon.Person className={""} /> {userInfor.user.name}</p></li>
                   <li className=''><Link href={path.public.ordersRoute}><p><Icon.Order className={""} /> My orders</p></Link></li>
                   <li className=''><p className='' onClick={() => btnLogOut()}><Icon.BoxArrowLeft className={""} /> Log out</p></li>
                 </ul>
