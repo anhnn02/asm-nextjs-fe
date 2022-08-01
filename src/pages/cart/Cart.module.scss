@@ -12,15 +12,13 @@
 .sidebar_checkout {
     padding: 12px;
 }
-// .form_checkout {
-//     @apply tw-relative ;
-// }
+
 .sidebar_sticky {
-    @apply  tw-sticky tw-top-[180px]    ;
+    @apply tw-sticky tw-top-[180px];
 }
 
 .row_progress_of_customer {
-    @apply tw-flex tw-justify-between tw-bg-white tw-p-6 tw-mb-4 tw-rounded-[var(--rounded-1)] ;
+    @apply tw-flex tw-justify-between tw-bg-white tw-p-6 tw-mb-4 tw-rounded-[var(--rounded-1)];
     box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
 }
 
