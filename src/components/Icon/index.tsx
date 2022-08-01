@@ -183,6 +183,11 @@ const Icon = {
       <i {...props} className={`bi bi-x-circle ${className}`}></i>
     );
   },
+  BoxArrowLeft({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-box-arrow-left ${className}`}></i>
+    );
+  },
 };
 
 export default Icon;
