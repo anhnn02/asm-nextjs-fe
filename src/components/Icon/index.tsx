@@ -112,6 +112,9 @@ const Icon = {
   Person({ className, ...props }) {
     return <i {...props} className={`bi bi-person ${className}`}></i>;
   },
+  PersonFill({ className, ...props }) {
+    return <i {...props} className={`bi bi-person-fill ${className}`}></i>;
+  },
   Cart({ className, ...props }) {
     return <i {...props} className={`bi bi-cart ${className}`}></i>;
   },
