@@ -18,3 +18,7 @@ export const read = (id: any) => {
 export const filter = () => {
   return instance.get(`/filter?limit=8`);
 };
+export const search = (keyword) => {
+  let url = `/search?name=${keyword}`;
+  return instance.get(url);
+}

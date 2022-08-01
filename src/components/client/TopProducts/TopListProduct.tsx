@@ -12,14 +12,10 @@ import styles from "./TopListProduct.module.scss";
 
 
 const TopListProduct = () => {
-  const {  topListProduct } = useProduct();
-  
   const [listTop, setListTop] = useState();
-  const router = useRouter();
   useEffect(() => {
     const get = async () => {
       const data = await filter();
-      console.log("123", data);
       setListTop(data);
     };
     get();

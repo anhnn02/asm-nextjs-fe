@@ -16,8 +16,8 @@ const Shop = ({products}: ProductProps) => {
     <div className={styles['shop']}>
       <div className={styles['shop-search']}>
         <div className="">
-          <span className={styles['shop-search__key-search']}>Searching for “ mobile phone ”</span>
-          <span className={styles['shop-search__search-text']}>48 results found</span>
+          <span className={styles['shop-search__key-search']}></span>
+          <span className={styles['shop-search__search-text']}></span>
         </div>
         <div className={styles['shop-search__search-filter']}>
           <span className={styles['shop-search__search-text']}>Short by</span>
