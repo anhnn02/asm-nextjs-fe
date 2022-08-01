@@ -8,7 +8,8 @@ import { NextPage } from "next";
 import { ToastContainer, toast } from "react-toastify";
 import styles from "../styles/client/Home.module.scss";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
-
+import Services from "@/components/client/services/services"
+import SubBanner from '@/components/client/sub-banner/subBanner'
 
 const Home: NextPage = () => {
   const notify = () => {
@@ -49,13 +50,17 @@ const Home: NextPage = () => {
           <TopListProduct />
         </div>
       </div>
-      <div className={styles["section"]}>Slide</div>
+      <div className={styles["banner"]}>
+        <SubBanner />
+      </div>
       <div className={styles["section"]}>Slide</div>
 
       <div className={styles["section"]}>
       </div>
-      <div className={styles["section"]}>Slide</div>
-      <div className={styles["section"]}>Slide</div>
+      <div className={styles["section"]}>
+        <Services />
+      </div>
+      
     </div >
   );
 };

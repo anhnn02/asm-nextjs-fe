@@ -1,0 +1,67 @@
+       .icon01 {
+           background-color: #e8edef;
+           width: 55px;
+           height: 55px;
+           border-radius: 50%;
+           margin: 20px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+       }
+       
+       .iconA {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+       }
+       
+       .icon1,
+       .icon2,
+       .icon3,
+       .icon4 {
+           width: 30px;
+           height: 30px;
+       }
+       
+       .text01 {
+           font-size: 20px;
+           font-weight: 500;
+           font-family: Arial;
+           padding: 10px;
+           text-align: center;
+       }
+       
+       .text02 {
+           font-size: 15px;
+           font-family: Arial;
+           color: grey;
+           padding: 10px;
+           line-height: 20px;
+           text-align: center;
+       }
+       
+       .boxsmall {
+           width: 220px;
+           margin: 30px;
+           padding-top: 5px;
+           padding-bottom: 10px;
+       }
+       
+       .boxbig {
+           width: 290px;
+           float: left;
+           border-radius: 5px;
+           margin: 16px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+       }
+       
+       .boxbig:hover {
+           box-shadow: 1px 1px 5px 5px #f2f0f0;
+       }
+       
+       .section-center {
+           display: flex;
+           justify-content: center;
+       }
