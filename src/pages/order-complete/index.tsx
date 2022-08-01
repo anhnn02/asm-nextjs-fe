@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { path } from '@/constants';
 
 
+
 type Props = {}
 
 const OderCompleted = (props: Props) => {
