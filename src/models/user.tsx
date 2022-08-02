@@ -5,4 +5,6 @@ export interface IUser {
     password?: string,
     status?: number,
     role?: number,
+    rePassword?: string,
+    user?: any,
 }

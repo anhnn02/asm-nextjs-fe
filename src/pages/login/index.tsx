@@ -10,6 +10,8 @@ import { toast } from "react-toastify";
 import { path } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/features/user/user.slice";
+import { IProduct } from "@/models/product";
+import { IUser } from "@/models/user";
 
 const Login = () => {
   const router = useRouter()
@@ -17,9 +19,9 @@ const Login = () => {
   const { login: userLogin } = useAuth();
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
+  const onSubmit: SubmitHandler<any> = async (data: IProduct) => {
     try {
-      const dataUser = await userLogin(data)
+      const dataUser : IUser = await userLogin(data)
       //check account, set state and redirect
       if (dataUser && dataUser.user.status == 0) {
         dispatch(login(dataUser))
