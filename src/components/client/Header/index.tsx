@@ -7,14 +7,21 @@ import { MenuList } from "./data-menu";
 import { path } from '@/constants';
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { logout } from '@/features/user/user.slice';
+import { useRouter } from 'next/router';
 
-const Header = () => {
-  const { totalQuantity } = useSelector((state) => state.cart)
+type Props = {}
+
+const Header = (props: Props) => {
   const router = useRouter()
+  const dispatch = useDispatch();
+  const { totalQuantity } = useSelector((state) => state.cart)
+  const userInfor = useSelector(data => data.user.current)
+  const isLogin = useSelector(data => data.user.isAuthenticated)
   const { register, handleSubmit, formState: { errors }, } = useForm()
+  // search
   const getValueSearch = (value) => {
     if (value.keyword.trim() === '') {
       toast.error("Please enter a search keyword!")
@@ -23,6 +30,12 @@ const Header = () => {
       router.push({ pathname: `${path.public.productRoute}/search`, query: { keyword: `${keyword}` } })
 
     }
+  }
+  // logout
+  const btnLogOut = () => {
+    dispatch(logout());
+    router.push(path.public.loginRoute);
+    toast.error("Please enter a search keyword!")
   }
   return (
     <div className={styles['header']}>
@@ -55,20 +68,30 @@ const Header = () => {
             <button className={styles['header-form-search__button']}>Search</button>
           </form>
           <div className={styles['header-action']}>
-            <Link href={path.public.signupRoute}>
-              <a className={styles['header-action-link']}>
-                Register
-              </a>
-            </Link>
-            <span>/</span>
-            <Link className={styles['header-action-link']} href={path.public.loginRoute}>
-              <a className={styles['header-action-link']}>
-                Sign in
-              </a>
-            </Link>
-            {/* <button>
-              <Icon.Person className={styles['header-action__button']} />
-            </button> */}
+            {isLogin === false ? (
+              <div>
+                <Link href={path.public.signupRoute}>
+                  <a className={styles['header-action-link']}>
+                    Register
+                  </a>
+                </Link>
+                <span className='tw-px-2'>/</span>
+                <Link className={styles['header-action-link']} href={path.public.loginRoute}>
+                  <a className={styles['header-action-link']}>
+                    Sign in
+                  </a>
+                </Link>
+              </div>
+            ) : (
+              <button className="tw-dropdown tw-dropdown-end">
+                <Icon.Person className={styles['header-action__button']} />
+                <ul className="tw-dropdown-content tw-menu tw-p-2 tw-shadow tw-bg-base-100 tw-rounded-box tw-w-52 tw-capitalize tw-font-semibold">
+                  <li className='tw-truncate'><p><Icon.Person className={""} /> {userInfor.user.name}</p></li>
+                  <li className=''><Link href={path.public.ordersRoute}><p><Icon.Order className={""} /> My orders</p></Link></li>
+                  <li className=''><p className='' onClick={() => btnLogOut()}><Icon.BoxArrowLeft className={""} /> Log out</p></li>
+                </ul>
+              </button>
+            )}
             <div className="tw-indicator">
               <span className="tw-indicator-item tw-badge tw-badge-secondary tw-bg-primary">{totalQuantity}</span>
               <label htmlFor="my-drawer-4" className="drawer-button btn btn-primary tw-cursor-pointer">
@@ -95,7 +118,7 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-    </div>
+    </div >
   )
 }
 

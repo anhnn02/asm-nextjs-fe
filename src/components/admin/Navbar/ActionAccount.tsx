@@ -1,10 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from 'next/link'
+import Icon from '@/components/Icon'
+import { path } from '@/constants'
+import { logout } from '@/features/user/user.slice'
+import { useRouter } from 'next/router'
 import React from 'react'
-
+import { useDispatch, useSelector } from 'react-redux'
+import stylesIcon from '../../client/Header/Header.module.scss'
 type Props = {}
 
 const ActionAccount = (props: Props) => {
+  const router = useRouter()
+  const dispatch = useDispatch();
+  const userInfor = useSelector(data => data.user.current)
+  const btnLogOut = () => {
+    dispatch(logout());
+    router.push('/login');
+    // debugger;
+  }
   return (
     <div>
       <ul className="tw-flex tw-items-center tw-flex-shrink-0 tw-space-x-6">
@@ -38,18 +50,13 @@ const ActionAccount = (props: Props) => {
           </button>
         </li>
         <li className="tw-relative">
-          <div className='tw-dropdown tw-dropdown-end'>
-            <button className="tw-align-middle tw-rounded-full focus:tw-shadow-outline-purple focus:tw-outline-none">
-              <img className="tw-object-cover tw-w-8 tw-h-8 tw-rounded-full"
-                src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                alt="" aria-hidden="true" />
-            </button>
-            <ul className="tw-dropdown-content tw-menu tw-p-2 tw-shadow tw-bg-white tw-rounded-box tw-w-auto tw-z-50">
-              <li className='tw-text-black'><a><i className="bi bi-person-fill"></i> Profile</a></li>
-              <li className='tw-text-black'><a><i className="bi bi-gear"></i> Setting</a></li>
-              <li className='tw-text-black'><Link href='/'><a><i className="bi bi-box-arrow-left"></i> Logout</a></Link></li>
+          <button className="tw-dropdown tw-dropdown-end">
+            <Icon.PersonFill className="" />
+            <ul className="tw-dropdown-content tw-menu tw-p-2 tw-shadow tw-bg-base-100 tw-rounded-box tw-w-52 tw-capitalize tw-font-semibold">
+              <li className='tw-truncate'><p><Icon.Person className={""} /> {userInfor?.user?.name}</p></li>
+              <li className=''><p className='' onClick={() => btnLogOut()}><Icon.BoxArrowLeft className={""} /> Log out</p></li>
             </ul>
-          </div>
+          </button>
         </li>
       </ul>
     </div>

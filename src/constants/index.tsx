@@ -20,6 +20,5 @@ export const path = {
     invoiceRoute: "/admin/invoices",
     slidesRoute:'/admin/slide',
     UserRoute: "/admin/users",
-
   },
 };
