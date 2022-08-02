@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "@/features/cart/cart.slice";
 import { toast } from 'react-toastify';
+import { getAll, read, relatedProduct } from "@/api/product";
 
 type ProductProps = {
   product: any[];
@@ -162,8 +163,8 @@ const DetailProduct = ({ product, related }: ProductProps) => {
   );
 };
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await (await fetch(`http://localhost:3001/api/products`)).json();
-  const paths = data.map((item: { id: any }) => {
+  const data = await (await getAll());
+  const paths = data.map((item) => {
     return { params: { id: item._id } };
   });
   return {
@@ -176,19 +177,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<ProductProps> = async (
   context: GetStaticPropsContext
 ) => {
-  const dataItem = await (
-    await fetch(`http://localhost:3001/api/product/${context.params?.id}`)
-  ).json();
+  const dataItem = await (await read(context.params?.id));
 
   if (!dataItem)
     return {
       notFound: true,
     };
   const dataList = await (
-    await fetch(
-      `http://localhost:3001/api/categories/${dataItem.category?._id}/${context.params?.id}`
-    )
-  ).json();
+    await relatedProduct(dataItem.category?._id, context.params?.id)
+  );
   if (!dataList)
     return {
       notFound: true,

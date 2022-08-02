@@ -6,13 +6,13 @@ export const getAll = () => {
 export const add = (product: any) => {
     return instance.post("/products", product);
 };
-export const removeItem = (id: any) => {
+export const removeItem = (id: string) => {
     return instance.delete(`/product/${id}`);
 };
 export const update = (product: any) => {
   return instance.put(`/product/${product._id}`, product);
 };
-export const read = (id: any) => {
+export const read = (id: string) => {
   return instance.get(`/product/${id}`);
 };
 export const filter = () => {
@@ -20,5 +20,9 @@ export const filter = () => {
 };
 export const search = (keyword) => {
   let url = `/search?name=${keyword}`;
+  return instance.get(url);
+}
+export const relatedProduct = (idCate: string, idPro: string) => {
+  let url = `/categories/${idCate}/${idPro}`;
   return instance.get(url);
 }

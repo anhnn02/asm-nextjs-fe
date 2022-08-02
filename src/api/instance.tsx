@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "http://localhost:3001/api",
+    baseURL: "https://nhom1nextjs.herokuapp.com/api",
 });
 instance.interceptors.response.use(
     function (response) {
@@ -11,10 +11,6 @@ instance.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-
-export const API = axios.create({
-    baseURL: "http://localhost:3001/api",
-});
 
 export default instance
 
