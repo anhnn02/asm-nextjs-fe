@@ -7,6 +7,7 @@ import LayoutAdmin from '@/components/Layout/admin';
 import { useRouter } from 'next/router';
 import useCate from '@/hooks/use-category';
 import { useForm } from 'react-hook-form';
+import { ICategory } from '@/models/category';
 
 type Props = {}
 
@@ -14,8 +15,7 @@ const AddCate = (props: Props) => {
   const router = useRouter()
   const {create} = useCate();
   const {register, handleSubmit, formState: {errors}} = useForm()
-  const onSubmit = async (data: any) => {
-
+  const onSubmit = async (data: ICategory) => {
     await create(data);
     router.push("/admin/categories")
   }

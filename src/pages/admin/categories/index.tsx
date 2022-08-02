@@ -65,7 +65,7 @@ const CategoryList = () => {
       <div className={styles["header_content"]}>
         <h4 className={stylesAdmin["title-admin"]}>List Categories</h4>
         <Link href="/admin/categories/add">
-          <MyBtn.Fill content="Add category" />
+          <MyBtn.Fill className={""} content="Add category" />
         </Link>
       </div>
 

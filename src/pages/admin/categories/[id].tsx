@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Link from "next/link";
 import React, { useEffect } from "react";
 import Button from "@/components/Button";
@@ -12,15 +13,15 @@ type Props = {};
 
 const EditCate = (props: Props) => {
   const router = useRouter();
-  const {id} = router.query;
-  const {  detail, editCate } = useCate();
+  const { id } = router.query;
+  const { detail, editCate } = useCate();
   const {
     register,
     handleSubmit,
     formState: { errors }, reset
   } = useForm();
   useEffect(() => {
-    if(!id) return
+    if (!id) return
     detail(id).then(res => reset(res))
   }, [id])
   const onSubmit = async (data: any) => {
