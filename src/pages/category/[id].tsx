@@ -1,17 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
-import { getAll } from '@/api/product'
-import Button from '@/components/Button'
+import { getAll as getAllCate, getProInCate } from '@/api/category'
 import ListProduct from '@/components/client/shop/ListProduct'
-import Icon from '@/components/Icon'
+import { path } from '@/constants'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import Link from 'next/link'
 import React from 'react'
 import styles from './Category.module.scss'
 
 type ProductProps = {
-    products: any[]
+    products: any[],
+    categories: {}[]
 }
-const Shop = ({ products }: ProductProps) => {
+const Category = ({ products, categories }: ProductProps) => {
+    console.log("first", products)
     return (
         <div className={styles['shop']}>
             <div className={styles['shop-search']}>
@@ -37,18 +38,11 @@ const Shop = ({ products }: ProductProps) => {
                             Categories
                         </h2>
                         <ul className={styles['shop-sidebar__cate-list']}>
-                            <li>
-                                <Link href=""><a href="" className={styles['shop-sidebar__cate-item']}>Bath Preparations</a></Link>
-                            </li>
-                            <li>
-                                <Link href=""><a href="" className={styles['shop-sidebar__cate-item']}>Eye Makeup Preparations</a></Link>
-                            </li>
-                            <li>
-                                <Link href=""><a href="" className={styles['shop-sidebar__cate-item']}>Eye  Preparations</a></Link>
-                            </li>
-                            <li>
-                                <Link href=""><a href="" className={styles['shop-sidebar__cate-item']}>Hello Makeup Preparations</a></Link>
-                            </li>
+                            {categories.map((item, index) => (
+                                <li key={index}>
+                                    <Link href={`${path.public.categoryRoute}/${item._id}`}><a href="" className={styles['shop-sidebar__cate-item']}>{item.name}</a></Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className={styles['shop-sidebar-section']}>
@@ -99,7 +93,7 @@ const Shop = ({ products }: ProductProps) => {
                 </div>
                 <div className={styles['shop-product']}>
                     <div className={styles['shop-product-list']}>
-                        <ListProduct data={products} />
+                        <ListProduct data={products.products} />
                     </div>
                     <div className={styles['shop-product-pagination']}>
 
@@ -110,27 +104,33 @@ const Shop = ({ products }: ProductProps) => {
     )
 }
 export const getStaticPaths: GetStaticPaths = async () => {
-    const data = await (await getAll());
+    const data = await (await getAllCate());
     const paths = data.map((item) => {
         return { params: { id: item._id } };
     });
     return {
         paths,
         fallback: "blocking",
-    };
+    }
 };
 
 export const getStaticProps: GetStaticProps<ProductProps> = async (context: GetStaticPropsContext) => {
-    const data = await (await read())
+    const data = await (await getProInCate(context.params.id))
+    const dataCate = await (await getAllCate())
+
     if (!data) return {
+        notFound: true
+    }
+    if (!dataCate) return {
         notFound: true
     }
     return {
         props: {
-            products: data
+            products: data,
+            categories: dataCate
         },
         revalidate: 5
     }
 }
 
-export default Shop
+export default Category

@@ -13,5 +13,8 @@ export const update = (category: any) => {
   return instance.put(`/categories/${category._id}`, category);
 };
 export const read = (id: any) => {
+  return instance.get(`/category/${id}`);
+};
+export const getProInCate = (id: any) => {
   return instance.get(`/categories/${id}`);
 };

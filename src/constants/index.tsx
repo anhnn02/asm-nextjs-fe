@@ -4,6 +4,7 @@ export const path = {
     loginRoute: "/login",
     signupRoute: "/register",
     shopRoute: "/shop",
+    categoryRoute: "/category",
     productRoute: "/products",
     contactRoute: "/contact",
     cartRoute: "/cart",
