@@ -18,7 +18,7 @@ type Props = {}
 
 const EditProduct = (props: Props) => {
     const router = useRouter();
-    const { id } = router.query;
+    const { id } : any = router.query;
     const { data: categories } = useCategory();
     console.log("first", categories)
     const { editProduct } = useProduct();

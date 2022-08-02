@@ -1,18 +1,19 @@
+import { IProduct } from "@/models/product";
 import instance from "./instance";
 
 export const getAll = () => {
     return instance.get('/products');
 }
-export const add = (product: any) => {
+export const add = (product: IProduct) => {
     return instance.post("/products", product);
 };
-export const removeItem = (id: any) => {
+export const removeItem = (id: string) => {
     return instance.delete(`/product/${id}`);
 };
-export const update = (product: any) => {
+export const update = (product: IProduct) => {
   return instance.put(`/product/${product._id}`, product);
 };
-export const read = (id: any) => {
+export const read = (id: string | undefined) => {
   return instance.get(`/product/${id}`);
 };
 export const filter = () => {

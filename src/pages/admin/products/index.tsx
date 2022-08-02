@@ -79,7 +79,7 @@ const ProductList = (props: Props) => {
                     <h4 className={stylesAdmin['title-admin']}>List product</h4>
                 </div>
                 <Link href='/admin/products/add'>
-                    <MyBtn.Fill content="Add Product" />
+                    <MyBtn.Fill className={""} content="Add Product" />
                 </Link>
             </div>
             <Table columns={columns} dataSource={dataSource}

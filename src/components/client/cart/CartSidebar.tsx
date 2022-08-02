@@ -54,7 +54,7 @@ const CartSidebar = (props: Props) => {
             <div className="tw-h-screen tw-menu tw-overflow-y-auto tw-w-[400px] tw-bg-base-100 tw-text-base-content">
                 <div className={styles['cart-sidebar__header']}>
                     <div className="">
-                        <Icon.Cart /> <span>{cart.length} item(s)</span>
+                        <Icon.Cart className={""} /> <span>{cart.length} item(s)</span>
                     </div>
                     {cartTotalQuantity == 0 ? "" : <button onClick={() => removeCart()} className="tw-text-my-gray tw-font-normal">Clear All</button>}
 
@@ -65,11 +65,11 @@ const CartSidebar = (props: Props) => {
                             <div key={index} className={styles['cart-sidebar__item']}>
                                 <div className={styles['cart-sidebar__action-quantity']}>
                                     <button className={styles['cart-sidebar__button']} onClick={() => dispatch(incrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}>
-                                        <Icon.PlusRegular />
+                                        <Icon.PlusRegular className={""} />
                                     </button>
                                     <span className={styles['cart-sidebar__quantity']}>{item.quantity}</span>
                                     <button className={styles['cart-sidebar__button']} onClick={() => dispatch(decrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}>
-                                        <Icon.Minus />
+                                        <Icon.Minus className={""}/>
                                     </button>
                                 </div>
                                 <div className={styles['cart-sidebar__info']}>

@@ -2,13 +2,14 @@
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import { path } from "@/constants";
+import { IProduct } from "@/models/product";
 import { formatPercent, formatPrice } from "@/utils/formatNumber";
 import Link from "next/link";
 import React from "react";
 import styles from "./ListProduct.module.scss";
 
 type Props = {
-  data: {}[];
+  data: IProduct;
 };
 
 const ListProduct = ({ data }: Props) => {
@@ -33,7 +34,7 @@ const ListProduct = ({ data }: Props) => {
               <button
                 className={`${styles["shop-product__item-float"]} ${styles["shop-product__item-float--action"]}`}
               >
-                <Icon.HeartFill />
+                <Icon.HeartFill className={""}/>
               </button>
               <Link href={`${path.public.productRoute}/${item._id}`}>
                 <img src={item.img} alt="" />
@@ -49,11 +50,11 @@ const ListProduct = ({ data }: Props) => {
               </h3>
               <div className={styles["shop-product__item-row"]}>
                 <span className={styles["shop-product-star"]}>
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
                 </span>
                 <div className={styles["shop-product__item-variation"]}>
                   {item.size.length > 3 ? (
@@ -77,7 +78,7 @@ const ListProduct = ({ data }: Props) => {
                     </div>
                   ) : (
                     item.size.map((sizeItem) => (
-                      <span
+                      <span key={index}
                         className={styles["shop-product-variation__item"]}
                       >
                         {sizeItem}
@@ -128,7 +129,7 @@ const ListProduct = ({ data }: Props) => {
               <button
                 className={`${styles["shop-product__item-float"]} ${styles["shop-product__item-float--action"]}`}
               >
-                <Icon.HeartFill />
+                <Icon.HeartFill className={""} />
               </button>
               <Link href={`${path.public.productRoute}/${item._id}`}>
                 <img src={item.img} alt="" />
@@ -144,11 +145,11 @@ const ListProduct = ({ data }: Props) => {
               </h3>
               <div className={styles["shop-product__item-row"]}>
                 <span className={styles["shop-product-star"]}>
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
                 </span>
                 <div className={styles["shop-product__item-variation"]}>
                   {item.size.length > 3 ? (
@@ -172,7 +173,7 @@ const ListProduct = ({ data }: Props) => {
                     </div>
                   ) : (
                     item.size.map((sizeItem) => (
-                      <span
+                      <span key={index}
                         className={styles["shop-product-variation__item"]}
                       >
                         {sizeItem}
