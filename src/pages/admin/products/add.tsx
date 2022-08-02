@@ -11,6 +11,7 @@ import styles from './Product.module.scss'
 import stylesAdmin from '@/styles/admin/Admin.module.scss'
 import Button from '@/components/Button'
 import { toast } from 'react-toastify'
+import { IProduct } from '@/models/product'
 
 type Props = {}
 type TypeInput = {
@@ -31,7 +32,7 @@ const AddProduct = (props: Props) => {
     if (error) return <div>Loading...</div>
     if (!categories) return <div>Loading...</div>
     let errSalePrice = ""
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: IProduct) => {
         if (+data.salePrice >= +data.regularPrice) {
             errSalePrice = "Sale price must be less than regular price"
             console.log(errSalePrice);

@@ -9,10 +9,10 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import styles from './Product.module.scss'
-
 import stylesAdmin from '@/styles/admin/Admin.module.scss';
 import Link from 'next/link'
 import { toast } from 'react-toastify'
+import { IProduct } from '@/models/product'
 
 type Props = {}
 
@@ -34,7 +34,7 @@ const EditProduct = (props: Props) => {
     }, [id, reset])
 
     if (!categories) return <div>Loading...</div>
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: IProduct) => {
         await editProduct({ ...data, category: data.category });
         toast.success("Edit successfully!", {
             position: 'top-center'
