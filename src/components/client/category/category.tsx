@@ -29,8 +29,8 @@ function Category({}: Props) {
       <h1 className="font-bold text-[20px] py-[20px]">category</h1>
       <Slide>
         <Swiper
-          spaceBetween={50}
-          slidesPerView={3}
+          spaceBetween={10}
+          slidesPerView={data}
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
