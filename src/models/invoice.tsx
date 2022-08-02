@@ -8,4 +8,6 @@ export interface IIvoice {
     status: number,
     note: string,
     userId: string,
+    invoice?: any,
+    invoiceDetails?: any,
 }

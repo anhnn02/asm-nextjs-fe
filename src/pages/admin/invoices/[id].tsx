@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import Button from "@/components/Button";
@@ -9,20 +10,23 @@ import { path } from "@/constants";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
 import { useRouter } from "next/router";
 import { formatPrice } from "@/utils/formatNumber";
+import { IIvoice } from "@/models/invoice";
 
-type Props = {};
+type Props = {
+  invoice: IIvoice[];
+};
 
 const DetailInvoice = (props: Props) => {
   const { detail, error } = useInvoice();
-  const [invoice, setInvoice] = useState();
-  const [total, setTotal] = useState();
+  const [invoice, setInvoice] = useState<IIvoice>();
+  const [total, setTotal] = useState<number>();
   const router = useRouter();
   const id = router.query.id;
   useEffect(() => {
     if (!id) return;
     const get = async () => {
       const data: any = await detail(id);
-      let totalPrice = 0;
+      let totalPrice: any = 0;
 
       const cart = data.invoiceDetails;
       cart.forEach((element) => {
@@ -41,7 +45,7 @@ const DetailInvoice = (props: Props) => {
           <h4 className={stylesAdmin["title-admin"]}>List Invoice</h4>
           <div className="">
             <Link href={`${path.private.invoiceRoute}/edit/${id}`}>
-              <Button.Fill content="Edit" />
+              <Button.Fill className={""} content="Edit" />
             </Link>
             <div className="tw-inline-block">
               {invoice?.invoice.status === 0 ? (
