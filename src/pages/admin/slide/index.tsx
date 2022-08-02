@@ -46,7 +46,7 @@ const SlideList = (props: Props) => {
       <div className={styles['head-admin-slide']}>
         <h4 className={stylesAdmin['title-admin']}>List banner</h4>
         <Link href={`/admin/slide/add`}>
-          <MyBtn.Fill content="Add banner" />
+          <MyBtn.Fill className={""} content="Add banner" />
         </Link>
       </div>
       <Table
