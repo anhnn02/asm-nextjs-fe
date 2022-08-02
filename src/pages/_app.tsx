@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-css-tags */
+/* eslint-disable @next/next/no-sync-scripts */
 import "../styles/globals.scss";
 import { SWRConfig } from "swr";
 import instance from "@/api/instance";
@@ -11,6 +13,17 @@ import { PersistGate } from 'redux-persist/integration/react'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+import { Router } from "next/router";
+
+NProgress.configure({
+    showSpinner: false,
+    trickleSpeed: 100,
+});
+Router.events.on("routeChangeStart", NProgress.start);
+Router.events.on("routeChangeComplete", NProgress.done);
+Router.events.on("routeChangeError", NProgress.done);
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const LayoutWrapper = Component.Layout ?? Layout;

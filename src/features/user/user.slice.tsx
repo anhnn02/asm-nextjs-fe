@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 interface IUserState {
     isAuthenticated: Boolean,
-    current: {},
+    current: any,
 }
 
 const initialState: IUserState = {
