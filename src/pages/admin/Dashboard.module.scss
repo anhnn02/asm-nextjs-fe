@@ -1,0 +1,20 @@
+.box {
+    @apply tw-border-solid tw-border-l-4  tw-rounded-[var(--rounded-1)] ;
+}
+.content {
+    @apply tw-flex tw-rounded-[var(--rounded-1)]  tw-justify-between tw-items-center tw-p-5 ;
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+}
+.site-statistic-demo-card{
+    padding: 30px;
+        background: #ececec;
+}
+.table {
+    border: 1px solid black;
+        border-collapse: collapse;
+}
+.th, .td {
+    border: 1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+}

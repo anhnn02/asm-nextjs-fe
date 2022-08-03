@@ -5,29 +5,19 @@ const Icon = {
     );
   },
   HeartFill({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-heart-fill ${className}`}></i>
-    );
+    return <i {...props} className={`bi bi-heart-fill ${className}`}></i>;
   },
   Star({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-star ${className}`}></i>
-    );
+    return <i {...props} className={`bi bi-star ${className}`}></i>;
   },
   Close({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-x ${className}`}></i>
-    );
+    return <i {...props} className={`bi bi-x ${className}`}></i>;
   },
   Minus({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-dash ${className}`}></i>
-    );
+    return <i {...props} className={`bi bi-dash ${className}`}></i>;
   },
   BellOutline({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-bell ${className}`}></i>
-    );
+    return <i {...props} className={`bi bi-bell ${className}`}></i>;
   },
   PlusCircle({ className, ...props }) {
     return <i {...props} className={`bi bi-plus-circle ${className}`}></i>;
@@ -68,7 +58,7 @@ const Icon = {
       <i {...props} className={`bi bi-check-circle-fill ${className}`}></i>
     );
   },
-  
+
   Eye({ className, ...props }) {
     return <i {...props} className={`bi bi-eye ${className}`}></i>;
   },
@@ -146,41 +136,51 @@ const Icon = {
     return <i {...props} className={`bi bi-house-door ${className}`}></i>;
   },
   Payment({ className, ...props }) {
-    return <i {...props} className={`bi bi-credit-card-2-back ${className}`}></i>;
+    return (
+      <i {...props} className={`bi bi-credit-card-2-back ${className}`}></i>
+    );
   },
   Heart({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-heart ${className}`}></i>
-    );
+    return <i {...props} className={`bi bi-heart ${className}`}></i>;
   },
   ChevronLeft({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-chevron-left ${className}`}></i>
-    );
-  }, 
+    return <i {...props} className={`bi bi-chevron-left ${className}`}></i>;
+  },
   ChevronRight({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-chevron-right ${className}`}></i>
-    );
+    return <i {...props} className={`bi bi-chevron-right ${className}`}></i>;
   },
   BoxSeamFill({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-box-seam-fill ${className}`}></i>
-    );
+    return <i {...props} className={`bi bi-box-seam-fill ${className}`}></i>;
   },
   Truck({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-truck ${className}`}></i>
-    );
+    return <i {...props} className={`bi bi-truck ${className}`}></i>;
   },
   CheckLg({ className, ...props }) {
-    return (
-      <i {...props} className={`bi bi-check-lg ${className}`}></i>
-    );
+    return <i {...props} className={`bi bi-check-lg ${className}`}></i>;
+  },
+  CheckX({ className, ...props }) {
+    return <i {...props} className={`bi bi-x-lg ${className}`}></i>;
   },
   XCircle({ className, ...props }) {
+    return <i {...props} className={`bi bi-x-circle ${className}`}></i>;
+  },
+
+  Chalendar({ className, ...props }) {
     return (
-      <i {...props} className={`bi bi-x-circle ${className}`}></i>
+      <i {...props} className={`bi bi-calendar-week-fill ${className}`}></i>
+    );
+  },
+  Coin({ className, ...props }) {
+    return <i {...props} className={`bi bi-cash-coin ${className}`}></i>;
+  },
+  Checkk({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-clipboard-check-fill ${className}`}></i>
+    );
+  },
+  Users({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-person-lines-fill ${className}`}></i>
     );
   },
 };
