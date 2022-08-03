@@ -13,7 +13,7 @@ const SubBanner = (props: Props) => {
           <span>
             <img
               className={styles["img1"]}
-              src="https://theme.hstatic.net/200000386519/1000741676/14/categorybanner_1_img.jpg?v=6"
+              src="https://banner.designer.com.vn/wp-content/uploads/2020/06/gi%C3%A0y-nike.jpg"
             />
           </span>
         </div>
@@ -21,7 +21,7 @@ const SubBanner = (props: Props) => {
           <span>
             <img
               className={styles["img2"]}
-               src="https://bonik-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fbanners%2Fbanner-2.png&w=1920&q=75"
+              src="http://file.hstatic.net/1000178110/file/banner_1200x628__copy__37ae887e552447b8b9bd2db3299b3139_grande.png"
             />
           </span>
         </div>
