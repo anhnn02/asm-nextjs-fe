@@ -7,7 +7,7 @@ import Product from "@/features/products/product.component";
 import { NextPage } from "next";
 import { ToastContainer, toast } from "react-toastify";
 import styles from "../styles/client/Home.module.scss";
-
+import Slider from "react-slick";
 import Card from "react-bootstrap/Card";
 
 const Home: NextPage = () => {
