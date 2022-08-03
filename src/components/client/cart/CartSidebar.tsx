@@ -77,7 +77,7 @@ const CartSidebar = (props: Props) => {
                                         <img className={styles['cart-sidebar__img']} src={item.img} alt="" />
                                     </Link>
                                     <div className={styles['cart-sidebar__text']}>
-                                        <h3><Link href=""><a href="" className={styles['cart-sidebar__title']}>Product Aaas vasvas as sdsdd asdasd</a></Link></h3>
+                                        <h3><Link href=""><a href="" className={styles['cart-sidebar__title']}>{item.name}</a></Link></h3>
                                         <span className={styles['cart-sidebar__price']}>
                                             {(item?.salePrice) ? formatPrice(item?.salePrice) : formatPrice(item?.regularPrice)}
                                             {(item?.salePrice) ? <span className="tw-line-through tw-pl-1">{formatPrice(item?.regularPrice)}</span> : ""}

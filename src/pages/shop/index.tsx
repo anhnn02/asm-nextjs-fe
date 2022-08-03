@@ -102,7 +102,6 @@ const Shop = ({products}: ProductProps) => {
             <ListProduct data={products} />
           </div>
           <div className={styles['shop-product-pagination']}>
-
           </div>
         </div>
       </div>

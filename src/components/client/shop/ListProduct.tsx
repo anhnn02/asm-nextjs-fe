@@ -2,9 +2,12 @@
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import { path } from "@/constants";
+import { addItemToCart } from "@/features/cart/cart.slice";
+import useProduct from "@/hooks/use-product";
 import { formatPercent, formatPrice } from "@/utils/formatNumber";
 import Link from "next/link";
 import React from "react";
+import { useDispatch } from "react-redux";
 import styles from "./ListProduct.module.scss";
 
 type Props = {
@@ -12,7 +15,29 @@ type Props = {
 };
 
 const ListProduct = ({ data }: Props) => {
+  const { detail } = useProduct()
+  const dispatch = useDispatch()
   if (!data) return <div className="">Loading...</div>;
+  const btnQuickAddToCart = async (id) => {
+    console.log(id)
+    const data: any = await detail(id)
+    console.log(data);
+    const itemQuickAddToCart = {
+      idInCart: data._id + '_' + data.size,
+      idPro: data._id,
+      size: data.size[1],
+      img: data.img,
+      quantity: 1,
+      name: data.name,
+      desc: data.desc,
+      regularPrice: data.regularPrice * 1,
+      salePrice: data.salePrice * 1,
+      categoryProduct: data.product,
+      total: (data.salePrice) ? data.salePrice * 1 : data.regularPrice * 1
+    }
+    console.log(itemQuickAddToCart);
+    dispatch(addItemToCart(itemQuickAddToCart))
+  }
   return (
     <>
       {!data.relatedProduct ? <>
@@ -33,7 +58,7 @@ const ListProduct = ({ data }: Props) => {
               <button
                 className={`${styles["shop-product__item-float"]} ${styles["shop-product__item-float--action"]}`}
               >
-                <Icon.HeartFill />
+                <Icon.HeartFill className={""} />
               </button>
               <Link href={`${path.public.productRoute}/${item._id}`}>
                 <img src={item.img} alt="" />
@@ -49,11 +74,11 @@ const ListProduct = ({ data }: Props) => {
               </h3>
               <div className={styles["shop-product__item-row"]}>
                 <span className={styles["shop-product-star"]}>
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
                 </span>
                 <div className={styles["shop-product__item-variation"]}>
                   {item.size.length > 3 ? (
@@ -78,6 +103,7 @@ const ListProduct = ({ data }: Props) => {
                   ) : (
                     item.size.map((sizeItem) => (
                       <span
+                        key={index}
                         className={styles["shop-product-variation__item"]}
                       >
                         {sizeItem}
@@ -101,7 +127,7 @@ const ListProduct = ({ data }: Props) => {
                     {item.salePrice ? formatPrice(item.regularPrice) : ""}
                   </span>
                 </div>
-                <Button.Transparent
+                <Button.Transparent onClick={() => btnQuickAddToCart(item._id)}
                   className="!tw-py-[1px] !tw-px-1 !tw-min-h-0 !tw-h-[30px]"
                   content={<Icon.PlusRegular className="tw-text-[21px]" />}
                 />
@@ -128,7 +154,7 @@ const ListProduct = ({ data }: Props) => {
               <button
                 className={`${styles["shop-product__item-float"]} ${styles["shop-product__item-float--action"]}`}
               >
-                <Icon.HeartFill />
+                <Icon.HeartFill className={""} />
               </button>
               <Link href={`${path.public.productRoute}/${item._id}`}>
                 <img src={item.img} alt="" />
@@ -144,11 +170,11 @@ const ListProduct = ({ data }: Props) => {
               </h3>
               <div className={styles["shop-product__item-row"]}>
                 <span className={styles["shop-product-star"]}>
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
-                  <Icon.Star />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
+                  <Icon.Star className={""} />
                 </span>
                 <div className={styles["shop-product__item-variation"]}>
                   {item.size.length > 3 ? (
@@ -173,6 +199,7 @@ const ListProduct = ({ data }: Props) => {
                   ) : (
                     item.size.map((sizeItem) => (
                       <span
+                        key={index}
                         className={styles["shop-product-variation__item"]}
                       >
                         {sizeItem}
@@ -196,7 +223,7 @@ const ListProduct = ({ data }: Props) => {
                     {item.salePrice ? formatPrice(item.regularPrice) : ""}
                   </span>
                 </div>
-                <Button.Transparent
+                <Button.Transparent onClick={() => btnQuickAddToCart()}
                   className="!tw-py-[1px] !tw-px-1 !tw-min-h-0 !tw-h-[32px]"
                   content={<Icon.PlusRegular className="tw-text-2xl" />}
                 />
