@@ -26,7 +26,7 @@ function Category({}: Props) {
       if (error) return <div>Failed to loading</div>;
   return (
     <>
-      <h1 className="font-bold text-[20px] py-[20px]">category</h1>
+      <h1 className="font-bold text-[20px] py-[20px]">Category</h1>
       <Slide>
         <Swiper
           spaceBetween={10}
