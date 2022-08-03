@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface ICartState {
     items: any[],
-    totalQuantity: Number,
-    totalAmount: Number
+    totalQuantity: number,
+    totalAmount: number
 }
 
 const initialState: ICartState = {
@@ -22,9 +22,11 @@ const cartSlice = createSlice({
             if (!existingItem) {
                 state.items.push(newItem);
                 state.totalQuantity++;
+                state.totalAmount = newItem.total
             } else {
                 existingItem.quantity += newItem.quantity;
                 existingItem.total += newItem.total;
+                state.totalAmount += newItem.total
             }
 
         },
@@ -79,9 +81,16 @@ const cartSlice = createSlice({
             state.totalQuantity = 0
             state.totalAmount = 0
         },
+        applyVoucher(state, action) {
+            if (state.totalAmount > 0){
+                state.totalAmount -= action.payload
+            }else{
+                state.totalAmount = 0
+            }
+        }
     },
 
     
 });
-export const { addItemToCart, removeItemFromCart, decrementQuantity, incrementQuantity, resetCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart, decrementQuantity, incrementQuantity, resetCart, applyVoucher } = cartSlice.actions;
 export default cartSlice.reducer;

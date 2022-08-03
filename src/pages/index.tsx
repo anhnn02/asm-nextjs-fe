@@ -10,22 +10,22 @@ import styles from "../styles/client/Home.module.scss";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
 import Services from "@/components/client/services/services"
 import SubBanner from '@/components/client/sub-banner/subBanner'
+import { SubmitHandler, useForm } from "react-hook-form";
 
 const Home: NextPage = () => {
-  const notify = () => {
-    // toast.error('🦄 Wow so easy!', {
-    //     position: "top-center",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    // });
-  };
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit: SubmitHandler<any> = async (data: any) => {
+    console.log("date", data);
+  }
   return (
     <div className={styles["homepage"]}>
-      <div className={styles["section"]}>Slide</div>
+      <div className={styles["section"]}>
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
+          <input type="date"  {...register('voucherCode')} />
+          <button>Submit</button>
+        </form>
+      </div>
       <div className={styles["section"]}>
         <Banner />
       </div>

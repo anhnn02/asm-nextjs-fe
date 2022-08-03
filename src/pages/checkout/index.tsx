@@ -4,6 +4,7 @@ import { path } from '@/constants'
 import { resetCart } from '@/features/cart/cart.slice'
 import useInvoice from '@/hooks/use-invoice'
 import useInvoiceDetail from '@/hooks/use-invoiceDetail'
+import useVoucher from '@/hooks/use-voucher'
 import { formatPrice } from '@/utils/formatNumber'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -56,6 +57,8 @@ const CheckOut = () => {
         }
 
     }
+  
+    // address
     const addressDataTotal = async (codeP, codeD, codeW) => {
         const province = await getProvince(+codeP)
         const district = await getDistrict(+codeD)
@@ -64,7 +67,7 @@ const CheckOut = () => {
     }
 
     // checkout
-    const onSubmit = async (data) => {
+    const onCheckout = async (data) => {
         const address = await addressDataTotal(data.province, data.district, data.ward) + ", " + data.address
         const dataInvoice = {
             fullname: data.fullname,
@@ -141,7 +144,7 @@ const CheckOut = () => {
                 <div className={styles['clone_sidebar_invisible']}></div>
             </div>
             <div className={styles['content_checkout']}>
-                <form action="" className={styles['form_checkout']} onSubmit={handleSubmit(onSubmit)}>
+                <form action="" className={styles['form_checkout']} onSubmit={handleSubmit(onCheckout)}>
                     <div className={styles['form_checkout_inside']}>
                         <div className={styles['header-form_checkout']}>
                             <h3 className='tw-capitalize tw-font-semibold'>shipping address</h3>
@@ -279,10 +282,6 @@ const CheckOut = () => {
                             <span className={styles['color-text-infor_checkout']}>Total:</span>
                             <span className='tw-font-semibold tw-text-2xl tw-text-primary'>{formatPrice(totalAmount)}</span>
                         </div>
-                        <form action="">
-                            <input type="text" placeholder='Voucher' className={styles['input-form_checkout']} />
-                            <Button.Transparent className='tw-w-full' content={'Apply Voucher'} />
-                        </form>
                     </div>
                 </div>
             </div >

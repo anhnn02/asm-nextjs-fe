@@ -9,7 +9,7 @@ import {
 } from "@/api/addressCheckout";
 import Button from "@/components/Button";
 import { path } from "@/constants";
-import { resetCart } from "@/features/cart/cart.slice";
+import { applyVoucher, resetCart } from "@/features/cart/cart.slice";
 import useInvoice from "@/hooks/use-invoice";
 import useInvoiceDetail from "@/hooks/use-invoiceDetail";
 import { formatPrice } from "@/utils/formatNumber";
@@ -21,121 +21,47 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import styles from "./Cart.module.scss";
 import Icon from "@/components/Icon";
+import useVoucher from "@/hooks/use-voucher";
 
 const CartPage = () => {
-  const { create } = useInvoice();
   const { create: createDetail } = useInvoiceDetail();
+  const { readVoucherStatusByCode } = useVoucher()
+
   const dispatch = useDispatch();
   const route = useRouter();
   const userCurrent = useSelector((data) => data.user.current);
   const isLogin = useSelector((data) => data.user.isAuthenticated);
   const cartTotalQuantity = useSelector((data) => data.cart.totalQuantity);
   const cart = useSelector((data) => data.cart.items);
+  const totalAmount = useSelector((data) => data.cart.totalAmount);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [provinces, setProvinces] = useState([]);
-  const [districts, setDistricts] = useState([]);
-  const [wards, setWards] = useState([]);
 
   useEffect(() => {
-    const getDataProvince = async () => {
-      const { data } = await getProvinces();
-      setProvinces(data);
-    };
-    getDataProvince();
+
   }, []);
-  // province render
-  const handleChangeProvince = async (code: number | string) => {
-    if (code == "") {
-      setDistricts([]);
-      setWards([]);
-    } else {
-      const {
-        data: { districts },
-      } = await getDistrictByProvince(code);
-      setDistricts(districts);
-    }
-  };
-  const handleChangeDistrict = async (code: number | string) => {
-    if (code == "") {
-      setWards([]);
-    } else {
-      const {
-        data: { wards },
-      } = await getWardByDistrict(code);
-      setWards(wards);
-    }
-  };
-  const addressDataTotal = async (codeP, codeD, codeW) => {
-    const province = await getProvince(+codeP);
-    const district = await getDistrict(+codeD);
-    const ward = await getWard(+codeW);
-    return `${province.data.name}, ${district.data.name}, ${ward.data.name}`;
-  };
-
-  // checkout
-  const onSubmit = async (data) => {
-    const address =
-      (await addressDataTotal(data.province, data.district, data.ward)) +
-      ", " +
-      data.address;
-    const dataInvoice = {
-      fullname: data.fullname,
-      phoneNumber: data.phoneNumber,
-      email: data.email,
-      address,
-      note: data.note ? data.note : null,
-      total: totalAmount,
-      userId: userCurrent.user._id,
-    };
-    const addInfoOrder = async () => {
-      if (cart.length > 0) {
-        try {
-          const data = await create(dataInvoice);
-          const invoiceId = data._id;
-          await cart.forEach(async (item) => {
-            const dataInvoiceDetail = {
-              name: item.name,
-              img: item.img,
-              size: item.size,
-              regularPrice: item.regularPrice,
-              salePrice: item.salePrice ? item.salePrice : null,
-              quantity: item.quantity,
-              total: item.total,
-              invoiceId: invoiceId,
-            };
-
-            await createDetail(dataInvoiceDetail);
-            dispatch(resetCart(""));
-          });
-          toast.success("Order successfully", {
-            position: "top-center",
-          });
-          route.push(path.public.orderCompleteRoute);
-        } catch (error) {
-          // console.log(error.response);
-          toast.error("Can not order", {
-            position: "top-center",
-          });
-        }
-      } else {
-        toast.error("Your cart is empty!", {
-          position: "top-center",
-        });
-      }
-    };
-    addInfoOrder();
-  };
 
   //cart, quantity, total
-  let subTotal = 0;
-  cart.forEach((item) => {
-    subTotal += item.total;
-  });
-  let totalAmount = subTotal + 5;
+
+
+  //add voucher
+  const onAddVoucher = async (voucher) => {
+    const data: any = await readVoucherStatusByCode(voucher);
+    if(!data) {
+      toast.error("Voucher is not exist");
+    }else{
+      if (data.status == 1) {
+        toast.error("Voucher da het han su dung")
+      }else{
+        toast.success("Apply voucher success")
+        dispatch(applyVoucher(data.discount))
+      }
+    }
+    
+  }
 
   // check vao trang checkout: user && cart != []
   if (!isLogin && cart.length === 0) {
@@ -145,9 +71,8 @@ const CartPage = () => {
     <div>
       <div className="tw-text-center">
         <div
-          className={`${
-            styles["progress_of_customer"]
-          } ${"!tw-inline-block tw-pt-[12px]"}`}
+          className={`${styles["progress_of_customer"]
+            } ${"!tw-inline-block tw-pt-[12px]"}`}
         >
           <div className={styles["format_progress_of_customer"]}>
             <div className={styles["step_progress-active"]}>
@@ -167,10 +92,8 @@ const CartPage = () => {
         </div>
       </div>
       <div className={styles["content_checkout"]}>
-        <form
-          action=""
+        <div
           className={styles["form_checkout"]}
-          onSubmit={handleSubmit(onSubmit)}
         >
           <div className={styles["row_progress_of_customer"]}>
             <div className="tw-flex">
@@ -400,7 +323,7 @@ const CartPage = () => {
               </div>
             </div>
           </div>
-        </form>
+        </div>
 
         <div className={`${styles["sidebar_checkout"]} `}>
           <div
@@ -413,7 +336,7 @@ const CartPage = () => {
                     Subtotal:
                   </span>
                   <span className="tw-font-semibold tw-text-xl">
-                    {formatPrice(subTotal)}
+                    {/* {formatPrice(subTotal)} */}
                   </span>
                 </div>
                 <div className={styles["row-infor_checkout"]}>
@@ -437,26 +360,27 @@ const CartPage = () => {
                 Total:
               </span>
               <span className="tw-font-semibold tw-text-2xl tw-text-primary">
-                {formatPrice(totalAmount)}
+                {formatPrice(totalAmount+5)}
               </span>
             </div>
-            <form action="">
+            <form action="" onSubmit={handleSubmit(onAddVoucher)}>
               <input
                 type="text"
                 placeholder="Voucher"
                 className={styles["input-form_checkout"]}
+                {...register('code', { required: true })}
               />
               <Button.Transparent
                 className="tw-w-full tw-mt-3"
                 content={"Apply Voucher"}
               />
             </form>
-            <form action="">
+            <Link href={path.public.checkoutRoute}>
               <Button.Fill
                 className="tw-w-full tw-mt-3"
                 content={"Checkout Now "}
               />
-            </form>
+            </Link>
           </div>
         </div>
       </div>
