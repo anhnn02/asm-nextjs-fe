@@ -8,6 +8,7 @@ import { formatPercent, formatPrice } from "@/utils/formatNumber";
 import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import styles from "./ListProduct.module.scss";
 
 type Props = {
@@ -25,7 +26,7 @@ const ListProduct = ({ data }: Props) => {
     const itemQuickAddToCart = {
       idInCart: data._id + '_' + data.size,
       idPro: data._id,
-      size: data.size[1],
+      size: data.size[0],
       img: data.img,
       quantity: 1,
       name: data.name,
@@ -36,7 +37,10 @@ const ListProduct = ({ data }: Props) => {
       total: (data.salePrice) ? data.salePrice * 1 : data.regularPrice * 1
     }
     console.log(itemQuickAddToCart);
-    dispatch(addItemToCart(itemQuickAddToCart))
+    dispatch(addItemToCart(itemQuickAddToCart));
+    toast.success("Add to cart successfully!", {
+      position: 'top-center'
+    })
   }
   return (
     <>
@@ -223,7 +227,7 @@ const ListProduct = ({ data }: Props) => {
                     {item.salePrice ? formatPrice(item.regularPrice) : ""}
                   </span>
                 </div>
-                <Button.Transparent onClick={() => btnQuickAddToCart()}
+                <Button.Transparent onClick={() => btnQuickAddToCart(item._id)}
                   className="!tw-py-[1px] !tw-px-1 !tw-min-h-0 !tw-h-[32px]"
                   content={<Icon.PlusRegular className="tw-text-2xl" />}
                 />

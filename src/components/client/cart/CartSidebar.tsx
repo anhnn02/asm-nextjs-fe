@@ -54,7 +54,7 @@ const CartSidebar = (props: Props) => {
             <div className="tw-h-screen tw-menu tw-overflow-y-auto tw-w-[400px] tw-bg-base-100 tw-text-base-content">
                 <div className={styles['cart-sidebar__header']}>
                     <div className="">
-                        <Icon.Cart /> <span>{cart.length} item(s)</span>
+                        <Icon.Cart className={""} /> <span>{cart.length} item(s)</span>
                     </div>
                     {cartTotalQuantity == 0 ? "" : <button onClick={() => removeCart()} className="tw-text-my-gray tw-font-normal">Clear All</button>}
 
@@ -65,19 +65,19 @@ const CartSidebar = (props: Props) => {
                             <div key={index} className={styles['cart-sidebar__item']}>
                                 <div className={styles['cart-sidebar__action-quantity']}>
                                     <button className={styles['cart-sidebar__button']} onClick={() => dispatch(incrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}>
-                                        <Icon.PlusRegular />
+                                        <Icon.PlusRegular className={""} />
                                     </button>
                                     <span className={styles['cart-sidebar__quantity']}>{item.quantity}</span>
                                     <button className={styles['cart-sidebar__button']} onClick={() => dispatch(decrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}>
-                                        <Icon.Minus />
+                                        <Icon.Minus className={""} />
                                     </button>
                                 </div>
                                 <div className={styles['cart-sidebar__info']}>
-                                    <Link href="">
-                                        <img className={styles['cart-sidebar__img']} src={item.img} alt="" />
+                                    <Link href={`/products/${item.idPro}`}>
+                                        <img className={`${styles['cart-sidebar__img']} && tw-cursor-pointer`} src={item.img} alt="" />
                                     </Link>
                                     <div className={styles['cart-sidebar__text']}>
-                                        <h3><Link href=""><a href="" className={styles['cart-sidebar__title']}>{item.name}</a></Link></h3>
+                                        <h3><Link href={`/products/${item.idPro}`}><a href="" className={styles['cart-sidebar__title']}>{item.name}</a></Link></h3>
                                         <span className={styles['cart-sidebar__price']}>
                                             {(item?.salePrice) ? formatPrice(item?.salePrice) : formatPrice(item?.regularPrice)}
                                             {(item?.salePrice) ? <span className="tw-line-through tw-pl-1">{formatPrice(item?.regularPrice)}</span> : ""}
