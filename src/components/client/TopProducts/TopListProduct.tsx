@@ -24,7 +24,6 @@ const TopListProduct = (props: Props) => {
   }, []);
 
   return (
-
     <>
       {listTop?.map((item, index) => (
         <div key={index} className={styles["shop-product__item"]}>
