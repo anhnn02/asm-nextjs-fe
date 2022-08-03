@@ -54,7 +54,6 @@ const Home: NextPage = () => {
         <SubBanner />
       </div>
       <div className={styles["section"]}>Slide</div>
-
       <div className={styles["section"]}>
       </div>
       <div className={styles["section"]}>
