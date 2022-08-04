@@ -91,45 +91,74 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="tw-flex tw-flex tw-w-full tw-mt-12 tw-gap-6 ">
-        <div className={styles["box_content"]}>
-          
-          <table className="tw-table">
-            <tbody>
-              <tr>
-                <th>#</th>
-                <th>Status</th>
-                <th>Number</th>
-              </tr>
-              <tr>
-                <td rowSpan={3}>Total Bill: {dataInvoice?.length} </td>
-                <td>Invoice Succes</td>
-                <td> {resultSuccess?.length}</td>
-              </tr>
-              <tr>
-                <td>Invoice Cancel</td>
-                <td> {resultCancel?.length}</td>
-              </tr>
-              <tr>
-                <td>Invoice Canceled</td>
-                <td> {result?.length}</td>
-              </tr>
-              {cateIn?.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td rowSpan={2}>
-                      Product revenue by category: {dataInvoice?.length}
-                    </td>
-                    <td> {item.category.name}</td>
-                    <td> {item.products.length}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      <div className={styles["box_content"]}>
+        <h5 className="tw-font-medium tw-text-xl">Invoice</h5>
+        <div className="tw-grid tw-grid-cols-3 tw-space-between  tw-pb-9 tw-gap-5">
+          <div
+            className={`${
+              styles["item"]
+            } ${"tw-bg-blue-100 tw-text-blue-500 tw-font-medium tw-shadow-lg tw-shadow-blue-400/40"}`}
+          >
+            Invoice Succes: {resultSuccess?.length}
+          </div>
+          <div
+            className={`${
+              styles["item"]
+            } ${"tw-bg-yellow-100 tw-text-yellow-500  tw-font-medium tw-shadow-lg tw-shadow-yellow-400/40"}`}
+          >
+            Invoice Cancel: {resultCancel?.length}
+          </div>
+          <div
+            className={`${
+              styles["item"]
+            } ${"tw-bg-red-100 tw-text-red-500   tw-font-medium tw-shadow-lg tw-shadow-red-400/40"}`}
+          >
+            Invoice Canceled: {result?.length}
+          </div>
         </div>
-        <div className="tw-grid tw-flex-grow tw-card tw-w-1/4 tw-rounded-box tw-place-items-center">
-          <img src="https://i.imgur.com/0GPspoS.png" alt="" />
+      </div>
+      <div className="tw-pt-9 ">
+        <h5 className="tw-font-medium tw-text-xl tw-px-6 tw-py-2">
+          Product revenue by category
+        </h5>
+
+        <div className="tw-flex tw-grid tw-grid-cols-2 tw-gap-6 tw-mx-4 ">
+          <div className="">
+            <table className={styles["styled-table"]}>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Total Number </th>
+                </tr>
+              </thead>
+              <tbody>
+                {cateIn?.map((item, index) => {
+                  return (
+                    <tr className="tw-active-row" key={index}>
+                      <th scope="row">{index + 1}</th>
+                      <td>{item.category.name}</td>
+                      <td> {item.products.length}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          {/* {cateIn?.map((item, index) => {
+          return (
+            <tr key={index}>
+              <td rowSpan={2}>
+                Product revenue by category: {dataInvoice?.length}
+              </td>
+              <td> {item.category.name}</td>
+              <td> {item.products.length}</td>
+            </tr>
+          );
+        })} */}
+          <div className="tw-grid tw-flex-grow tw-card  tw-rounded-box tw-place-items-center">
+            <img src="https://i.imgur.com/0GPspoS.png" alt="" />
+          </div>
         </div>
       </div>
     </div>
