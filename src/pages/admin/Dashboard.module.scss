@@ -18,3 +18,8 @@
         border-collapse: collapse;
         padding: 10px;
 }
+////
+.box_content {
+    @apply tw-grid tw-flex-grow tw-card tw-p-5 ;
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+}

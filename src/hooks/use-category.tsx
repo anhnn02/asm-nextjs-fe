@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import { add, read, removeItem, update } from "../api/category";
+import { add, getProInCate, read, readC, removeItem, update } from "../api/category";
 
 const useCate = () => {
   const { data, error, mutate } = useSWR(`/categories`);
@@ -17,14 +17,14 @@ const useCate = () => {
     mutate([...data, addCate]);
   };
   const detail = async (id: any) => {
-    const addCate = await read(id);
+    const addCate = await getProInCate(id);
     return addCate;
   };
   const editCate = async (cate: any) => {
     await update(cate);
     mutate(data.map((item: any) => (item.id === data.id ? cate : item)));
   };
-
+ 
   return {
     data,
     error,
