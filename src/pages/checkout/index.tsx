@@ -27,8 +27,6 @@ const CheckOut = () => {
     const [districts, setDistricts] = useState([]);
     const [wards, setWards] = useState([]);
 
-    
-
     useEffect(() => {
         const getDataProvince = async () => {
             const { data } = await getProvinces();
