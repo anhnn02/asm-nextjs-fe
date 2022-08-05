@@ -1,0 +1,23 @@
+.box-category {
+    height: 50px;
+    // background-color: rgb(253, 248, 248);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(241, 147, 147);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    border-radius: 8px;
+    // padding: 0.75rem;
+    display: flex;
+}
+
+.h1 {
+    font-size: "25px";
+    font-weight: "bold";
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}

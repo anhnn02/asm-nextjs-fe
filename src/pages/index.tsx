@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Button from "@/components/Button";
+import Category from "@/components/client/category/category";
 import Banner from "@/components/client/Slide banner/Slide";
 import TopListProduct from "@/components/client/TopProducts/TopListProduct";
 import Icon from "@/components/Icon";
@@ -10,6 +11,8 @@ import styles from "../styles/client/Home.module.scss";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
 import Services from "@/components/client/services/services"
 import SubBanner from '@/components/client/sub-banner/subBanner'
+import Slider from "react-slick";
+import Card from "react-bootstrap/Card";
 
 const Home: NextPage = () => {
   const notify = () => {
@@ -50,8 +53,10 @@ const Home: NextPage = () => {
           <TopListProduct />
         </div>
       </div>
-      <div className={styles["banner"]}>
-        <SubBanner />
+      <div className={styles["section"]}>
+        <div className={styles["banner"]}>
+          <SubBanner />
+        </div>
       </div>
       <div className={styles["section"]}>Slide</div>
       <div className={styles["section"]}>
@@ -59,7 +64,7 @@ const Home: NextPage = () => {
       <div className={styles["section"]}>
         <Services />
       </div>
-      
+
     </div >
   );
 };
