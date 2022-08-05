@@ -27,3 +27,19 @@ img {
 .react-confirm-alert-overlay {
     background: rgba(255, 255, 255, 0) !important
 }
+
+.slick-slide > div:first-child {
+    padding: 0 !important;
+}
+
+.slick-slide > div {
+    padding-left: 24px;
+    width: 283.13px;
+}
+
+.slick-list {}
+
+.slick-prev::before,
+.slick-next::before {
+    color: black !important;
+}

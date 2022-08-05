@@ -191,6 +191,11 @@ const Icon = {
       <i {...props} className={`bi bi-box-arrow-left ${className}`}></i>
     );
   },
+  Gift({ className, ...props }) {
+    return (
+      <i {...props} className={`bi bi-gift ${className}`}></i>
+    );
+  },
 };
 
 export default Icon;
