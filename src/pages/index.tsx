@@ -39,8 +39,6 @@ const Home: NextPage = () => {
         </div>
       </div>
       <div className={styles["section"]}>
-      </div>
-      <div className={styles["section"]}>
         <Services />
       </div>
     </div >
