@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import LayoutAdmin from "@/components/Layout/admin";
 import useUser from "@/hooks/use-user";
 import { useRouter } from "next/router";
@@ -5,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
 import { toast } from "react-toastify";
+import { IUser } from "@/models/user";
 
 const EditUser = () => {
   const { data, error, detail, editUser } = useUser();
@@ -28,7 +30,7 @@ const EditUser = () => {
     getUser();
   }, [id]);
 
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
+  const onSubmit: SubmitHandler<any> = async (data: IUser) => {
     try {
       await editUser(data);
       toast.success("Edit successfully", {

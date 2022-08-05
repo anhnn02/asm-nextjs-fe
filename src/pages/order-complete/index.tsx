@@ -47,7 +47,7 @@ const OderCompleted = (props: Props) => {
           <Button.Transparent className="tw-mr-3" content="Back Home" />
         </Link>
         <Link href={path.public.ordersRoute}>
-          <Button.Fill content="Invoice Detail " />
+          <Button.Fill className={""} content="Invoice Detail " />
         </Link>
       </div>
     </div>

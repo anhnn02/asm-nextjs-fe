@@ -252,7 +252,7 @@ const CheckOut = () => {
                         <Link href={path.public.cartRoute}>
                             <Button.Transparent type="button" className="tw-bg-white" content={"Back to Cart"} />
                         </Link>
-                        <Button.Fill content={"Proceed to Complete"} />
+                        <Button.Fill className={""} content={"Proceed to Complete"} />
                     </div>
                 </form>
                 <div className={styles['sidebar_checkout']}>

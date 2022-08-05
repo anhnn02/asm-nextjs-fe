@@ -1,3 +1,4 @@
+import { IUser } from "@/models/user";
 import instance from "./instance";
 
 export const getAll = () => {
@@ -6,7 +7,7 @@ export const getAll = () => {
 export const removeItem = (id: any) => {
   return instance.delete(`/user/${id}`);
 };
-export const update = (user: any) => {
+export const update = (user: IUser) => {
   return instance.put(`/user/${user._id}`, user);
 };
 export const read = (id: any) => {

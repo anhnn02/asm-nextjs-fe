@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import LayoutAdmin from "@/components/Layout/admin";
 import React, { useEffect, useState } from "react";
@@ -8,6 +9,7 @@ import useInvoice from "@/hooks/use-invoice";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useSWR from "swr";
 import { formatPrice } from "@/utils/formatNumber";
+import { IIvoice } from "@/models/invoice";
 
 const EditInvoice = () => {
   const { data, error, detail, editInvoice } = useInvoice();
@@ -15,8 +17,8 @@ const EditInvoice = () => {
   //  if (error) return <div>Falese</div>  ;
   const router = useRouter();
   const id = router.query.id;
-  const [invoice, setInvoice] = useState();
-  const [total, setTotal] = useState();
+  const [invoice, setInvoice] = useState<IIvoice>();
+  const [total, setTotal] = useState<number>();
   // console.log(id);
 
   const {
@@ -31,7 +33,7 @@ const EditInvoice = () => {
     detail(id).then((res: any) => reset(res.invoice));
     const get = async () => {
       const data: any = await detail(id);
-      let totalPrice = 0;
+      let totalPrice : any = 0;
 
       const cart = data.invoiceDetails;
       cart.forEach((element) => {

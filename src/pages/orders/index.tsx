@@ -29,7 +29,6 @@ const OrderList = () => {
     useEffect(() => {
         const getUserOrder = async () => {
             const data = await detail(idUser);
-            const dataInvoice = data.invoices;
             setUserOrder(data);
         }
         getUserOrder()

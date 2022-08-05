@@ -1,15 +1,15 @@
 import LayoutAdmin from '@/components/Layout/admin'
 import useSlide from '@/hooks/use-slide'
-
+import { ISlide } from '@/models/slide'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
-import styles from '../../shop/Shop.module.scss'
+
 type Props = {}
 type TypeInput = {
 
-  image: string,
+  img: string,
 
 }
 const AddSlide = (props: Props) => {
@@ -20,7 +20,7 @@ const AddSlide = (props: Props) => {
   const [size, useSize] = useState();
   if (error) return <div>Loading...</div>
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: ISlide) => {
     await create(data);
     toast.success("Add successfully!", {
       position: 'top-center'

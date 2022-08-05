@@ -5,14 +5,16 @@ import Icon from "@/components/Icon";
 import { path } from "@/constants";
 import { addItemToCart } from "@/features/cart/cart.slice";
 import useProduct from "@/hooks/use-product";
+import { IProduct } from "@/models/product";
 import { formatPercent, formatPrice } from "@/utils/formatNumber";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import styles from "./TopListProduct.module.scss";
 
+type Props = {
+};
 
 const TopListProduct = () => {
   const { detail } = useProduct()
@@ -20,7 +22,8 @@ const TopListProduct = () => {
   const [listTop, setListTop] = useState();
   useEffect(() => {
     const get = async () => {
-      const data = await filter();
+      const data: any = await filter();
+      console.log(data)
       setListTop(data);
     };
     get();
@@ -112,8 +115,7 @@ const TopListProduct = () => {
                   </div>
                 ) : (
                   item.size.map((sizeItem) => (
-                    <span
-                      key={index}
+                    <span key={index}
                       className={styles["shop-product-variation__item"]}
                     >
                       {sizeItem}

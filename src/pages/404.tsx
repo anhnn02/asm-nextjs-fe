@@ -15,7 +15,7 @@ const NotFound = () => {
         />
         <div className="tw-my-6">
           <Link href="/">
-            <Button.Fill content={"Go to Home"} />
+            <Button.Fill className="" content={"Go to Home"} />
           </Link>
         </div>
       </div>

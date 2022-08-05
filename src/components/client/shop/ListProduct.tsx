@@ -4,6 +4,7 @@ import Icon from "@/components/Icon";
 import { path } from "@/constants";
 import { addItemToCart } from "@/features/cart/cart.slice";
 import useProduct from "@/hooks/use-product";
+import { IProduct } from "@/models/product";
 import { formatPercent, formatPrice } from "@/utils/formatNumber";
 import Link from "next/link";
 import React from "react";
@@ -12,7 +13,7 @@ import { toast } from "react-toastify";
 import styles from "./ListProduct.module.scss";
 
 type Props = {
-  data: {}[];
+  data: IProduct;
 };
 
 const ListProduct = ({ data }: Props) => {
@@ -62,7 +63,7 @@ const ListProduct = ({ data }: Props) => {
               <button
                 className={`${styles["shop-product__item-float"]} ${styles["shop-product__item-float--action"]}`}
               >
-                <Icon.HeartFill className={""} />
+                <Icon.HeartFill className={""}/>
               </button>
               <Link href={`${path.public.productRoute}/${item._id}`}>
                 <img src={item.img} alt="" />
@@ -106,8 +107,7 @@ const ListProduct = ({ data }: Props) => {
                     </div>
                   ) : (
                     item.size.map((sizeItem) => (
-                      <span
-                        key={index}
+                      <span key={index}
                         className={styles["shop-product-variation__item"]}
                       >
                         {sizeItem}
@@ -202,8 +202,7 @@ const ListProduct = ({ data }: Props) => {
                     </div>
                   ) : (
                     item.size.map((sizeItem) => (
-                      <span
-                        key={index}
+                      <span key={index}
                         className={styles["shop-product-variation__item"]}
                       >
                         {sizeItem}

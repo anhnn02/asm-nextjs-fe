@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { path } from "@/constants";
 import { useRouter } from "next/router";
+import { IUser } from "@/models/user";
 
 const Register = () => {
   const { register: signup } = useAuth();
@@ -18,7 +19,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
+  const onSubmit: SubmitHandler<any> = async (data: IUser) => {
     if (data.password != data.rePassword) {
       toast.error("Passwords do not match please try again!", {
         position: 'top-center'

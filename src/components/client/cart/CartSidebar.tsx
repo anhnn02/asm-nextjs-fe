@@ -69,7 +69,7 @@ const CartSidebar = (props: Props) => {
                                     </button>
                                     <span className={styles['cart-sidebar__quantity']}>{item.quantity}</span>
                                     <button className={styles['cart-sidebar__button']} onClick={() => dispatch(decrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}>
-                                        <Icon.Minus className={""} />
+                                        <Icon.Minus className={""}/>
                                     </button>
                                 </div>
                                 <div className={styles['cart-sidebar__info']}>

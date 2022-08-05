@@ -43,11 +43,11 @@ const Header = (props: Props) => {
         <div className={styles['header-top-info']}>
           <div className="">
             <span className={styles['header-top-info__item']}>
-              <Icon.Phone />
+              <Icon.Phone className={""}/>
               <span>+84 123456890</span>
             </span>
             <span className={styles['header-top-info__item']}>
-              <Icon.Email />
+              <Icon.Email className={""}/>
               <span>abcshoes@gmail.com</span>
             </span>
           </div>

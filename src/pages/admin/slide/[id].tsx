@@ -1,6 +1,7 @@
-import { read } from '@/api/slide'
+/* eslint-disable react-hooks/exhaustive-deps */
 import LayoutAdmin from '@/components/Layout/admin'
 import useSlide from '@/hooks/use-slide'
+import { ISlide } from '@/models/slide'
 import { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
@@ -8,7 +9,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
 type TypeInput = {
-    image: string,
+    img: string,
 
 }
 const EditSlide = () => {
@@ -25,7 +26,7 @@ const EditSlide = () => {
         getSlide();
     }, [id])
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: ISlide) => {
         console.log(data);
         await edit(data)
         toast.success("Edit successfully!", {

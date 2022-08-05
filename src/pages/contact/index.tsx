@@ -35,7 +35,7 @@ const Contact = (props: Props) => {
                         </textarea>
                     </div>
                     <div className={styles["form__button"]}>
-                       <Button.Transparent content={"Send"} />
+                       <Button.Transparent className={""} content={"Send"} />
                     </div>
 
                 </form>

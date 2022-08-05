@@ -14,9 +14,10 @@ import { useDispatch } from "react-redux";
 import { addItemToCart } from "@/features/cart/cart.slice";
 import { toast } from 'react-toastify';
 import { getAll, read, relatedProduct } from "@/api/product";
+import { IProduct } from "@/models/product";
 
 type ProductProps = {
-  product: any[];
+  product: IProduct;
   related: any[];
 };
 const DetailProduct = ({ product, related }: ProductProps) => {
@@ -33,10 +34,10 @@ const DetailProduct = ({ product, related }: ProductProps) => {
       quantity: quantity * 1,
       name: product.name,
       desc: product.desc,
-      regularPrice: product.regularPrice * 1,
-      salePrice: product.salePrice * 1,
+      regularPrice: +product.regularPrice * 1,
+      salePrice: +product.salePrice * 1,
       categoryProduct: product.category,
-      total: (product.salePrice) ? product.salePrice * quantity : product.regularPrice * quantity
+      total: (product.salePrice) ? +product.salePrice * quantity : +product.regularPrice * quantity
     }
     dispatch(addItemToCart(itemCart))
     setQuantity(1)
@@ -134,12 +135,12 @@ const DetailProduct = ({ product, related }: ProductProps) => {
           <div className={styles["number"]}>
             <button type="button" className={styles['cart-sidebar__button']}
               onClick={() => decrementQuantity()}>
-              <Icon.Dash />
+              <Icon.Dash className={""} />
             </button>
             <span>{quantity}</span>
             <button type="button" className={styles['cart-sidebar__button']}
               onClick={() => incrementQuantity()}>
-              <Icon.PlusRegular />
+              <Icon.PlusRegular className={""} />
             </button>
           </div>
           <Button.Fill className="tw-px-10" content={"Add to cart"} />
