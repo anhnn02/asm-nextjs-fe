@@ -10,6 +10,8 @@ import styles from "../styles/client/Home.module.scss";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
 import Services from "@/components/client/services/services"
 import SubBanner from '@/components/client/sub-banner/subBanner'
+import BigDiscountProduct from "@/components/client/BigDiscountProducts/BigDiscountProducts";
+
 
 const Home: NextPage = () => {
   const notify = () => {
@@ -23,6 +25,8 @@ const Home: NextPage = () => {
     //     progress: undefined,
     // });
   };
+
+
   return (
     <div className={styles["homepage"]}>
       <div className={styles["section"]}>Slide</div>
@@ -45,10 +49,22 @@ const Home: NextPage = () => {
             </h4>
           </div>
         </div>
-
         <div className="tw-grid tw-grid-cols-4 tw-gap-6">
           <TopListProduct />
         </div>
+      </div>
+      <div className={styles["section"]}>
+        <div className="tw-flex tw-gap-1">
+          <div className="tw-mt-4">
+            <Icon.Gift className={"tw-text-xl tw-font-semibold tw-text-primary"} />
+          </div>
+          <div className="">
+            <h4 className="tw-font-semibold tw-text-2xl tw-py-4">
+              Big Discount
+            </h4>
+          </div>
+        </div>
+        <BigDiscountProduct />
       </div>
       <div className={styles["banner"]}>
         <SubBanner />
@@ -59,7 +75,6 @@ const Home: NextPage = () => {
       <div className={styles["section"]}>
         <Services />
       </div>
-      
     </div >
   );
 };
