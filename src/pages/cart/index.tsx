@@ -9,7 +9,7 @@ import {
 } from "@/api/addressCheckout";
 import Button from "@/components/Button";
 import { path } from "@/constants";
-import { resetCart } from "@/features/cart/cart.slice";
+import { decrementQuantity, incrementQuantity, removeItemFromCart, resetCart } from "@/features/cart/cart.slice";
 import useInvoice from "@/hooks/use-invoice";
 import useInvoiceDetail from "@/hooks/use-invoiceDetail";
 import { formatPrice } from "@/utils/formatNumber";
@@ -21,6 +21,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import styles from "./Cart.module.scss";
 import Icon from "@/components/Icon";
+import { confirmAlert } from "react-confirm-alert";
+import { optionDanger } from "@/utils/optionToast";
 
 const CartPage = () => {
   const { create } = useInvoice();
@@ -59,6 +61,11 @@ const CartPage = () => {
       setDistricts(districts);
     }
   };
+  //Cart
+  const removeItemCart = (id: String) => {
+    confirmAlert(optionDanger(() => dispatch(removeItemFromCart(id))))
+  }
+
   const handleChangeDistrict = async (code: number | string) => {
     if (code == "") {
       setWards([]);
@@ -145,9 +152,8 @@ const CartPage = () => {
     <div>
       <div className="tw-text-center">
         <div
-          className={`${
-            styles["progress_of_customer"]
-          } ${"!tw-inline-block tw-pt-[12px]"}`}
+          className={`${styles["progress_of_customer"]
+            } ${"!tw-inline-block tw-pt-[12px]"}`}
         >
           <div className={styles["format_progress_of_customer"]}>
             <div className={styles["step_progress-active"]}>
@@ -172,234 +178,67 @@ const CartPage = () => {
           className={styles["form_checkout"]}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className={styles["row_progress_of_customer"]}>
-            <div className="tw-flex">
-              <div className="">
-                <img width={100} src="https://i.imgur.com/gXf9BcR.png" alt="" />
-              </div>
-              <div className="tw-flex tw-justify-between tw-flex-col tw-pl-5">
-                <div className="tw-font-medium tw-text-xl">
-                  <span>Lord 2019</span>
-                </div>
-                <div className="tw-text-my-gray ">
-                  <span>$250.00 x 1</span>{" "}
-                  <span className="tw-font-medium tw-text-primary">
-                    $250.00
-                  </span>
+          {subTotal == 0 ?
+            <div className="tw-h-screen tw-flex tw-text-center tw-p-3">
+              <div className="tw-mx-auto">
+                <img
+                  className="tw-inline-block tw-w-40"
+                  src="https://bonik-react.vercel.app/assets/images/logos/shopping-bag.svg"
+                  alt=""
+                />
+                <div className="tw-my-6">
+                  <span className="tw-block">Your shopping bag is empty.</span>
+                  <span>Start shopping</span>
                 </div>
               </div>
             </div>
-            <div className="tw-flex tw-justify-between tw-flex-col">
-              <button className="tw-text-right ">
-                <Icon.Close className="tw-text-3xl tw-leading-none tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
-              </button>
-              <div className="tw-space-x-2">
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3  
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary  !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.Minus />
-                </button>
-                <span className={styles["cart-sidebar__quantity"]}>1</span>
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3 tw-px-4 
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.PlusRegular />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className={styles["row_progress_of_customer"]}>
-            <div className="tw-flex">
-              <div className="">
-                <img width={100} src="https://i.imgur.com/gXf9BcR.png" alt="" />
-              </div>
-              <div className="tw-flex tw-justify-between tw-flex-col tw-pl-5">
-                <div className="tw-font-medium tw-text-xl">
-                  <span>Lord 2019</span>
+            : cart.map((item, index) => (
+              <div className={styles["row_progress_of_customer"]} key={index}>
+                <div className="tw-flex">
+                  <div className="">
+                    <img width={100} className={styles['img-item-cart']} src={item.img} alt="" />
+                  </div>
+                  <div className="tw-flex tw-justify-between tw-flex-col tw-pl-5">
+                    <div className="tw-font-semibold tw-text-xl">
+                      <span>{item.name}</span>
+                    </div>
+                    <div className="tw-text-my-gray ">
+                      <span>Size: {item.size}</span>
+                    </div>
+                    <div className="tw-text-my-gray ">
+                      <span>{formatPrice(item.salePrice)}
+                        {(item?.salePrice) ? <span className="tw-line-through tw-pl-1">{formatPrice(item?.regularPrice)}</span> : ""}
+                        {" "}x {item.quantity}</span>{" "}
+                      <span className="tw-font-semibold tw-text-primary">
+                        {formatPrice(item.total)}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div className="tw-text-my-gray ">
-                  <span>$250.00 x 1</span>{" "}
-                  <span className="tw-font-medium tw-text-primary">
-                    $250.00
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="tw-flex tw-justify-between tw-flex-col">
-              <button className="tw-text-right ">
-                <Icon.Close className="tw-text-3xl tw-leading-none tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
-              </button>
-              <div className="tw-space-x-2">
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3  
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary  !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.Minus />
-                </button>
-                <span className={styles["cart-sidebar__quantity"]}>1</span>
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3 tw-px-4 
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.PlusRegular />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className={styles["row_progress_of_customer"]}>
-            <div className="tw-flex">
-              <div className="">
-                <img width={100} src="https://i.imgur.com/gXf9BcR.png" alt="" />
-              </div>
-              <div className="tw-flex tw-justify-between tw-flex-col tw-pl-5">
-                <div className="tw-font-medium tw-text-xl">
-                  <span>Lord 2019</span>
-                </div>
-                <div className="tw-text-my-gray ">
-                  <span>$250.00 x 1</span>{" "}
-                  <span className="tw-font-medium tw-text-primary">
-                    $250.00
-                  </span>
+                <div className="tw-flex tw-justify-between tw-flex-col">
+                  <button className="tw-text-right" onClick={() => removeItemCart(item.idInCart)}>
+                    <Icon.Close className="tw-text-3xl tw-leading-none tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
+                  </button>
+                  <div className="tw-space-x-2">
+                    <button onClick={() => dispatch(decrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}
+                      className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3  
+                  hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary  !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
+                    >
+                      <Icon.Minus className={""} />
+                    </button>
+                    <span className={styles["cart-sidebar__quantity"]}>{item.quantity}</span>
+                    <button onClick={() => dispatch(incrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}
+                      className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3 tw-px-4 
+                  hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
+                    >
+                      <Icon.PlusRegular className={""} />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="tw-flex tw-justify-between tw-flex-col">
-              <button className="tw-text-right ">
-                <Icon.Close className="tw-text-3xl tw-leading-none tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
-              </button>
-              <div className="tw-space-x-2">
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3  
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary  !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.Minus />
-                </button>
-                <span className={styles["cart-sidebar__quantity"]}>1</span>
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3 tw-px-4 
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.PlusRegular />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className={styles["row_progress_of_customer"]}>
-            <div className="tw-flex">
-              <div className="">
-                <img width={100} src="https://i.imgur.com/gXf9BcR.png" alt="" />
-              </div>
-              <div className="tw-flex tw-justify-between tw-flex-col tw-pl-5">
-                <div className="tw-font-medium tw-text-xl">
-                  <span>Lord 2019</span>
-                </div>
-                <div className="tw-text-my-gray ">
-                  <span>$250.00 x 1</span>{" "}
-                  <span className="tw-font-medium tw-text-primary">
-                    $250.00
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="tw-flex tw-justify-between tw-flex-col">
-              <button className="tw-text-right ">
-                <Icon.Close className="tw-text-3xl tw-leading-none tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
-              </button>
-              <div className="tw-space-x-2">
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3  
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary  !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.Minus />
-                </button>
-                <span className={styles["cart-sidebar__quantity"]}>1</span>
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3 tw-px-4 
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.PlusRegular />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className={styles["row_progress_of_customer"]}>
-            <div className="tw-flex">
-              <div className="">
-                <img width={100} src="https://i.imgur.com/gXf9BcR.png" alt="" />
-              </div>
-              <div className="tw-flex tw-justify-between tw-flex-col tw-pl-5">
-                <div className="tw-font-medium tw-text-xl">
-                  <span>Lord 2019</span>
-                </div>
-                <div className="tw-text-my-gray ">
-                  <span>$250.00 x 1</span>{" "}
-                  <span className="tw-font-medium tw-text-primary">
-                    $250.00
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="tw-flex tw-justify-between tw-flex-col">
-              <button className="tw-text-right ">
-                <Icon.Close className="tw-text-3xl tw-leading-none tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
-              </button>
-              <div className="tw-space-x-2">
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3  
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary  !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.Minus />
-                </button>
-                <span className={styles["cart-sidebar__quantity"]}>1</span>
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3 tw-px-4 
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.PlusRegular />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className={styles["row_progress_of_customer"]}>
-            <div className="tw-flex">
-              <div className="">
-                <img width={100} src="https://i.imgur.com/gXf9BcR.png" alt="" />
-              </div>
-              <div className="tw-flex tw-justify-between tw-flex-col tw-pl-5">
-                <div className="tw-font-medium tw-text-xl">
-                  <span>Lord 2019</span>
-                </div>
-                <div className="tw-text-my-gray ">
-                  <span>$250.00 x 1</span>{" "}
-                  <span className="tw-font-medium tw-text-primary">
-                    $250.00
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="tw-flex tw-justify-between tw-flex-col">
-              <button className="tw-text-right ">
-                <Icon.Close className="tw-text-3xl tw-leading-none tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
-              </button>
-              <div className="tw-space-x-2">
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3  
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary  !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.Minus />
-                </button>
-                <span className={styles["cart-sidebar__quantity"]}>1</span>
-                <button
-                  className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3 tw-px-4 
-                hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
-                >
-                  <Icon.PlusRegular />
-                </button>
-              </div>
-            </div>
-          </div>
+            )
+            )
+          }
         </form>
 
         <div className={`${styles["sidebar_checkout"]} `}>
