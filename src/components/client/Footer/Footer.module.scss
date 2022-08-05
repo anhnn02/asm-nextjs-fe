@@ -1,5 +1,5 @@
 .footer {
-    @apply tw-bg-secondary;
+    @apply tw-bg-secondary ;
 
     &-content {
         @apply tw-w-[var(--container)] tw-m-auto tw-py-12 tw-px-3 tw-grid tw-grid-cols-[360px_1fr_1.5fr_1.5fr] tw-gap-5 tw-text-[#aeb4be];

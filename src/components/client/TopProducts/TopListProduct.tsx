@@ -52,6 +52,7 @@ const TopListProduct = () => {
       position: 'top-center'
     })
   }
+  if(!listTop) return <>Loading</>
   return (
     <>
       {listTop?.map((item, index) => (
