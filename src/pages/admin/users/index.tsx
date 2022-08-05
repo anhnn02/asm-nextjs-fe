@@ -66,7 +66,7 @@ const UserList = () => {
         </div>
       ),
       name: item.name,
-      date: item.createdAt.split("", 10),
+      date: item.createdAt.split('', 10),
       email: item.email,
 
       role: (

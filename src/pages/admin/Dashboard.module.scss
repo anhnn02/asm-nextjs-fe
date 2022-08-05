@@ -1,0 +1,62 @@
+.box {
+    @apply tw-border-solid tw-border-l-4  tw-rounded-[var(--rounded-1)] ;
+}
+.content {
+    @apply tw-flex tw-rounded-[var(--rounded-1)]  tw-justify-between tw-items-center tw-p-5 ;
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+}
+.site-statistic-demo-card{
+    padding: 30px;
+        background: #ececec;
+}
+.table {
+    border: 1px solid black;
+        border-collapse: collapse;
+}
+.th, .td {
+    border: 1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+}
+////
+.box_content {
+    @apply tw-grid tw-flex-grow tw-card tw-p-5 tw-mt-12 ;
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+}
+.item {
+    @apply   tw-rounded-[var(--rounded-1)] tw-py-6 tw-text-center    ;
+    // box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+}
+// .cont {
+//     @apply tw-mt-4 ;
+// }
+// -----table
+.styled-table {
+    border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 500px;
+        // box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+       
+}
+.styled-table thead tr {
+    background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
