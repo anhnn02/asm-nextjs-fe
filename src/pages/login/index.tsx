@@ -63,10 +63,17 @@ const Login = () => {
               type="text"
               className={styles["form-input"]}
               placeholder="Exmple@gmail.com"
-              {...register("email", { required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ })}
+              {...register("email", {
+                required: true,
+                pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+              })}
             />
-            {errors?.email?.type == 'required' && (<span className="my-error">Email is required</span>)}
-            {errors?.email?.type == 'pattern' && (<span className="my-error">Field must be a valid email</span>)}
+            {errors?.email?.type == "required" && (
+              <span className="my-error">Email is required</span>
+            )}
+            {errors?.email?.type == "pattern" && (
+              <span className="my-error">Field must be a valid email</span>
+            )}
           </div>
           <div className={styles["form__label"]}>
             <label
@@ -81,8 +88,12 @@ const Login = () => {
               placeholder="********"
               {...register("password", { required: true, minLength: 5 })}
             />
-            {errors?.password?.type == 'required' && (<span className="my-error">Password is required</span>)}
-
+            {errors?.password?.type == "required" && (
+              <span className="my-error">Password is required</span>
+            )}
+            {errors?.name?.type == "minLength" && (
+              <span className="my-error">Min length must be at least 5</span>
+            )}
           </div>
           <br />
           <Button.Fill className={styles["btn"]} content="Login" />
@@ -91,10 +102,13 @@ const Login = () => {
             className={styles["btn"]}
             content="Continue with Facebook"
           />
-          <div className={styles["google"]}>  <Button.Fill2
-            className={styles["btn"]}
-            content="Continue with Google"
-          /></div>
+          <div className={styles["google"]}>
+            {" "}
+            <Button.Fill2
+              className={styles["btn"]}
+              content="Continue with Google"
+            />
+          </div>
         </form>
         <div className={styles["lg1"]}>
           Don’t have account?
