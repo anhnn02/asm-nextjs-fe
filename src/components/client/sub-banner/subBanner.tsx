@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import styles from './SubBanner.module.scss'
@@ -9,11 +10,10 @@ const SubBanner = (props: Props) => {
     <>
       <div className={styles["banner"]}>
         <div className={styles["banner01"]}>
-          {" "}
           <span>
             <img
               className={styles["img1"]}
-              src="https://banner.designer.com.vn/wp-content/uploads/2020/06/gi%C3%A0y-nike.jpg"
+              src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
             />
           </span>
         </div>
@@ -21,7 +21,7 @@ const SubBanner = (props: Props) => {
           <span>
             <img
               className={styles["img2"]}
-              src="http://file.hstatic.net/1000178110/file/banner_1200x628__copy__37ae887e552447b8b9bd2db3299b3139_grande.png"
+              src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
             />
           </span>
         </div>

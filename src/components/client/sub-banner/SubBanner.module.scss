@@ -1,71 +1,67 @@
-    .banner01 {
-        padding-right: 30px;
-    }
-    
-    .img1,
-    .img2 {
-        height: 320px;
-    }
-    
-    .banner {
-        display: flex;
-    }
-    
-    .icon01 {
-        background-color: #e8edef;
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        margin: 20px;
-        position: absolute;
-    }
-    
-    #icon01 {
-        width: 30px;
-        height: 30px;
-        padding-top: 10px
-    }
-    
-    .text01 {
-        font-size: 20px;
-        font-weight: 500;
-        font-family: Arial;
-        padding: 10px;
-    }
-    
-    .text02 {
-        font-size: 15px;
-        font-family: Arial;
-        color: grey;
-        padding: 10px;
-        line-height: 20px
-    }
-    
-    .boxsmall {
-        width: 220px;
-        margin: 30px;
-        padding-top: 5px;
-        padding-bottom: 10px;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .boxbig {
-        width: 290px;
-        float: left;
-        border-radius: 5px;
-        margin: 16px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .boxbig:hover {
-        box-shadow: 1px 1px 5px 5px #f2f0f0;
-    }
-    
-    .section-center {
-        display: flex;
-        justify-content: center;
-    }
+
+
+.img1,
+.img2 {
+    height: 320px;
+    @apply tw-w-full tw-object-cover
+}
+
+.banner {
+    @apply tw-grid tw-grid-cols-[1fr_2fr] tw-gap-10
+}
+
+// .icon01 {
+//     background-color: #e8edef;
+//     width: 52px;
+//     height: 52px;
+//     border-radius: 50%;
+//     margin: 20px;
+//     position: absolute;
+// }
+
+// #icon01 {
+//     width: 30px;
+//     height: 30px;
+//     padding-top: 10px
+// }
+
+// .text01 {
+//     font-size: 20px;
+//     font-weight: 500;
+//     font-family: Arial;
+//     padding: 10px;
+// }
+
+// .text02 {
+//     font-size: 15px;
+//     font-family: Arial;
+//     color: grey;
+//     padding: 10px;
+//     line-height: 20px
+// }
+
+// .boxsmall {
+//     margin: 30px;
+//     padding-top: 5px;
+//     padding-bottom: 10px;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// .boxbig {
+//     border-radius: 5px;
+//     margin: 16px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     text-align: center;
+// }
+
+// .boxbig:hover {
+//     box-shadow: 1px 1px 5px 5px #f2f0f0;
+// }
+
+.section-center {
+    display: flex;
+    justify-content: center;
+}
