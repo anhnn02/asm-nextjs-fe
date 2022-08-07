@@ -7,6 +7,7 @@ import styles from "./Category.module.scss";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
 import useCate from "@/hooks/use-category";
 import MyBtn from "@/components/Button";
+import { path } from "@/constants";
 
 type InvoiceProps = {
   data: {}[];
@@ -41,7 +42,8 @@ const CategoryList = () => {
             type="primary"
             size="large"
           >
-            <Link href={`/admin/categories/${item._id}`}>
+            {/* <Link href={`/admin/categories/${item._id}`}> */}
+            <Link href={`${path.private.categoriesRoute}/${item._id}`}>
               <a href="">
                 <i className="bi bi-pencil-square"></i>
               </a>
@@ -64,7 +66,7 @@ const CategoryList = () => {
     <div>
       <div className={styles["header_content"]}>
         <h4 className={stylesAdmin["title-admin"]}>List Categories</h4>
-        <Link href="/admin/categories/add">
+        <Link href={`${path.private.categoriesRoute}/add`}>
           <MyBtn.Fill className={""} content="Add category" />
         </Link>
       </div>

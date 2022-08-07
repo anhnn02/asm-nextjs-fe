@@ -58,7 +58,8 @@ const VoucherPage = () => {
       action: (
         <div>
           <Button className="tw-mx-1 button-action" type="primary" size="large">
-            <Link href={`/admin/vouchers/${item._id}`}>
+            <Link href={`${path.private.voucherRoute}/>${item._id}`}>
+
               <a href="">
                 <i className="bi bi-pencil-square"></i>
               </a>
@@ -83,7 +84,7 @@ const VoucherPage = () => {
         <div>
           <h4 className={stylesAdmin["title-admin"]}>List Voucher</h4>
         </div>
-        <Link href="/admin/vouchers/add">
+        <Link href={`${path.private.voucherRoute}/add`}>
           <MyBtn.Fill content="Add Voucher" />
         </Link>
       </div>

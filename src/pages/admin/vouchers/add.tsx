@@ -10,6 +10,7 @@ import styles from "./Product.module.scss";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
 import Button from "@/components/Button";
 import { toast } from "react-toastify";
+import { path } from "@/constants";
 
 type Props = {};
 type TypeInput = {
@@ -46,7 +47,7 @@ const AddVoucher = (props: Props) => {
         <div>
           <h1 className={stylesAdmin["title-admin"]}>Add voucher</h1>
         </div>
-        <Link href="/admin/vouchers/">
+        <Link href={`${path.private.voucherRoute}`}>
           <button className={stylesAdmin["btn-multichoice_item"]}>
             List voucher
           </button>

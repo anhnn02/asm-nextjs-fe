@@ -8,6 +8,7 @@ import useSlide from '@/hooks/use-slide';
 import styles from './Slide.module.scss'
 import stylesAdmin from '@/styles/admin/Admin.module.scss';
 import MyBtn from '@/components/Button';
+import { path } from '@/constants';
 
 type Props = {}
 
@@ -43,9 +44,9 @@ const SlideList = (props: Props) => {
   })
   return (
     <div>
-      <div className={styles['head-admin-slide']}>
-        <h4 className={stylesAdmin['title-admin']}>List banner</h4>
-        <Link href={`/admin/slide/add`}>
+      <div className={styles["head-admin-slide"]}>
+        <h4 className={stylesAdmin["title-admin"]}>List banner</h4>
+        <Link href={`${path.private.slidesRoute}/add`}>
           <MyBtn.Fill className={""} content="Add banner" />
         </Link>
       </div>

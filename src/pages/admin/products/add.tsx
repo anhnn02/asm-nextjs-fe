@@ -12,6 +12,7 @@ import stylesAdmin from '@/styles/admin/Admin.module.scss'
 import Button from '@/components/Button'
 import { toast } from 'react-toastify'
 import { IProduct } from '@/models/product'
+import { path } from '@/constants'
 
 type Props = {}
 type TypeInput = {
@@ -57,7 +58,7 @@ const AddProduct = (props: Props) => {
           <div>
             <h1 className={stylesAdmin["title-admin"]}>Add product</h1>
           </div>
-          <Link href="/admin/products/">
+          <Link href={`${path.private.productsRoute}`}>
             <button className={stylesAdmin["btn-multichoice_item"]}>
               List product
             </button>
@@ -116,8 +117,6 @@ const AddProduct = (props: Props) => {
                           <span>Regular Price is required</span>
                         </div>
                       )}
-                      
-                      
                     </div>
                   </div>
                   <div className={stylesAdmin["row_2-col"]}>
