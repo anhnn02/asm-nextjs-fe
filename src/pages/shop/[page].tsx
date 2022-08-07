@@ -52,10 +52,12 @@ const ProductPage = (props: Props) => {
                     <span className={styles['shop-search__search-text']}></span>
                 </div>
                 <div className={styles['shop-search__search-filter']}>
-                    <span className={styles['shop-search__search-text']}>Short by</span>
+                    <span className={styles['shop-search__search-text']}>Sort by</span>
                     <select onChange={(e) => handleOnChange(e.target.value)}
                         className="tw-select tw-select-primary tw-border-[#DAE1E7] focus:tw-border-primary focus:tw-outline-primary tw-w-[160px] tw-max-w-xs">
                         <option disabled selected>Default</option>
+                        <option value="name">Name: A-Z</option>
+                        <option value="-name">Name: Z-A</option>
                         <option value="-salePrice">Price: Low-High</option>
                         <option value="salePrice">Price: High-Low</option>
                     </select>
