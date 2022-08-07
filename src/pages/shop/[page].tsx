@@ -2,6 +2,7 @@
 import { getAll as getAllCate } from '@/api/category'
 import { getAll as getAllProduct, filterPage } from '@/api/product'
 import ListProduct from '@/components/client/shop/ListProduct'
+import Icon from '@/components/Icon'
 import { getProductPage } from '@/features/products/products.slice'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -118,9 +119,13 @@ const ProductPage = (props: Props) => {
                         <ListProduct data={productPage} />
                     </div>
                     <div className={styles['shop-product-pagination']}>
+                        <div className={styles['pagination_item-selected']}><Icon.ChevronLeft className={styles['pag_previous']} /></div>
                         {totalPage.map((page, index) => (
-                            <span key={index} className="show-page"><Link href={`/shop/${page}`} className="page-number"><a href="">{page}</a></Link></span>
+                            <div key={index} className={styles['item-pagination']}>
+                                <span className="show-page"><Link href={`/shop/${page}`} className="page-number"><a href="">{page}</a></Link></span>
+                            </div>
                         ))}
+                        <div className={styles['pagination_item-selected']}><Icon.ChevronRight className={styles['pag_next']} /></div>
                     </div>
                 </div>
             </div>

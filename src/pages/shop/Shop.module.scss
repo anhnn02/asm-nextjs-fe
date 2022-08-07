@@ -156,5 +156,26 @@
                 @apply tw-grid tw-grid-cols-3 tw-gap-10;
             }
         }
+
+        .shop-product-pagination {
+            margin-top: 2.0rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .item-pagination {
+            border: 1px solid transparent;
+            display: flex;
+            outline: none;
+            margin: 0 5px;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary);
+            border-radius: 50%;
+            height: 32px;
+            width: 32px;
+            transition: all 150ms ease-in-out 0s;
+        }
     }
 }

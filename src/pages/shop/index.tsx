@@ -12,6 +12,7 @@ import { Pagination } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { getProductPage, listProduct } from '@/features/products/products.slice'
+import Icon from '@/components/Icon'
 
 type ProductProps = {
   products: any[],
@@ -121,12 +122,16 @@ const Shop = ({ products, categories }: ProductProps) => {
         </div>
         <div className={styles['shop-product']}>
           <div className={styles['shop-product-list']}>
-              <ListProduct data={productPage} />
+            <ListProduct data={productPage} />
           </div>
           <div className={styles['shop-product-pagination']}>
+            <div className={styles['pagination_item-selected']}><Icon.ChevronLeft className={styles['pag_previous']} /></div>
             {totalPage.map((page, index) => (
-              <span key={index} className="show-page"><Link href={`/shop/${page}`} className="page-number"><a href="">{page}</a></Link></span>
+              <div key={index} className={styles['item-pagination']}>
+                <span className="show-page"><Link href={`/shop/${page}`} className="page-number"><a href="">{page}</a></Link></span>
+              </div>
             ))}
+            <div className={styles['pagination_item-selected']}><Icon.ChevronRight className={styles['pag_next']} /></div>
           </div>
         </div>
       </div>
