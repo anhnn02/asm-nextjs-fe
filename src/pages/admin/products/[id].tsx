@@ -20,7 +20,6 @@ const EditProduct = (props: Props) => {
     const router = useRouter();
     const { id } : any = router.query;
     const { data: categories } = useCategory();
-    console.log("first", categories)
     const { editProduct } = useProduct();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     useEffect(() => {

@@ -27,7 +27,6 @@ const EditSlide = () => {
     }, [id])
 
     const onSubmit = async (data: ISlide) => {
-        console.log(data);
         await edit(data)
         toast.success("Edit successfully!", {
             position: 'top-center'

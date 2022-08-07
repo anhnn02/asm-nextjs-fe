@@ -19,7 +19,6 @@ const EditInvoice = () => {
   const id = router.query.id;
   const [invoice, setInvoice] = useState<IIvoice>();
   const [total, setTotal] = useState<number>();
-  // console.log(id);
 
   const {
     register,

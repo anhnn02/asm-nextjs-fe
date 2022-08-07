@@ -12,7 +12,6 @@ const useInvoiceDetail = () => {
 
   const detail = async (id: any) => {
     const dataDetail = await read(id);
-    // console.log(dataDetail); 
     return dataDetail;
   };
 

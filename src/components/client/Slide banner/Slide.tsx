@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import userSlice from "@/features/user/user.slice";
 import useSlide from "@/hooks/use-slide";
@@ -17,15 +18,13 @@ const Banner = (props: Props) => {
       <div className={styles["slide-container"]} >
         <Slide>
           {data.map((item: any) => (
-            <>
-              <div className={styles["slide__item"]}>
-                <div className={styles["each-slide"]} key={item._id}>
+            <div className={styles["slide__item"]} key={item._id}>
+                <div className={styles["each-slide"]} >
                   <div className={styles["image-container"]}>
                     <img src={item.img}  />
                   </div>
                 </div>
               </div>
-            </>
           ))}
         </Slide>
       </div>

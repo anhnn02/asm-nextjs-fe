@@ -7,6 +7,7 @@ import Services from "@/components/client/services/services"
 import SubBanner from '@/components/client/sub-banner/subBanner'
 import BigDiscountProduct from "@/components/client/BigDiscountProducts/BigDiscountProducts";
 import Icon from "@/components/Icon";
+import Category from "@/components/client/category/category";
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +15,9 @@ const Home: NextPage = () => {
       <div className={styles["section"]}>
         <Banner />
       </div>
-
+      <div className={styles["section"]}>
+        <Category />
+      </div>
       <div className={styles["section"]}>
         <div className={styles["banner"]}>
           <SubBanner />
@@ -52,12 +55,6 @@ const Home: NextPage = () => {
           </div>
         </div>
         <BigDiscountProduct />
-      </div>
-      <div className={styles["banner"]}>
-        <SubBanner />
-      </div>
-      <div className={styles["section"]}>Slide</div>
-      <div className={styles["section"]}>
       </div>
       <div className={styles["section"]}>
         <Services />

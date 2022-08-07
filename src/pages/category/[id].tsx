@@ -12,7 +12,6 @@ type ProductProps = {
     categories: {}[]
 }
 const Category = ({ products, categories }: ProductProps) => {
-    console.log("first", products)
     return (
         <div className={styles['shop']}>
             <div className={styles['shop-search']}>

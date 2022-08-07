@@ -23,7 +23,6 @@ const Dashboard = () => {
       const dataCP = await detail(element._id);
       resultCate.push(dataCP);
       setCateIn(resultCate);
-      console.log("catee", cateIn);
     });
   }, []);
 

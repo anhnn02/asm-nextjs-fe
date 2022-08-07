@@ -20,7 +20,6 @@ const EditVoucher = (props: Props) => {
   const router = useRouter();
   const { id } = router.query;
   
-  console.log("first", );
   const { edit } = useVoucher();
   const {
     register,

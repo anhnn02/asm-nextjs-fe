@@ -34,13 +34,8 @@ const OrderDetail = () => {
     const btnCancelOrder = async () => {
         const confirm = window.confirm('You co muon huy order no ?')
         if (confirm) {
-            // console.log(invoice);
-            // console.log(id)
-            console.log('abc', invoice)
             const updateInvoice = await editInvoice({ ...invoice.invoice, status: 4 });
-            console.log('updateInvoice', updateInvoice);
             const getInvoice = await detail(id);
-            console.log('getInvoice', getInvoice)
             setInvoice(getInvoice);
         }
     }

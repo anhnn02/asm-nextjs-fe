@@ -23,16 +23,13 @@ const TopListProduct = () => {
   useEffect(() => {
     const get = async () => {
       const data: any = await filter();
-      console.log(data)
       setListTop(data);
     };
     get();
   }, []);
 
   const btnQuickAddToCart = async (id) => {
-    console.log(id)
     const data: any = await detail(id)
-    console.log(data);
     const itemQuickAddToCart = {
       idInCart: data._id + '_' + data.size,
       idPro: data._id,
@@ -46,7 +43,6 @@ const TopListProduct = () => {
       categoryProduct: data.product,
       total: (data.salePrice) ? data.salePrice * 1 : data.regularPrice * 1
     }
-    console.log(itemQuickAddToCart);
     dispatch(addItemToCart(itemQuickAddToCart));
     toast.success("Add to cart successfully!", {
       position: 'top-center'

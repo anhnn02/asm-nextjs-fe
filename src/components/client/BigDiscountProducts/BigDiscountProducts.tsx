@@ -33,14 +33,12 @@ const BigDiscountProduct = () => {
     useEffect(() => {
         const get = async () => {
             const data = await filter();
-            console.log(data)
             const newData = data.map((item, index) => {
                 return {
                     ...item, percent: 100 - ((+item.salePrice / +item.regularPrice) * 100)
                 }
             })
             newData.sort(function (a, b) { return b.percent - a.percent });
-            console.log(newData)
             setListDiscount(newData);
         };
         get();
@@ -49,9 +47,7 @@ const BigDiscountProduct = () => {
 
 
     const btnQuickAddToCart = async (id) => {
-        console.log(id)
         const data: any = await detail(id)
-        console.log(data);
         const itemQuickAddToCart = {
             idInCart: data._id + '_' + data.size,
             idPro: data._id,
@@ -65,7 +61,6 @@ const BigDiscountProduct = () => {
             categoryProduct: data.product,
             total: (data.salePrice) ? data.salePrice * 1 : data.regularPrice * 1
         }
-        console.log(itemQuickAddToCart);
         dispatch(addItemToCart(itemQuickAddToCart));
         toast.success("Add to cart successfully!", {
             position: 'top-center'
