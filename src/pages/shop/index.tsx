@@ -1,18 +1,45 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-import { getAll } from '@/api/product'
+import { filterPage, getAll } from '@/api/product'
 import { getAll as getAllCate } from '@/api/category'
 import ListProduct from '@/components/client/shop/ListProduct'
 import { GetStaticProps, GetStaticPropsContext } from 'next'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Shop.module.scss'
 import { path } from '@/constants'
+import { Pagination } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { getProductPage, listProduct } from '@/features/products/products.slice'
 
 type ProductProps = {
   products: any[],
   categories: {}[]
 }
 const Shop = ({ products, categories }: ProductProps) => {
+  let [reRenderPage, setReRenderPage] = useState(0);
+  const router = useRouter()
+
+  const { page } = router.query;
+  const [productPage, setProductPage] = useState();
+  const totalPage = [];
+  for (let index = 1; index <= Math.ceil(products.length / 9); index++) {
+    totalPage.push(index)
+  }
+
+  useEffect(() => {
+    if (+page > totalPage.length) {
+      router.push('')
+    }
+    const getProductInPage = async () => {
+      const data = await filterPage(1);
+      setProductPage(data);
+    }
+    getProductInPage()
+  }, [page, reRenderPage])
+
+
   return (
     <div className={styles['shop']}>
       <div className={styles['shop-search']}>
@@ -43,7 +70,7 @@ const Shop = ({ products, categories }: ProductProps) => {
                   <Link href={`${path.public.categoryRoute}/${item._id}`}><a href="" className={styles['shop-sidebar__cate-item']}>{item.name}</a></Link>
                 </li>
               ))}
-             
+
             </ul>
           </div>
           <div className={styles['shop-sidebar-section']}>
@@ -94,9 +121,12 @@ const Shop = ({ products, categories }: ProductProps) => {
         </div>
         <div className={styles['shop-product']}>
           <div className={styles['shop-product-list']}>
-            <ListProduct data={products} />
+              <ListProduct data={productPage} />
           </div>
           <div className={styles['shop-product-pagination']}>
+            {totalPage.map((page, index) => (
+              <span key={index} className="show-page"><Link href={`/shop/${page}`} className="page-number"><a href="">{page}</a></Link></span>
+            ))}
           </div>
         </div>
       </div>
@@ -107,10 +137,10 @@ const Shop = ({ products, categories }: ProductProps) => {
 export const getStaticProps: GetStaticProps<ProductProps> = async (context: GetStaticPropsContext) => {
   const data = await (await getAll())
   const dataCate = await (await getAllCate())
-  if(!data) return {
+  if (!data) return {
     notFound: true
   }
-  if(!dataCate) return {
+  if (!dataCate) return {
     notFound: true
   }
   return {
