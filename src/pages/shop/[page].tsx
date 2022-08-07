@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { getAll as getAllCate } from '@/api/category'
-import { getAll as getAllProduct, filterPage } from '@/api/product'
+import { getAll as getAllProduct, filterPage, filterProduct } from '@/api/product'
 import ListProduct from '@/components/client/shop/ListProduct'
 import Icon from '@/components/Icon'
 import { path } from '@/constants'
-import { getProductPage } from '@/features/products/products.slice'
+import { getProductFilter, getProductPage } from '@/features/products/products.slice'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
@@ -13,18 +13,20 @@ import styles from './Shop.module.scss'
 type Props = {}
 
 const ProductPage = (props: Props) => {
+    let [reRenderPage, setReRenderPage] = useState(0);
     const router = useRouter()
+    const dispatch = useDispatch()
     const { page } = router.query
     const [productPage, setProductPage] = useState();
     const [categories, setCategories] = useState();
     const [products, setProducts] = useState();
-    console.log(page)
+    // console.log(page)
     useEffect(() => {
         const getData = async () => {
             const data = await filterPage(page);
             const dataCate = await getAllCate();
             const dataPro = await getAllProduct()
-            console.log(data);
+            // console.log(data);
             setProductPage(data);
             setCategories(dataCate)
             setProducts(dataPro);
@@ -35,6 +37,13 @@ const ProductPage = (props: Props) => {
     for (let index = 1; index <= Math.ceil(products?.length / 9); index++) {
         totalPage.push(index)
     }
+
+    const handleOnChange = async (value) => {
+        // console.log(value)
+        const dataNew = await filterProduct(page, value)
+        // console.log(dataNew)
+        setProductPage(dataNew);
+    }
     return (
         <div className={styles['shop']}>
             <div className={styles['shop-search']}>
@@ -44,12 +53,11 @@ const ProductPage = (props: Props) => {
                 </div>
                 <div className={styles['shop-search__search-filter']}>
                     <span className={styles['shop-search__search-text']}>Short by</span>
-                    <select className="tw-select tw-select-primary tw-border-[#DAE1E7] focus:tw-border-primary focus:tw-outline-primary tw-w-[160px] tw-max-w-xs">
-                        <option disabled selected>What is the</option>
-                        <option>Game of Thrones</option>
-                        <option>Lost</option>
-                        <option>Breaking Bad</option>
-                        <option>Walking Dead</option>
+                    <select onChange={(e) => handleOnChange(e.target.value)}
+                        className="tw-select tw-select-primary tw-border-[#DAE1E7] focus:tw-border-primary focus:tw-outline-primary tw-w-[160px] tw-max-w-xs">
+                        <option disabled selected>Default</option>
+                        <option value="-salePrice">Price: Low-High</option>
+                        <option value="salePrice">Price: High-Low</option>
                     </select>
                 </div>
             </div>

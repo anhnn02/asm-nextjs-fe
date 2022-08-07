@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-import { filterPage, getAll } from '@/api/product'
+import { filterPage, filterProduct, getAll } from '@/api/product'
 import { getAll as getAllCate } from '@/api/category'
 import ListProduct from '@/components/client/shop/ListProduct'
 import { GetStaticProps, GetStaticPropsContext } from 'next'
@@ -11,7 +11,7 @@ import { path } from '@/constants'
 import { Pagination } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-import { getProductPage, listProduct } from '@/features/products/products.slice'
+import { getProductFilter, getProductPage, listProduct } from '@/features/products/products.slice'
 import Icon from '@/components/Icon'
 
 type ProductProps = {
@@ -21,7 +21,7 @@ type ProductProps = {
 const Shop = ({ products, categories }: ProductProps) => {
   let [reRenderPage, setReRenderPage] = useState(0);
   const router = useRouter()
-
+  const dispatch = useDispatch()
   const { page } = router.query;
   const [productPage, setProductPage] = useState();
   const totalPage = [];
@@ -40,7 +40,12 @@ const Shop = ({ products, categories }: ProductProps) => {
     getProductInPage()
   }, [page, reRenderPage])
 
-
+  const handleOnChange = async (value) => {
+    // console.log(value)
+    const dataNew = await filterProduct(page, value)
+    // console.log(dataNew)
+    setProductPage(dataNew);
+  }
   return (
     <div className={styles['shop']}>
       <div className={styles['shop-search']}>
@@ -50,12 +55,11 @@ const Shop = ({ products, categories }: ProductProps) => {
         </div>
         <div className={styles['shop-search__search-filter']}>
           <span className={styles['shop-search__search-text']}>Short by</span>
-          <select className="tw-select tw-select-primary tw-border-[#DAE1E7] focus:tw-border-primary focus:tw-outline-primary tw-w-[160px] tw-max-w-xs">
-            <option disabled selected>What is the</option>
-            <option>Game of Thrones</option>
-            <option>Lost</option>
-            <option>Breaking Bad</option>
-            <option>Walking Dead</option>
+          <select onChange={(e) => handleOnChange(e.target.value)}
+            className="tw-select tw-select-primary tw-border-[#DAE1E7] focus:tw-border-primary focus:tw-outline-primary tw-w-[160px] tw-max-w-xs">
+            <option disabled selected>Default</option>
+            <option value="-salePrice">Price: Low-High</option>
+            <option value="salePrice">Price: High-Low</option>
           </select>
         </div>
       </div>

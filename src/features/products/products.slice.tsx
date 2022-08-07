@@ -45,6 +45,9 @@ const productSlice = createSlice({
         builder.addCase(getProductPage.fulfilled, (state, action) => {
             state.valueLimitPage = action.payload
         });
+        builder.addCase(getProductFilter.fulfilled, (state, action) => {
+            state.valueLimitPage = action.payload
+        })
     },
 });
 

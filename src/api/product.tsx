@@ -32,6 +32,6 @@ export const filterPage = (page) => {
   return instance.get(url);
 }
 export const filterProduct = (page, order) => {
-  const url = `filter?page=${page}&limit=8&sort=${order}`
+  const url = `filter?page=${page}&limit=9&sort=${order}`
   return instance.get(url)
 }
