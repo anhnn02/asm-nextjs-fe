@@ -81,8 +81,16 @@
     display: inline-block;
     border-radius: 30px;
     transition: all 150ms ease-in-out 0s;
-    background-color: rgba(15, 52, 96, 0.2);
     font-size: 12px;
+    @apply tw-bg-gray-100 tw-text-gray-500;
+}
+.order_status_pending-shipping {
+    padding: 0.25rem 1rem;
+    display: inline-block;
+    border-radius: 30px;
+    transition: all 150ms ease-in-out 0s;
+    font-size: 12px;
+    @apply tw-bg-blue-100 tw-text-blue-400
 }
 
 .order_status_cancelled {
@@ -90,9 +98,8 @@
     display: inline-block;
     border-radius: 30px;
     transition: all 150ms ease-in-out 0s;
-    background-color: rgb(255, 225, 230);
     font-size: 12px;
-    color: var(--primary);
+    @apply tw-bg-red-100 tw-text-red-400;
 }
 
 .order_status_delivered {
@@ -100,9 +107,8 @@
     display: inline-block;
     border-radius: 30px;
     transition: all 150ms ease-in-out 0s;
-    background-color: rgba(51, 208, 103, 0.15);
     font-size: 12px;
-    color: rgb(51, 208, 103)
+    @apply tw-bg-green-100 tw-text-green-400;
 }
 
 .order_view-detail {

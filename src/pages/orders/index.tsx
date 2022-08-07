@@ -74,7 +74,7 @@ const OrderList = () => {
                                                         )
                                                             :
                                                             item.status === 1 ? (
-                                                                <div className={styles['order_item']}><span className={styles['order_status_pending-progress']}>Shipping</span></div>
+                                                                <div className={styles['order_item']}><span className={styles['order_status_pending-shipping']}>Shipping</span></div>
                                                             )
                                                                 :
                                                                 item.status === 2 ? (
@@ -92,7 +92,7 @@ const OrderList = () => {
                                                     }
                                                     <div className={styles['order_item']}><span className={styles['order_date']}>{item.createdAt.split("", 10)}</span></div>
                                                     <div className={styles['order_item']}><span className={styles['order_total']}>{formatPrice(item.total)}</span></div>
-                                                    <div className={styles['order_item_none-flex']}><Link href=''><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
+                                                    <div className={styles['order_item_none-flex']}><Link href={`${path.public.ordersRoute}/${item._id}`}><button className={styles['order_view-detail']}><Icon.ArrowRight className={styles["btn_arrow_right_view-detail"]} content="" /></button></Link></div>
                                                 </div>
                                             </Link>
                                         )
