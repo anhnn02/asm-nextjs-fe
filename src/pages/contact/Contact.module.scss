@@ -1,8 +1,11 @@
+.contact-container {
+    @apply tw-w-[1000px] tw-m-auto tw-pb-20;
+}
 .contact {
-    @apply tw-grid tw-grid-cols-2 tw-p-10;
+    @apply tw-grid tw-grid-cols-[1.2fr_1fr] tw-p-10;
 
     &__img {
-        @apply tw-flex;
+        @apply tw-flex tw-mt-10;
 
         img {
             @apply tw-w-96 tw-m-auto;
@@ -14,10 +17,28 @@
             animation-iteration-count: infinite;
         }
     }
+
+    &-detail {
+        @apply tw-space-y-2;
+
+        &__item {
+            @apply tw-space-x-2;
+        }
+
+        &__icon {
+            @apply tw-text-primary
+        }
+
+        &__text {}
+
+    }
+    &-map iframe {
+        @apply tw-w-full tw-rounded-[var(--rounded-1)]
+    }
 }
 
 .content {
-    @apply tw-w-fit tw-bg-white tw-shadow-2xl tw-rounded-[var(--rounded-1)] tw-border-[#dae1e7] tw-overflow-hidden;
+    @apply tw-w-fit tw-ml-10 tw-bg-white tw-shadow-2xl tw-rounded-[var(--rounded-1)] tw-border-[#dae1e7] tw-overflow-hidden;
 }
 
 .form {
