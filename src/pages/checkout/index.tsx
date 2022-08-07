@@ -1,9 +1,11 @@
 import { getDistrict, getDistrictByProvince, getProvince, getProvinces, getWard, getWardByDistrict } from '@/api/addressCheckout'
+import { updateStt } from '@/api/voucher'
 import Button from '@/components/Button'
 import { path } from '@/constants'
 import { resetCart } from '@/features/cart/cart.slice'
 import useInvoice from '@/hooks/use-invoice'
 import useInvoiceDetail from '@/hooks/use-invoiceDetail'
+import useVoucher from '@/hooks/use-voucher'
 import { formatPrice } from '@/utils/formatNumber'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -22,11 +24,12 @@ const CheckOut = () => {
     const isLogin = useSelector(data => data.user.isAuthenticated)
     const cartTotalQuantity = useSelector(data => data.cart.totalQuantity)
     const cart = useSelector(data => data.cart.items)
+    const discount = useSelector((data: any) => data.cart.discount);
+    const nameVoucher = useSelector((data: any) => data.cart.voucher);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [provinces, setProvinces] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [wards, setWards] = useState([]);
-
     useEffect(() => {
         const getDataProvince = async () => {
             const { data } = await getProvinces();
@@ -54,6 +57,8 @@ const CheckOut = () => {
         }
 
     }
+
+    // address
     const addressDataTotal = async (codeP, codeD, codeW) => {
         const province = await getProvince(+codeP)
         const district = await getDistrict(+codeD)
@@ -62,7 +67,7 @@ const CheckOut = () => {
     }
 
     // checkout
-    const onSubmit = async (data) => {
+    const onCheckout = async (data) => {
         const address = await addressDataTotal(data.province, data.district, data.ward) + ", " + data.address
         const dataInvoice = {
             fullname: data.fullname,
@@ -95,6 +100,10 @@ const CheckOut = () => {
                     })
                     toast.success("Order successfully", {
                         position: 'top-center'
+                    })
+                    await updateStt({
+                        code: nameVoucher,
+                        status: 1
                     })
                     route.push(path.public.orderCompleteRoute)
 
@@ -139,7 +148,7 @@ const CheckOut = () => {
                 <div className={styles['clone_sidebar_invisible']}></div>
             </div>
             <div className={styles['content_checkout']}>
-                <form action="" className={styles['form_checkout']} onSubmit={handleSubmit(onSubmit)}>
+                <form action="" className={styles['form_checkout']} onSubmit={handleSubmit(onCheckout)}>
                     <div className={styles['form_checkout_inside']}>
                         <div className={styles['header-form_checkout']}>
                             <h3 className='tw-capitalize tw-font-semibold'>shipping address</h3>
@@ -269,7 +278,7 @@ const CheckOut = () => {
                                 </div>
                                 <div className={styles['row-infor_checkout']}>
                                     <span className={styles['color-text-infor_checkout']}>Discount:</span>
-                                    <span className='tw-font-semibold tw-text-xl'>$00</span>
+                                    <span className='tw-font-semibold tw-text-xl'>-{formatPrice(discount)}</span>
                                 </div>
                             </div>
                         </div>
@@ -277,10 +286,6 @@ const CheckOut = () => {
                             <span className={styles['color-text-infor_checkout']}>Total:</span>
                             <span className='tw-font-semibold tw-text-2xl tw-text-primary'>{formatPrice(totalAmount)}</span>
                         </div>
-                        <form action="">
-                            <input type="text" placeholder='Voucher' className={styles['input-form_checkout']} />
-                            <Button.Transparent className='tw-w-full' content={'Apply Voucher'} />
-                        </form>
                     </div>
                 </div>
             </div >

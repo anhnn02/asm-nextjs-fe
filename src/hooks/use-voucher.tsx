@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import { read, removeItem, update, add } from "../api/voucher";
+import { read, removeItem, update, add, readByCode, updateStt } from "@/api/voucher";
 
 const useVoucher = () => {
   const { data, error, mutate } = useSWR(`/vouchers`);
@@ -10,28 +10,34 @@ const useVoucher = () => {
     mutate([...data, addVoucher]);
   };
   const remove = async (id: any) => {
-    const confirm = window.confirm("Do you want to remove this voucher ?");
+    const confirm = window.confirm("Do you want to remove this user?");
     if (confirm) {
       await removeItem(id);
       mutate(data.filter((item: any) => item.id !== id));
     }
   };
   const detail = async (id: any) => {
-    const addVoucher = await read(id);
-    return addVoucher;
+    const add = await read(id);
+    return add;
   };
-  const edit = async (voucher: any) => {
-    await update(voucher);
+  const readVoucherStatusByCode = async (voucherCode: any) => {
+    const data = await readByCode(voucherCode);
+    return data;
+
+  };
+  const editVoucherStt = async (voucher: any) => {
+    await updateStt(voucher);
     mutate(data.map((item: any) => (item.id === data.id ? voucher : item)));
   };
 
   return {
     data,
     error,
+    create,
     remove,
     detail,
-    edit,
-    create
+    editVoucherStt,
+    readVoucherStatusByCode
   };
 };
 
