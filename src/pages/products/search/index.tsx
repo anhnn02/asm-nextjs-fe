@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
 import { getAll, search } from '@/api/product'
+import { getAll as getAllCate } from '@/api/category'
 import Button from '@/components/Button'
 import ListProduct from '@/components/client/shop/ListProduct'
 import Icon from '@/components/Icon'
@@ -11,12 +12,22 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import styles from '../../shop/Shop.module.scss'
+import { ICategory } from '@/models/category'
+import { path } from '@/constants'
 
 interface ISearchProps {
   result: SearchResult;
   keyword: string;
 }
 const Search = ({ result, keyword }: ISearchProps) => {
+  const [categories, setCategories] = useState();
+  useEffect(() => {
+    const getCategories = async () => {
+      const data: ICategory = await getAllCate()
+      setCategories(data);
+    }
+    getCategories()
+  }, [])
   return (
     <>
       <Meta
@@ -27,7 +38,7 @@ const Search = ({ result, keyword }: ISearchProps) => {
         <div className={styles['shop-search']}>
           <div className="">
             <div className="tw-flex tw-justify-between tw-items-center tw-space-x-3">
-              <Icon.Search className='!tw-text-4xl'/>
+              <Icon.Search className='!tw-text-4xl' />
               <div className="">
                 <span className={styles['shop-search__key-search']}>Searching for “ <span className="tw-text-primary">{keyword}</span> ”</span>
                 <span className={styles['shop-search__search-text']}>{result.length} results found</span>
@@ -52,18 +63,13 @@ const Search = ({ result, keyword }: ISearchProps) => {
                 Categories
               </h2>
               <ul className={styles['shop-sidebar__cate-list']}>
-                <li>
-                  <Link href=""><a href="" className={styles['shop-sidebar__cate-item']}>Bath Preparations</a></Link>
-                </li>
-                <li>
-                  <Link href=""><a href="" className={styles['shop-sidebar__cate-item']}>Eye Makeup Preparations</a></Link>
-                </li>
-                <li>
-                  <Link href=""><a href="" className={styles['shop-sidebar__cate-item']}>Eye  Preparations</a></Link>
-                </li>
-                <li>
-                  <Link href=""><a href="" className={styles['shop-sidebar__cate-item']}>Hello Makeup Preparations</a></Link>
-                </li>
+                {
+                  categories?.map((item, index) => (
+                    <li key={index}>
+                      <Link href={path.public.categoryRoute + `/` + item._id}><a href="" className={styles['shop-sidebar__cate-item']}>{item.name}</a></Link>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
             <div className={styles['shop-sidebar-section']}>

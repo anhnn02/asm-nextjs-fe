@@ -36,7 +36,7 @@ const AsideUser = (props: Props) => {
         <div>
           <h3 className={styles['header-aside_user']}>dashboard</h3>
           <div className={styles['row-aside_user_actived']}>
-            <div><Link href='#'><a><Icon.Order className={styles['icon-aside_user']} content="" />orders</a></Link></div>
+            <div><Link href={path.public.ordersRoute}><a><Icon.Order className={styles['icon-aside_user']} content="" />orders</a></Link></div>
             <div><Link href='#'><a>{userOrder?.invoices.length}</a></Link></div>
           </div>
           <div className={styles['row-aside_user']}>

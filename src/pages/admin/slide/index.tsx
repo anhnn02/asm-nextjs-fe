@@ -13,7 +13,7 @@ type Props = {}
 
 const columns = [
   {
-    title: 'Img',
+    title: 'Image',
     dataIndex: 'img',
     key: 'img',
   },
@@ -44,7 +44,7 @@ const SlideList = (props: Props) => {
   return (
     <div>
       <div className={styles['head-admin-slide']}>
-        <h4 className={stylesAdmin['title-admin']}>List banner</h4>
+        <h4 className={stylesAdmin['title-admin']}>List slide</h4>
         <Link href={`/admin/slide/add`}>
           <MyBtn.Fill className={""} content="Add banner" />
         </Link>

@@ -103,25 +103,25 @@ const DetailInvoice = (props: Props) => {
         </div>
         <p></p>
         <div className={styles["invoice"]}>
-          <div className={styles["tab1"]}>
-            <div className="tw-pt-4">
+          <div className={`${styles["tab1"]} tw-text-center`}>
+            <div className="tw-pt-4 tw-flex-1 tw-items-center">
               <span className="tw-text-my-gray"> Order Id: &nbsp;</span>
               {invoice?.invoice._id}
             </div>
-            <div className="">
+            <div className="tw-flex-1">
               <span className="tw-text-my-gray"> Phone:&nbsp;</span>
               {invoice?.invoice.phoneNumber}
             </div>
-            <div className="">
+            <div className="tw-flex-1">
               <span className="tw-text-my-gray">Delivered on:&nbsp;</span>
               {invoice?.invoice.createdAt.split("", 10)}
             </div>
           </div>
           {invoice?.invoiceDetails?.map((item, index) => (
             <div key={index} className="">
-              <div className={styles["tab-img"]}>
-                <div className="tw-flex tw-space-x-5 ">
-                  <div className="">
+              <div className={`${styles["tab-img"]} && ${"tw-flex tw-items-center tw-text-center"}`}>
+                <div className="tw-flex tw-flex-1 tw-items-center tw-pl-3">
+                  <div className="tw-mr-3">
                     <img
                       width={70}
                       className="tw-rounded-[var(--rounded-1)] tw-h-20 tw-object-cover"
@@ -129,14 +129,14 @@ const DetailInvoice = (props: Props) => {
                       alt=""
                     />
                   </div>
-                  <div className="tw-pt-5">
+                  <div className="tw-pt-5 !tw-text-left">
                     <h6>{item.name}</h6>
                   </div>
                 </div>
-                <div className="">
+                <div className="tw-flex-1">
                   <span className="tw-text-my-gray">Size: {item.size}</span>
                 </div>
-                <div className="">
+                <div className="tw-flex-1">
                   <span className="tw-text-my-gray">
                     {" "}
                     Price: &nbsp;
@@ -145,12 +145,12 @@ const DetailInvoice = (props: Props) => {
                       : formatPrice(item.regularPrice)}
                   </span>
                 </div>
-                <div className="">
+                <div className="tw-flex-1">
                   <span className="tw-text-my-gray">
                     Quantity: {item.quantity}
                   </span>
                 </div>
-                <div className="">
+                <div className="tw-flex-1">
                   <span className="tw-text-my-gray">Total: &nbsp;</span>
                   <span className="tw-text-red-500 tw-font-medium">
                     {formatPrice(item.total)}

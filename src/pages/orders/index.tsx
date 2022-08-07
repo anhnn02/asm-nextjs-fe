@@ -78,7 +78,7 @@ const OrderList = () => {
                                                             )
                                                                 :
                                                                 item.status === 2 ? (
-                                                                    <div className={styles['order_item']}><span className={styles['order_status_delevered']}>Delivered</span></div>
+                                                                    <div className={styles['order_item']}><span className={styles['order_status_delivered']}>Delivered</span></div>
                                                                 )
                                                                     :
                                                                     item.status === 3 ? (
