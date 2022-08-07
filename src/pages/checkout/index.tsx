@@ -1,4 +1,5 @@
 import { getDistrict, getDistrictByProvince, getProvince, getProvinces, getWard, getWardByDistrict } from '@/api/addressCheckout'
+import { updateStt } from '@/api/voucher'
 import Button from '@/components/Button'
 import { path } from '@/constants'
 import { resetCart } from '@/features/cart/cart.slice'
@@ -23,12 +24,14 @@ const CheckOut = () => {
     const isLogin = useSelector(data => data.user.isAuthenticated)
     const cartTotalQuantity = useSelector(data => data.cart.totalQuantity)
     const cart = useSelector(data => data.cart.items)
+    const discount = useSelector((data: any) => data.cart.discount);
+    const nameVoucher = useSelector((data: any) => data.cart.voucher);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [provinces, setProvinces] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [wards, setWards] = useState([]);
 
-    
+
 
     useEffect(() => {
         const getDataProvince = async () => {
@@ -57,7 +60,7 @@ const CheckOut = () => {
         }
 
     }
-  
+
     // address
     const addressDataTotal = async (codeP, codeD, codeW) => {
         const province = await getProvince(+codeP)
@@ -100,6 +103,10 @@ const CheckOut = () => {
                     })
                     toast.success("Order successfully", {
                         position: 'top-center'
+                    })
+                    await updateStt({
+                        code: nameVoucher,
+                        status: 1
                     })
                     route.push(path.public.orderCompleteRoute)
 
@@ -274,7 +281,7 @@ const CheckOut = () => {
                                 </div>
                                 <div className={styles['row-infor_checkout']}>
                                     <span className={styles['color-text-infor_checkout']}>Discount:</span>
-                                    <span className='tw-font-semibold tw-text-xl'>$00</span>
+                                    <span className='tw-font-semibold tw-text-xl'>${discount}</span>
                                 </div>
                             </div>
                         </div>

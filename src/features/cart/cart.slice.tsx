@@ -3,13 +3,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 interface ICartState {
     items: any[],
     totalQuantity: number,
-    totalAmount: number
+    totalAmount: number,
+    discount: number,
+    voucher: string,
+    useVoucher: boolean,
 }
 
 const initialState: ICartState = {
     items: [],
     totalQuantity: 0,
-    totalAmount: 0
+    totalAmount: 0,
+    discount: 0,
+    voucher: "",
+    useVoucher: false
 };
 
 const cartSlice = createSlice({
@@ -80,17 +86,22 @@ const cartSlice = createSlice({
             state.items = []
             state.totalQuantity = 0
             state.totalAmount = 0
+            state.discount = 0
+            state.useVoucher = false
         },
         applyVoucher(state, action) {
-            if (state.totalAmount > 0){
-                state.totalAmount -= action.payload
-            }else{
+            if (state.totalAmount > 0) {
+                state.useVoucher = action.payload.useVoucher
+                state.discount = action.payload.discount
+                state.voucher = action.payload.voucher
+                state.totalAmount -= action.payload.discount
+            } else {
                 state.totalAmount = 0
             }
         }
     },
 
-    
+
 });
 export const { addItemToCart, removeItemFromCart, decrementQuantity, incrementQuantity, resetCart, applyVoucher } = cartSlice.actions;
 export default cartSlice.reducer;

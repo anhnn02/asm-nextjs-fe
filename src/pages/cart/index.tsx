@@ -26,14 +26,15 @@ import useVoucher from "@/hooks/use-voucher";
 const CartPage = () => {
   const { create: createDetail } = useInvoiceDetail();
   const { readVoucherStatusByCode } = useVoucher()
-
   const dispatch = useDispatch();
   const route = useRouter();
-  const userCurrent = useSelector((data) => data.user.current);
-  const isLogin = useSelector((data) => data.user.isAuthenticated);
-  const cartTotalQuantity = useSelector((data) => data.cart.totalQuantity);
-  const cart = useSelector((data) => data.cart.items);
-  const totalAmount = useSelector((data) => data.cart.totalAmount);
+  const userCurrent = useSelector((data: any) => data.user.current);
+  const isLogin = useSelector((data: any) => data.user.isAuthenticated);
+  const cartTotalQuantity = useSelector((data: any) => data.cart.totalQuantity);
+  const flagVoucher = useSelector((data: any) => data.cart.useVoucher);
+  const cart = useSelector((data: any) => data.cart.items);
+  const totalAmount = useSelector((data: any) => data.cart.totalAmount);
+  const discount = useSelector((data: any) => data.cart.discount);
   const {
     register,
     handleSubmit,
@@ -50,17 +51,25 @@ const CartPage = () => {
   //add voucher
   const onAddVoucher = async (voucher) => {
     const data: any = await readVoucherStatusByCode(voucher);
-    if(!data) {
-      toast.error("Voucher is not exist");
-    }else{
-      if (data.status == 1) {
-        toast.error("Voucher da het han su dung")
-      }else{
-        toast.success("Apply voucher success")
-        dispatch(applyVoucher(data.discount))
+    if (!flagVoucher) {
+      if (!data) {
+        toast.error("Voucher is not exist");
+      } else {
+        if (data.status == 1) {
+          toast.error("Voucher da het han su dung")
+        } else {
+          toast.success("Apply voucher success")
+          dispatch(applyVoucher({
+            discount: data.discount,
+            voucher: data.code,
+            useVoucher: true
+          }))
+        }
       }
+    } else {
+      toast.error("Bạn chỉ có thể kích hoạt 1 voucher cho 1 đơn hàng");
     }
-    
+
   }
 
   // check vao trang checkout: user && cart != []
@@ -351,7 +360,7 @@ const CartPage = () => {
                   <span className={styles["color-text-infor_checkout"]}>
                     Discount:
                   </span>
-                  <span className="tw-font-semibold tw-text-xl">$00</span>
+                  <span className="tw-font-semibold tw-text-xl">${discount}</span>
                 </div>
               </div>
             </div>
@@ -360,7 +369,7 @@ const CartPage = () => {
                 Total:
               </span>
               <span className="tw-font-semibold tw-text-2xl tw-text-primary">
-                {formatPrice(totalAmount+5)}
+                {formatPrice(totalAmount + 5)}
               </span>
             </div>
             <form action="" onSubmit={handleSubmit(onAddVoucher)}>
