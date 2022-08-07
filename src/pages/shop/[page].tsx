@@ -3,10 +3,10 @@ import { getAll as getAllCate } from '@/api/category'
 import { getAll as getAllProduct, filterPage } from '@/api/product'
 import ListProduct from '@/components/client/shop/ListProduct'
 import Icon from '@/components/Icon'
+import { path } from '@/constants'
 import { getProductPage } from '@/features/products/products.slice'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import path from 'path'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styles from './Shop.module.scss'
@@ -62,7 +62,7 @@ const ProductPage = (props: Props) => {
                         <ul className={styles['shop-sidebar__cate-list']}>
                             {categories?.map((item, index) => (
                                 <li key={index}>
-                                    <Link href={`${path.public?.categoryRoute}/${item._id}`}><a href="" className={styles['shop-sidebar__cate-item']}>{item.name}</a></Link>
+                                    <Link href={`${path.public.categoryRoute}/${item._id}`}><a href="" className={styles['shop-sidebar__cate-item']}>{item.name}</a></Link>
                                 </li>
                             ))}
 
