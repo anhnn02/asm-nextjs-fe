@@ -61,7 +61,7 @@ const Sidebar = (props: Props) => {
                 className="!tw-text-black admin-nav__link tw-block tw-space-x-2 tw-w-full tw-p-2 tw-rounded hover:tw-bg-purple-100"
               >
                 <span className="!tw-text-sm tw-font-semibold">
-                  <i className="bi bi-box-fill !tw-text-sm"></i> Slide
+                  <i className="bi bi-image-fill"></i> Slide
                 </span>
               </a>
             </Link>
@@ -73,7 +73,7 @@ const Sidebar = (props: Props) => {
                 className="!tw-text-black admin-nav__link tw-block tw-space-x-2 tw-w-full tw-p-2 tw-rounded hover:tw-bg-purple-100"
               >
                 <span className="!tw-text-sm tw-font-semibold">
-                  <i className="bi bi-grid-fill !tw-text-sm"></i> Invoice
+                  <i className="bi bi-receipt-cutoff"></i> Invoice
                 </span>
               </a>
             </Link>
@@ -85,7 +85,7 @@ const Sidebar = (props: Props) => {
                 className="!tw-text-black admin-nav__link tw-block tw-space-x-2 tw-w-full tw-p-2 tw-rounded hover:tw-bg-purple-100"
               >
                 <span className="!tw-text-sm tw-font-semibold">
-                  <i className="bi bi-grid-fill !tw-text-sm"></i> Users
+                  <i className="bi bi-person-fill"></i> Users
                 </span>
               </a>
             </Link>
@@ -97,7 +97,7 @@ const Sidebar = (props: Props) => {
                 className="!tw-text-black admin-nav__link tw-block tw-space-x-2 tw-w-full tw-p-2 tw-rounded hover:tw-bg-purple-100"
               >
                 <span className="!tw-text-sm tw-font-semibold">
-                  <i className="bi bi-grid-fill !tw-text-sm"></i> Vouchers
+                  <i className="bi bi-ticket-perforated"></i> Vouchers
                 </span>
               </a>
             </Link>

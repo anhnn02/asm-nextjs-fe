@@ -291,10 +291,12 @@ const CartPage = () => {
               />
             </form>
             <form action="">
-              <Button.Fill
-                className="tw-w-full tw-mt-3"
-                content={"Checkout Now "}
-              />
+              <Link href={path.public.checkoutRoute}>
+                <Button.Fill
+                  className="tw-w-full tw-mt-3"
+                  content={"Checkout Now "}
+                />
+              </Link>
             </form>
           </div>
         </div>

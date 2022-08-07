@@ -5,6 +5,10 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
+import stylesAdmin from '@/styles/admin/Admin.module.scss'
+import Link from 'next/link'
+import { path } from '@/constants'
+import Button from '@/components/Button'
 
 type Props = {}
 type TypeInput = {
@@ -29,11 +33,23 @@ const AddSlide = (props: Props) => {
   }
   return (
     <div>
+      <div className={stylesAdmin["header_content"]}>
+        <div>
+          <h1 className={stylesAdmin["title-admin"]}>Add slide</h1>
+        </div>
+        <Link href={path.private.slidesRoute}>
+          <button className={stylesAdmin["btn-multichoice_item"]}>
+            List slide
+          </button>
+        </Link>
+      </div>
       <form action="" onSubmit={handleSubmit(onSubmit)}>
         {/* IMAGE  */}
         <div className="tw-form-control tw-w-full tw-max-w-xs tw-justify-between">
-          <label className="tw-label">
-            <span className="tw-label-text tw-capitalize">image</span>
+          <label className={stylesAdmin["label_form"]}>
+            <span className={stylesAdmin["label-span_form"]}>
+              Image
+            </span>
           </label>
           <input
             type="text"
@@ -45,7 +61,7 @@ const AddSlide = (props: Props) => {
 
         {/* BUTTON */}
         <div className="tw-form-control tw-w-full tw-max-w-xs tw-my-3">
-          <button className="tw-btn tw-btn-primary">Add</button>
+          <Button.Fill content={'Add'} className={""}/>
         </div>
       </form>
     </div>
