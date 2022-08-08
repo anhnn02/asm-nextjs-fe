@@ -66,15 +66,15 @@ const DetailProduct = ({ product, related }: ProductProps) => {
           <div className={styles["box"]}>
             <img
               className={styles["image"]}
-              src="https://i.imgur.com/hdxSFAS.png"
+              src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/00375837-849f-4f17-ba24-d201d27be49b/air-force-1-07-shoe-WrLlWX.png"
             />
             <img
               className={styles["image"]}
-              src="https://i.imgur.com/hdxSFAS.png"
+              src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/33533fe2-1157-4001-896e-1803b30659c8/air-force-1-07-shoe-WrLlWX.png"
             />
             <img
               className={styles["image"]}
-              src="https://i.imgur.com/hdxSFAS.png"
+              src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/a0a300da-2e16-4483-ba64-9815cf0598ac/air-force-1-07-shoe-WrLlWX.png"
             />
           </div>
         </div>

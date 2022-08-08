@@ -5,13 +5,14 @@ import useCategory from '@/hooks/use-category'
 import useProduct from '@/hooks/use-product'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import styles from './Product.module.scss'
 import stylesAdmin from '@/styles/admin/Admin.module.scss'
 import Button from '@/components/Button'
 import { toast } from 'react-toastify'
 import { IProduct } from '@/models/product'
+import axios from 'axios'
 
 type Props = {}
 type TypeInput = {
@@ -26,6 +27,9 @@ type TypeInput = {
 }
 const AddProduct = (props: Props) => {
     const router = useRouter()
+    const [image, setImage] = useState("")
+    const [imagePreview, setImagePreview] = useState("")
+    const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/anh13902/image/upload";
     const { data: categories, error } = useCategory();
     const { create } = useProduct();
 
@@ -33,7 +37,14 @@ const AddProduct = (props: Props) => {
     if (error) return <div>Loading...</div>
     if (!categories) return <div>Loading...</div>
     let errSalePrice = ""
+
+    const handleChangeImage = (e: any) => {
+      setImage(e.target.files[0])
+    }
+
+
     const onSubmit = async (data: IProduct) => {
+      const file = image
         if (+data.salePrice >= +data.regularPrice) {
             toast.error("Sale price must be less than regular price", {
               position: "top-center",
@@ -44,13 +55,34 @@ const AddProduct = (props: Props) => {
           });
         }
         } else {
-            await create(data);
+          if (file) {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "lykehptw");
+
+            const response = await axios.post(CLOUDINARY_API, formData, {
+              headers: {
+                "Content-Type": "application/form-data",
+              },
+            });
+            setImagePreview(response.data.url)
+
+            const dataProduct = {
+              ...data,
+              img: response.data.url
+            }
+
+            await create(dataProduct);
             toast.success("Add successfully!", {
                 position: 'top-center'
             })
             router.push("/admin/products");
         }
+      }
     }
+
+    
+
     return (
       <div>
         <div className={stylesAdmin["header_content"]}>
@@ -149,16 +181,16 @@ const AddProduct = (props: Props) => {
                     <div className={`${stylesAdmin["row-input_form"]}`}>
                       <label className={stylesAdmin["label_form"]}>
                         <span className={stylesAdmin["label-span_form"]}>
-                          image
+                          <input onChange={(e) => handleChangeImage(e)}  type="file" name="" id="" />
                         </span>
                       </label>
-                      <input
+                      {/* <input
                         type="text"
                         placeholder="Type here"
                         className="tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full"
                         {...register("img", { required: true })}
-                      />
-                      {errors.img && (
+                      /> */}
+                      {/* {errors.img && (
                         <div
                           className={`${
                             stylesAdmin["input-validate_form"]
@@ -166,7 +198,7 @@ const AddProduct = (props: Props) => {
                         >
                           <span>Image is required</span>
                         </div>
-                      )}
+                      )} */}
                     </div>
                     {/* CATEGORY  */}
                     <div className={stylesAdmin["row-input_form"]}>
@@ -201,9 +233,8 @@ const AddProduct = (props: Props) => {
                 </div>
                 <div className="">
                   <img
-                    id="img-preview"
-                    className="tw-w-[300px] tw-object-cover"
-                    src="https://i.imgur.com/3XGhQa2Z.png"
+                    id="img-preview" className="tw-m-auto tw-w-[300px] tw-object-cover"
+                    src={imagePreview}
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null;
                       currentTarget.src = "https://i.imgur.com/MV2djzI.png";
