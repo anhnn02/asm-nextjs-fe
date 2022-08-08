@@ -13,6 +13,7 @@ import stylesAdmin from '@/styles/admin/Admin.module.scss';
 import Link from 'next/link'
 import { toast } from 'react-toastify'
 import { IProduct } from '@/models/product'
+import axios from 'axios'
 
 type Props = {}
 
@@ -20,11 +21,15 @@ const EditProduct = (props: Props) => {
     const router = useRouter();
     const { id } : any = router.query;
     const { data: categories } = useCategory();
+    const [image, setImage] = useState("")
+    const [imagePreview, setImagePreview] = useState("")
+    const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/anh13902/image/upload";
     const { editProduct } = useProduct();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     useEffect(() => {
         const getProduct = async () => {
             const data = await read(id);
+            setImagePreview(data.img)
             reset({
                 ...data, category: data.category._id
             });
@@ -33,12 +38,42 @@ const EditProduct = (props: Props) => {
     }, [id, reset])
 
     if (!categories) return <div>Loading...</div>
+
+    const handleChangeImage = (e: any) => {
+        setImage(e.target.files[0])
+    }
+
     const onSubmit = async (data: IProduct) => {
-        await editProduct({ ...data, category: data.category });
+        const file = image
+        if (file) {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "lykehptw");
+
+            const response = await axios.post(CLOUDINARY_API, formData, {
+                headers: {
+                    "Content-Type": "application/form-data",
+                },
+            });
+
+            const dataProduct = {
+                ...data,
+                category: data.category,
+                img: response.data.url
+            }
+
+            await editProduct(dataProduct);
         toast.success("Edit successfully!", {
             position: 'top-center'
         })
         router.push("/admin/products");
+        }else{
+            await editProduct({ ...data, category: data.category });
+            toast.success("Edit successfully!", {
+                position: 'top-center'
+            })
+            router.push("/admin/products");
+        }
     }
     return (
         <div>
@@ -98,9 +133,8 @@ const EditProduct = (props: Props) => {
                                     {/* IMAGE  */}
                                     <div className={`${stylesAdmin['row-input_form']}`}>
                                         <label className={stylesAdmin['label_form']}>
-                                            <span className={stylesAdmin['label-span_form']}>image</span>
                                         </label>
-                                        <input type="text" placeholder="Type here" className="tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full" {...register('img', { required: true })} />
+                                        <input onChange={(e) => handleChangeImage(e)} type="file" name="" id="" />
                                         {errors.img &&
                                             <div className={`${stylesAdmin['input-validate_form']} ${'my-error'}`}>
                                                 <span>Image is required</span>
@@ -163,8 +197,8 @@ const EditProduct = (props: Props) => {
                                 </div>
                             </div>
                             <div className="">
-                                <img id="img-preview" className="tw-w-[300px] tw-object-cover"
-                                    src="https://i.imgur.com/3XGhQa2Z.png"
+                                <img id="img-preview" className="tw-m-auto tw-w-[300px] tw-object-cover"
+                                    src={imagePreview}
                                     onError={({ currentTarget }) => {
                                         currentTarget.onerror = null;
                                         currentTarget.src = "https://i.imgur.com/MV2djzI.png";

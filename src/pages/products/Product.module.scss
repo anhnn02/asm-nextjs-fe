@@ -54,7 +54,7 @@
   @apply tw-w-full tw-h-[350px] tw-object-cover tw-rounded-[var(--rounded-1)]
 }
 .image {
-  @apply tw-w-[80px] tw-border tw-border-[#dae1e7] tw-mx-1 tw-rounded-[var(--rounded-1)] tw-p-5 tw-bg-white;
+  @apply tw-w-[80px] tw-border tw-border-[#dae1e7] tw-mx-1 tw-rounded-[var(--rounded-1)] tw-bg-white;
 
   &:hover {
     @apply tw-border-primary
