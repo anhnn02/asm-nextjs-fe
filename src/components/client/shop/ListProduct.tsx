@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
@@ -7,8 +9,8 @@ import useProduct from "@/hooks/use-product";
 import { IProduct } from "@/models/product";
 import { formatPercent, formatPrice } from "@/utils/formatNumber";
 import Link from "next/link";
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import styles from "./ListProduct.module.scss";
 
@@ -17,9 +19,22 @@ type Props = {
 };
 
 const ListProduct = ({ data }: Props) => {
-  const { detail } = useProduct()
-  const dispatch = useDispatch()
+  // console.log(data)
+  const dispatch = useDispatch();
+  const { detail } = useProduct();
   if (!data) return <div className="">Loading...</div>;
+
+
+  // const onHandleChange = (value) => {
+  //   const filter = {
+  //     page: page,
+  //     order: value,
+  //   }
+  //   dispatch(getProductFilter(filter));
+  //   setReRenderPage(reRederPage++)
+  // }
+  // console.log(totalPage)
+  // QUICK ADD TO CART 
   const btnQuickAddToCart = async (id) => {
     const data: any = await detail(id)
     const itemQuickAddToCart = {
@@ -60,7 +75,7 @@ const ListProduct = ({ data }: Props) => {
               <button
                 className={`${styles["shop-product__item-float"]} ${styles["shop-product__item-float--action"]}`}
               >
-                <Icon.HeartFill className={""}/>
+                <Icon.HeartFill className={""} />
               </button>
               <Link href={`${path.public.productRoute}/${item._id}`}>
                 <img src={item.img} alt="" />

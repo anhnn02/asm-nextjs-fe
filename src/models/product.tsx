@@ -9,4 +9,5 @@ export interface IProduct {
     category?: string,
     relatedProduct?: any;
     map?: any;
+    length?: any;
 }

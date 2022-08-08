@@ -27,3 +27,11 @@ export const relatedProduct = (idCate: string, idPro: string) => {
   let url = `/categories/${idCate}/${idPro}`;
   return instance.get(url);
 }
+export const filterPage = (page) => {
+  let url = `/filter?page=${page}&limit=9`
+  return instance.get(url);
+}
+export const filterProduct = (page, order) => {
+  const url = `filter?page=${page}&limit=9&sort=${order}`
+  return instance.get(url)
+}

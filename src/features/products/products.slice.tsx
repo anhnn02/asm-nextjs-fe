@@ -1,3 +1,4 @@
+import { filterPage, filterProduct, getAll } from "@/api/product";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface IProductState {
@@ -9,18 +10,44 @@ const initialState: IProductState = {
 };
 
 // Action
-export const getProducts = createAsyncThunk("product/getProduct", async () => {
-    const data = await (await fetch(`https://6110f09bc38a0900171f0ed0.mockapi.io/products`)).json();
+export const listProduct = createAsyncThunk(
+    "product/listProduct",
+    async () => {
+        const { data } = await getAll()
+        return data
+    }
+)
+
+export const getProductPage = createAsyncThunk("product/getProductPage", async (numberPage, thunkAPI) => {
+    const { data } = await filterPage(numberPage);
     return data;
-});
+})
+
+export const getProductFilter = createAsyncThunk(
+    "product/getProductFilter",
+    async (filter, thunkAPI) => {
+        const { data } = await filterProduct(filter.page, filter.order);
+        return data
+    }
+)
+
 const productSlice = createSlice({
     name: "product",
-    initialState,
+    initialState: {
+        value: [],
+        valueLimitPage: [],
+    },
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getProducts.fulfilled, (state, action) => {
+        builder.addCase(listProduct.fulfilled, (state, action) => {
             state.value = action.payload;
         });
+        builder.addCase(getProductPage.fulfilled, (state, action) => {
+            state.valueLimitPage = action.payload
+        });
+        builder.addCase(getProductFilter.fulfilled, (state, action) => {
+            state.valueLimitPage = action.payload
+        })
     },
 });
 
