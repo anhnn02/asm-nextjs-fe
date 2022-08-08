@@ -9,6 +9,7 @@ import styles from './Product.module.scss'
 import stylesAdmin from '@/styles/admin/Admin.module.scss';
 import { formatPercent, formatPrice } from '@/utils/formatNumber';
 import MyBtn from '@/components/Button';
+import { path } from '@/constants';
 
 type Props = {}
 
@@ -73,19 +74,26 @@ const ProductList = (props: Props) => {
         }
     })
     return (
-        <div>
-            <div className={stylesAdmin['header_content']}>
-                <div>
-                    <h4 className={stylesAdmin['title-admin']}>List product</h4>
-                </div>
-                <Link href='/admin/products/add'>
-                    <MyBtn.Fill className={""} content="Add Product" />
-                </Link>
-            </div>
-            <Table columns={columns} dataSource={dataSource}
-                pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['10', '20', '30'] }} />
+      <div>
+        <div className={stylesAdmin["header_content"]}>
+          <div>
+            <h4 className={stylesAdmin["title-admin"]}>List product</h4>
+          </div>
+          <Link href={`${path.private.productsRoute}/add`}>
+            <MyBtn.Fill className={""} content="Add Product" />
+          </Link>
         </div>
-    )
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          pagination={{
+            defaultPageSize: 5,
+            showSizeChanger: true,
+            pageSizeOptions: ["10", "20", "30"],
+          }}
+        />
+      </div>
+    );
 }
 
 ProductList.Layout = LayoutAdmin

@@ -8,6 +8,8 @@ import LayoutAdmin from "@/components/Layout/admin";
 import { useRouter } from "next/router";
 import useCate from "@/hooks/use-category";
 import { useForm } from "react-hook-form";
+import { path } from "@/constants";
+
 
 type Props = {};
 
@@ -31,7 +33,8 @@ const EditCate = (props: Props) => {
   return (
     <div>
       <h4 className={stylesAdmin["title-admin"]}>Add Category</h4>
-      <Link href="/admin/categories/">
+      {/* <Link href="/admin/categories/"> */}
+      <Link href={path.private.categoriesRoute}>
         <button className={styles["btn-multichoice_item"]}>
           List Category
         </button>

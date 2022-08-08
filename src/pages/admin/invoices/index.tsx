@@ -93,9 +93,7 @@ const InvoicePage = () => {
             </span>
           ) : item.status === 3 ? (
             <span className={styles["order_item"]}>
-              <span className={styles["order_status_cancelled"]}>
-                Cancel
-              </span>
+              <span className={styles["order_status_cancelled"]}>Cancel</span>
             </span>
           ) : item.status === 4 ? (
             <span className={styles["order_item"]}>
@@ -116,7 +114,9 @@ const InvoicePage = () => {
             type="primary"
             size="large"
           >
-            <Link href={`/admin/invoices/edit/${item._id}`}>
+            <Link href={`${path.private.invoiceRoute}/${item._id}`}>
+              {/* <Link href={`/admin/invoices/edit/${item._id}`}> */}
+
               <a href="">
                 <i className="bi bi-pencil-square"></i>
               </a>

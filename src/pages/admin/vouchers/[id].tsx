@@ -13,6 +13,7 @@ import styles from "./Product.module.scss";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { path } from "@/constants";
 
 type Props = {};
 
@@ -41,7 +42,7 @@ const EditVoucher = (props: Props) => {
         <div>
           <h1 className={stylesAdmin["title-admin"]}>Edit Voucher</h1>
         </div>
-        <Link href="/admin/vouchers/">
+        <Link href={`${path.private.voucherRoute}`}>
           <button className={stylesAdmin["btn-multichoice_item"]}>
             List Voucher
           </button>
@@ -124,20 +125,15 @@ const EditVoucher = (props: Props) => {
                       </div>
                     )}
                   </div>
-                  
                 </div>
-                
               </div>
-              
             </div>
-            
+
             {/* BUTTON */}
             <div className={stylesAdmin["row-input_form"]}>
               <Button.Fill className="tw-w-full" content={"Edit"} />
             </div>
           </div>
-
-         
         </div>
       </form>
     </div>

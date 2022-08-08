@@ -9,6 +9,7 @@ import styles from "./User.module.scss";
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
 import Icon from "@/components/Icon";
 import useUser from "@/hooks/use-user";
+import { path } from "@/constants";
 
 type InvoiceProps = {
   data: {}[];
@@ -66,7 +67,7 @@ const UserList = () => {
         </div>
       ),
       name: item.name,
-      date: item.createdAt.split('', 10),
+      date: item.createdAt.split("", 10),
       email: item.email,
 
       role: (
@@ -121,7 +122,8 @@ const UserList = () => {
             type="primary"
             size="large"
           >
-            <Link href={`/admin/users/edit/${item._id}`}>
+            {/* <Link href={`/admin/users/edit/${item._id}`}> */}
+            <Link href={`${path.private.UserRoute}/edit/${item._id}`}>
               <a href="">
                 <i className="bi bi-pencil-square"></i>
               </a>
