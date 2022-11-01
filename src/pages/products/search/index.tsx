@@ -45,7 +45,7 @@ const Search = ({ result, keyword }: ISearchProps) => {
               </div>
             </div>
           </div>
-          <div className={styles['shop-search__search-filter']}>
+          {/* <div className={styles['shop-search__search-filter']}>
             <span className={styles['shop-search__search-text']}>Short by</span>
             <select className="tw-select tw-select-primary tw-border-[#DAE1E7] focus:tw-border-primary focus:tw-outline-primary tw-w-[160px] tw-max-w-xs">
               <option disabled selected>What is the</option>
@@ -54,7 +54,7 @@ const Search = ({ result, keyword }: ISearchProps) => {
               <option>Breaking Bad</option>
               <option>Walking Dead</option>
             </select>
-          </div>
+          </div> */}
         </div>
         <div className={styles['shop-main']}>
           <div className={styles['shop-sidebar']}>

@@ -40,28 +40,28 @@ const CartPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
   //add voucher
   const onAddVoucher = async (voucher) => {
-    const data: any = await readVoucherStatusByCode(voucher);
-    if (!flagVoucher) {
-      if (!data) {
-        toast.error("Voucher is not exist");
-      } else {
-        if (data.status == 1) {
-          toast.error("Voucher da het han su dung")
-        } else {
-          toast.success("Apply voucher success")
-          dispatch(applyVoucher({
-            discount: data.discount,
-            voucher: data.code,
-            useVoucher: true
-          }))
-        }
-      }
-    } else {
-      toast.error("Bạn chỉ có thể kích hoạt 1 voucher cho 1 đơn hàng");
-    }
+    // const data: any = await readVoucherStatusByCode(voucher);
+    // if (!flagVoucher) {
+    //   if (!data) {
+    //     toast.error("Voucher is not exist");
+    //   } else {
+    //     if (data.status == 1) {
+    //       toast.error("Voucher da het han su dung")
+    //     } else {
+    //       toast.success("Apply voucher success")
+    //       dispatch(applyVoucher({
+    //         discount: data.discount,
+    //         voucher: data.code,
+    //         useVoucher: true
+    //       }))
+    //     }
+    //   }
+    // } else {
+    //   toast.error("Bạn chỉ có thể kích hoạt 1 voucher cho 1 đơn hàng");
+    // }
 
   }
 
@@ -147,18 +147,18 @@ const CartPage = () => {
                   </div>
                 </div>
                 <div className="tw-flex tw-justify-between tw-flex-col">
-                  <button className="tw-text-right" onClick={() => removeItemCart(item.idInCart)}>
+                  <button type="button" className="tw-text-right" onClick={() => removeItemCart(item.idInCart)}>
                     <Icon.Close className="tw-text-3xl tw-leading-none tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
                   </button>
                   <div className="tw-space-x-2">
-                    <button onClick={() => dispatch(decrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}
+                    <button type="button" onClick={() => dispatch(decrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}
                       className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3  
                   hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary  !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
                     >
                       <Icon.Minus className={""} />
                     </button>
                     <span className={styles["cart-sidebar__quantity"]}>{item.quantity}</span>
-                    <button onClick={() => dispatch(incrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}
+                    <button type="button" onClick={() => dispatch(incrementQuantity({ idInCart: item.idInCart, quantity: item.quantity }))}
                       className="tw-normal-case tw-btn tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-p-3 tw-px-4 
                   hover:tw-bg-primary hover:tw-text-white hover:tw-border-primary !tw-py-[1px] !tw-px-2 !tw-min-h-0 !tw-h-[30px]"
                     >

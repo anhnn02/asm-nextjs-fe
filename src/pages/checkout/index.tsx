@@ -101,14 +101,14 @@ const CheckOut = () => {
           toast.success("Order successfully", {
             position: 'top-center'
           })
-          await updateStt({
-            code: nameVoucher,
-            status: 1
-          })
+          // await updateStt({
+          //   code: nameVoucher,
+          //   status: 1
+          // })
           route.push(path.public.orderCompleteRoute)
 
         } catch (error) {
-          // console.log(error.response);
+          console.log(error);
           toast.error("Can not order", {
             position: 'top-center'
           })
