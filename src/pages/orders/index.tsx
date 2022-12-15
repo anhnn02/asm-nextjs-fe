@@ -14,9 +14,9 @@ import { useSelector } from 'react-redux'
 import styles from './Orders.module.scss'
 
 const OrderList = () => {
-    const isLogin = useSelector(data => data.user.isAuthenticated)
-    const userCurrent = useSelector(data => data.user.current)
-    const [userOrder, setUserOrder] = useState();
+    const isLogin: any = useSelector((data: any) => data.user.isAuthenticated)
+    const userCurrent: any = useSelector((data : any )=> data.user.current)
+    const [userOrder , setUserOrder] = useState<any>();
     const { detail } = useUser()
     let idUser = ""
     const router = useRouter()
@@ -28,7 +28,7 @@ const OrderList = () => {
 
     useEffect(() => {
         const getUserOrder = async () => {
-            const data = await detail(idUser);
+            const data: any = await detail(idUser);
             setUserOrder(data);
         }
         getUserOrder()

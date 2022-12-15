@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import LayoutAdmin from "@/components/Layout/admin";
 import React, { useEffect, useState } from "react";
 import Icon from "@/components/Icon";
@@ -16,9 +17,9 @@ const Dashboard = () => {
   const { data: dataCate, detail } = useCate();
   const { data: dataInvoice } = useInvoice();
 
-  const [cateIn, setCateIn] = useState();
+  const [cateIn, setCateIn] = useState<any>();
   useEffect(() => {
-    let resultCate = [];
+    let resultCate: any = [];
     dataCate?.forEach(async (element) => {
       const dataCP = await detail(element._id);
       resultCate.push(dataCP);
@@ -55,7 +56,7 @@ const Dashboard = () => {
           <div className={styles["content"]}>
             <div className="">
               <h5 className="tw-text-xl tw-text-blue-500">
-                {dataProduct?.length}
+                {dataProduct ? dataProduct?.length : 0}
               </h5>
               <span className="tw-text-my-gray ">Total Product</span>
             </div>
@@ -68,7 +69,7 @@ const Dashboard = () => {
         <div className={`${styles["box"]} ${"tw-border-red-500"}`}>
           <div className={styles["content"]}>
             <div className="">
-              <h5 className="tw-text-xl tw-text-red-500">{dataCate?.length}</h5>
+              <h5 className="tw-text-xl tw-text-red-500">{dataCate ? dataCate?.length : 0}</h5>
               <span className="tw-text-my-gray ">Total Category</span>
             </div>
             <div className="">
@@ -80,7 +81,7 @@ const Dashboard = () => {
           <div className={styles["content"]}>
             <div className="">
               <h5 className="tw-text-xl tw-text-yellow-500">
-                {dataUser?.length}
+                {dataUser ? dataUser?.length : 0}
               </h5>
               <span className="tw-text-my-gray ">Total User</span>
             </div>
@@ -92,27 +93,27 @@ const Dashboard = () => {
       </div>
       <div className={styles["box_content"]}>
         <h5 className="tw-font-medium tw-text-xl">Invoice</h5>
-        <div className="tw-grid tw-grid-cols-3 tw-space-between  tw-pb-9 tw-gap-5">
+        <div className="tw-grid tw-grid-cols-3 tw-space-between tw-pb-9 tw-gap-5">
           <div
             className={`${
               styles["item"]
             } ${"tw-bg-blue-100 tw-text-blue-500 tw-font-medium tw-shadow-lg tw-shadow-blue-400/40"}`}
           >
-            Invoice Succes: {resultSuccess?.length}
+            Invoice Succes: {resultSuccess ? resultSuccess?.length : 0}
           </div>
           <div
             className={`${
               styles["item"]
             } ${"tw-bg-yellow-100 tw-text-yellow-500  tw-font-medium tw-shadow-lg tw-shadow-yellow-400/40"}`}
           >
-            Invoice Cancel: {resultCancel?.length}
+            Invoice Cancel: {resultCancel ? resultCancel?.length : 0}
           </div>
           <div
             className={`${
               styles["item"]
             } ${"tw-bg-red-100 tw-text-red-500   tw-font-medium tw-shadow-lg tw-shadow-red-400/40"}`}
           >
-            Invoice Canceled: {result?.length}
+            Invoice Canceled: {result ? result?.length : 0}
           </div>
         </div>
       </div>
@@ -155,7 +156,7 @@ const Dashboard = () => {
             </tr>
           );
         })} */}
-          <div className="tw-grid tw-flex-grow tw-card  tw-rounded-box tw-place-items-center">
+          <div className="tw-grid tw-flex-grow tw-card tw-rounded-box tw-place-items-center">
             <img src="https://i.imgur.com/0GPspoS.png" alt="" />
           </div>
         </div>

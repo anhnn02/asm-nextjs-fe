@@ -29,10 +29,10 @@ const CartPage = () => {
   const { readVoucherStatusByCode } = useVoucher()
   const dispatch = useDispatch();
   const route = useRouter();
-  const isLogin = useSelector((data) => data.user.isAuthenticated);
+  const isLogin = useSelector((data: any) => data.user.isAuthenticated);
   const flagVoucher = useSelector((data: any) => data.cart.useVoucher);
   const totalAmount = useSelector((data: any) => data.cart.totalAmount);
-  const cart = useSelector((data) => data.cart.items);
+  const cart = useSelector((data: any) => data.cart.items);
   const discount = useSelector((data: any) => data.cart.discount);
 
   const {

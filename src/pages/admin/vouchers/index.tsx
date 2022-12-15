@@ -85,7 +85,8 @@ const VoucherPage = () => {
           <h4 className={stylesAdmin["title-admin"]}>List Voucher</h4>
         </div>
         <Link href={`${path.private.voucherRoute}/add`}>
-          <MyBtn.Fill content="Add Voucher" />
+          {/* <MyBtn.Fill content="Add Voucher" /> */}
+          Add Voucher
         </Link>
       </div>
       <Table

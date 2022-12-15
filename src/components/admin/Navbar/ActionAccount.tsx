@@ -11,7 +11,7 @@ type Props = {}
 const ActionAccount = (props: Props) => {
   const router = useRouter()
   const dispatch = useDispatch();
-  const userInfor = useSelector(data => data.user.current)
+  const userInfor = useSelector((data: any) => data.user.current)
   const btnLogOut = () => {
     dispatch(logout());
     router.push('/login');

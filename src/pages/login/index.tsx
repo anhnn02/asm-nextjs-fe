@@ -14,38 +14,42 @@ import { IProduct } from "@/models/product";
 import { IUser } from "@/models/user";
 
 const Login = () => {
-  const router = useRouter()
-  const dispatch = useDispatch()
+  const router = useRouter();
+  const dispatch = useDispatch();
   const { login: userLogin } = useAuth();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit: SubmitHandler<any> = async (data: IProduct) => {
     try {
-      const dataUser : IUser = await userLogin(data)
+      const dataUser: IUser = await userLogin(data);
       //check account, set state and redirect
       if (dataUser && dataUser.user.status == 0) {
-        dispatch(login(dataUser))
+        dispatch(login(dataUser));
         if (dataUser.user.role === 1) {
-          router.push(path.private.rootRoute)
+          router.push(path.private.rootRoute);
           toast.success("Login successfully!", {
-            position: 'top-center'
-          })
+            position: "top-center",
+          });
         } else {
-          router.push(path.public.rootRoute)
+          router.push(path.public.rootRoute);
           toast.success("Login successfully!", {
-            position: 'top-center'
-          })
+            position: "top-center",
+          });
         }
       } else {
-        toast.error("Your account is locked!"), {
-          position: 'top-center'
-        }
+        toast.error("Your account is locked!"),
+          {
+            position: "top-center",
+          };
       }
-
     } catch (error) {
       toast.error(error.response.data.msg, {
-        position: 'top-center'
-      })
+        position: "top-center",
+      });
     }
   };
   return (
@@ -66,16 +70,21 @@ const Login = () => {
               className={styles["form-input"]}
               placeholder="Exmple@gmail.com"
               {...register("email", {
-                required: true,
-                pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                required: {
+                  value: true,
+                  message: "Field is required",
+                },
+                pattern: {
+                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                  message: "Field must be a valid email",
+                },
               })}
             />
-            {errors?.email?.type == "required" && (
-              <span className="my-error">Email is required</span>
-            )}
-            {errors?.email?.type == "pattern" && (
-              <span className="my-error">Field must be a valid email</span>
-            )}
+            <span className="my-error">
+              {errors?.email
+                ? (errors?.email.message as unknown as string)
+                : ""}
+            </span>
           </div>
           <div className={styles["form__label"]}>
             <label
@@ -88,14 +97,22 @@ const Login = () => {
               type="password"
               className={styles["form-input"]}
               placeholder="********"
-              {...register("password", { required: true, minLength: 5 })}
+              {...register("password", {
+                required: {
+                  value: true,
+                  message: "Field is required",
+                },
+                minLength: {
+                  value: 5,
+                  message: "Min length is 5",
+                },
+              })}
             />
-            {errors?.password?.type == "required" && (
-              <span className="my-error">Password is required</span>
-            )}
-            {errors?.name?.type == "minLength" && (
-              <span className="my-error">Min length must be at least 5</span>
-            )}
+            <span className="my-error">
+              {errors?.password
+                ? (errors?.password.message as unknown as string)
+                : ""}
+            </span>
           </div>
           <br />
           <Button.Fill className={styles["btn"]} content="Login" />
@@ -103,12 +120,14 @@ const Login = () => {
           <Button.Fill1
             className={styles["btn"]}
             content="Continue with Facebook"
+            type="button"
           />
           <div className={styles["google"]}>
             {" "}
             <Button.Fill2
               className={styles["btn"]}
               content="Continue with Google"
+              type="button"
             />
           </div>
         </form>

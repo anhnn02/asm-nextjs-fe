@@ -18,14 +18,14 @@ const ProductPage = (props: Props) => {
     const dispatch = useDispatch()
     const { page } = router.query
     const [productPage, setProductPage] = useState();
-    const [categories, setCategories] = useState();
-    const [products, setProducts] = useState();
+    const [categories, setCategories] = useState<any>();
+    const [products, setProducts] = useState<any>();
     // console.log(page)
     useEffect(() => {
         const getData = async () => {
-            const data = await filterPage(page);
-            const dataCate = await getAllCate();
-            const dataPro = await getAllProduct()
+            const data : any = await filterPage(page);
+            const dataCate : any = await getAllCate();
+            const dataPro : any = await getAllProduct()
             // console.log(data);
             setProductPage(data);
             setCategories(dataCate)
@@ -40,7 +40,7 @@ const ProductPage = (props: Props) => {
 
     const handleOnChange = async (value) => {
         // console.log(value)
-        const dataNew = await filterProduct(page, value)
+        const dataNew : any = await filterProduct(page, value)
         // console.log(dataNew)
         setProductPage(dataNew);
     }

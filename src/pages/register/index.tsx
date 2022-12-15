@@ -12,31 +12,30 @@ import { IUser } from "@/models/user";
 
 const Register = () => {
   const { register: signup } = useAuth();
-  const router = useRouter()
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
   const onSubmit: SubmitHandler<any> = async (data: IUser) => {
     if (data.password != data.rePassword) {
       toast.error("Passwords do not match please try again!", {
-        position: 'top-center'
-      })
+        position: "top-center",
+      });
     } else {
       try {
         await signup(data);
         toast.success("Register success", {
-          position: 'top-center'
-        })
-        router.push(path.public.loginRoute)
+          position: "top-center",
+        });
+        router.push(path.public.loginRoute);
       } catch (error) {
         toast.error(error.response.data.msg, {
-          position: 'top-center'
-        })
+          position: "top-center",
+        });
       }
-     
     }
   };
   return (
@@ -55,12 +54,23 @@ const Register = () => {
             <input
               type="text"
               className={styles["form-input"]}
-              placeholder="RalphAdwards"
-              {...register("name", { required: true, minLength: 5 })}
+              placeholder="Nguyen Anh"
+              {...register("name", {
+                required: {
+                  value: true,
+                  message: "Field is required",
+                },
+                minLength: {
+                  value: 5,
+                  message: "Min length is 5",
+                },
+              })}
             />
-            {errors?.name?.type == 'required' && (<span className="my-error">Email is required</span>)}
-            {errors?.name?.type == 'minLength' && (<span className="my-error">Min length must be at least 5</span>)}
-
+            <span className="my-error">
+              {errors?.name
+                ? (errors?.name.message as unknown as string)
+                : ""}
+            </span>
           </div>
           <div className={styles["form__label"]}>
             <label
@@ -73,10 +83,22 @@ const Register = () => {
               type="text"
               className={styles["form-input"]}
               placeholder="Exmple@gmail.com"
-              {...register("email", { required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ })}
+              {...register("email", {
+                required: {
+                  value: true,
+                  message: "Field is required",
+                },
+                pattern: {
+                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                  message: "Field must be a valid email",
+                },
+              })}
             />
-            {errors?.email?.type == 'required' && (<span className="my-error">Email is required</span>)}
-            {errors?.email?.type == 'pattern' && (<span className="my-error">Field must be a valid email</span>)}
+            <span className="my-error">
+              {errors?.email
+                ? (errors?.email.message as unknown as string)
+                : ""}
+            </span>
           </div>
           <div className={styles["form__label"]}>
             <label
@@ -92,7 +114,7 @@ const Register = () => {
               {...register("password", { required: true })}
             />
             {errors.password && (
-              <span className='my-error'>Password cannot be blank</span>
+              <span className="my-error">Password cannot be blank</span>
             )}
           </div>
           <div className={styles["form__label"]}>
@@ -109,9 +131,7 @@ const Register = () => {
               {...register("rePassword", { required: true })}
             />
             {errors.rePassword && (
-              <span className='my-error'>
-                Re-Password name cannot be blank
-              </span>
+              <span className="my-error">Re-Password name cannot be blank</span>
             )}
           </div>
           <div className="form-control">
@@ -128,11 +148,15 @@ const Register = () => {
           <Button.Fill1
             className={styles["btn"]}
             content="Continue with Facebook"
+            type="button"
           />
-          <div className={styles["google"]}>  <Button.Fill2
-            className={styles["btn"]}
-            content="Continue with Google"
-          /></div>
+          <div className={styles["google"]}>
+            <Button.Fill2
+              className={styles["btn"]}
+              content="Continue with Google"
+              type="button"
+            />
+          </div>
         </form>
         <div className={styles["lg"]}>
           Already have account?

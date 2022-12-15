@@ -21,7 +21,7 @@ const EditVoucher = (props: Props) => {
   const router = useRouter();
   const { id } = router.query;
   
-  const { edit } = useVoucher();
+  const {editVoucherStt} = useVoucher();
   const {
     register,
     handleSubmit,
@@ -30,7 +30,7 @@ const EditVoucher = (props: Props) => {
   } = useForm();
   
   const onSubmit = async (data: any) => {
-    await edit({ ...data});
+    await editVoucherStt({ ...data});
     toast.success("Edit successfully!", {
       position: "top-center",
     });
@@ -64,7 +64,7 @@ const EditVoucher = (props: Props) => {
                     <input
                       type="text"
                       placeholder="Type here"
-                      className="tw-my-1  tw-input tw-input-bordered tw-max-w-full tw-w-full"
+                      className="tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full"
                       {...register("code", { required: true })}
                     />
                     {errors.code && (

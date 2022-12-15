@@ -25,7 +25,7 @@ export const getProductPage = createAsyncThunk("product/getProductPage", async (
 
 export const getProductFilter = createAsyncThunk(
     "product/getProductFilter",
-    async (filter, thunkAPI) => {
+    async (filter: any, thunkAPI) => {
         const { data } = await filterProduct(filter.page, filter.order);
         return data
     }

@@ -34,7 +34,7 @@ const Shop = ({ products, categories }: ProductProps) => {
       router.push('')
     }
     const getProductInPage = async () => {
-      const data = await filterPage(1);
+      const data : any = await filterPage(1);
       setProductPage(data);
     }
     getProductInPage()
@@ -42,7 +42,7 @@ const Shop = ({ products, categories }: ProductProps) => {
 
   const handleOnChange = async (value) => {
     // console.log(value)
-    const dataNew = await filterProduct(page, value)
+    const dataNew : any = await filterProduct(page, value)
     // console.log(dataNew)
     setProductPage(dataNew);
   }
@@ -72,7 +72,7 @@ const Shop = ({ products, categories }: ProductProps) => {
               Categories
             </h2>
             <ul className={styles['shop-sidebar__cate-list']}>
-              {categories.map((item, index) => (
+              {categories.map((item : any, index) => (
                 <li key={index}>
                   <Link href={`${path.public.categoryRoute}/${item._id}`}><a href="" className={styles['shop-sidebar__cate-item']}>{item.name}</a></Link>
                 </li>
@@ -145,7 +145,7 @@ const Shop = ({ products, categories }: ProductProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<ProductProps> = async (context: GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps<any> = async (context: GetStaticPropsContext) => {
   const data = await (await getAll())
   const dataCate = await (await getAllCate())
   if (!data) return {

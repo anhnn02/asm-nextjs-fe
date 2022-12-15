@@ -9,8 +9,8 @@ import { path } from '@/constants';
 import stylesAdmin from "@/styles/admin/Admin.module.scss";
 
 const LayoutAdmin = ({ children }: LayoutProps) => {
-  const userCurrent = useSelector(data => data.user.current)
-  const isLogin = useSelector(data => data.user.isAuthenticated)
+  const userCurrent = useSelector((data:any) => data.user.current)
+  const isLogin = useSelector((data:any) => data.user.isAuthenticated)
   const route = useRouter()
   // if (!isLogin) {
   //   route.push(path.public.notFound)

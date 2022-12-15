@@ -13,7 +13,7 @@ export const removeItem = (id: string) => {
 export const update = (product: IProduct) => {
   return instance.put(`/product/${product._id}`, product);
 };
-export const read = (id: string | undefined) => {
+export const read = (id: string | undefined | any) => {
   return instance.get(`/product/${id}`);
 };
 export const filter = () => {
@@ -23,7 +23,7 @@ export const search = (keyword) => {
   let url = `/search?name=${keyword}`;
   return instance.get(url);
 }
-export const relatedProduct = (idCate: string, idPro: string) => {
+export const relatedProduct = (idCate: string, idPro: string | any) => {
   let url = `/categories/${idCate}/${idPro}`;
   return instance.get(url);
 }

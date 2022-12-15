@@ -20,7 +20,7 @@ type ProductProps = {
   product: IProduct;
   related: any[];
 };
-const DetailProduct = ({ product, related }: ProductProps) => {
+const DetailProduct = ({ product, related }: any) => {
   const [quantity, setQuantity] = useState(1)
   const { register, handleSubmit, formState: { errors } } = useForm()
   const dispatch = useDispatch();
@@ -164,8 +164,8 @@ const DetailProduct = ({ product, related }: ProductProps) => {
   );
 };
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await (await getAll());
-  const paths = data.map((item) => {
+  const data : any = await (await getAll());
+  const paths: any = data.map((item) => {
     return { params: { id: item._id } };
   });
   return {
@@ -175,10 +175,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 //Chạy ở server
-export const getStaticProps: GetStaticProps<ProductProps> = async (
+export const getStaticProps: GetStaticProps<any> = async (
   context: GetStaticPropsContext
 ) => {
-  const dataItem = await (await read(context.params?.id));
+  const dataItem : any = await (await read(context.params?.id));
 
   if (!dataItem)
     return {

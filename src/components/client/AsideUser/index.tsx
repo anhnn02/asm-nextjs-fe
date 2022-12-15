@@ -11,9 +11,9 @@ import styles from './AsideUser.module.scss'
 type Props = {}
 
 const AsideUser = (props: Props) => {
-  const isLogin = useSelector(data => data.user.isAuthenticated)
-  const userCurrent = useSelector(data => data.user.current)
-  const [userOrder, setUserOrder] = useState();
+  const isLogin = useSelector((data: any) => data.user.isAuthenticated)
+  const userCurrent = useSelector((data: any) => data.user.current)
+  const [userOrder, setUserOrder] = useState<any>();
   const { detail } = useUser()
   let idUser = ""
   const router = useRouter()
@@ -25,7 +25,7 @@ const AsideUser = (props: Props) => {
 
   useEffect(() => {
     const getUserOrder = async () => {
-      const data = await detail(idUser);
+      const data: any = await detail(idUser);
       setUserOrder(data);
     }
     getUserOrder()

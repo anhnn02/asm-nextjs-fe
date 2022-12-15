@@ -29,10 +29,10 @@ let settings = {
 const BigDiscountProduct = () => {
     const { detail } = useProduct()
     const dispatch = useDispatch();
-    const [listDiscount, setListDiscount] = useState();
+    const [listDiscount, setListDiscount] = useState<any>();
     useEffect(() => {
         const get = async () => {
-            const data = await filter();
+            const data: any = await filter();
             const newData = data.map((item, index) => {
                 return {
                     ...item, percent: 100 - ((+item.salePrice / +item.regularPrice) * 100)

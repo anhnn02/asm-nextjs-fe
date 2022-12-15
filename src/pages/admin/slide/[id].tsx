@@ -24,7 +24,7 @@ const EditSlide = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<TypeInput>()
     useEffect(() => {
         const getSlide = async () => {
-            const data = await detail(id);
+            const data: any = await detail(id);
             reset(data);
         }
         getSlide();

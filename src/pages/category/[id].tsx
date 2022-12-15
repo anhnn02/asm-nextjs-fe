@@ -11,7 +11,7 @@ type ProductProps = {
     products: any[],
     categories: {}[]
 }
-const Category = ({ products, categories }: ProductProps) => {
+const Category = ({ products, categories }: any) => {
     return (
         <div className={styles['shop']}>
             <div className={styles['shop-search']}>
@@ -37,7 +37,7 @@ const Category = ({ products, categories }: ProductProps) => {
                             Categories
                         </h2>
                         <ul className={styles['shop-sidebar__cate-list']}>
-                            {categories.map((item, index) => (
+                            {categories.map((item: any, index) => (
                                 <li key={index}>
                                     <Link href={`${path.public.categoryRoute}/${item._id}`}><a href="" className={styles['shop-sidebar__cate-item']}>{item.name}</a></Link>
                                 </li>
@@ -103,7 +103,7 @@ const Category = ({ products, categories }: ProductProps) => {
     )
 }
 export const getStaticPaths: GetStaticPaths = async () => {
-    const data = await (await getAllCate());
+    const data: any = await (await getAllCate());
     const paths = data.map((item) => {
         return { params: { id: item._id } };
     });
@@ -113,7 +113,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 };
 
-export const getStaticProps: GetStaticProps<ProductProps> = async (context: GetStaticPropsContext) => {
+export const getStaticProps: any = async (context: GetStaticPropsContext) => {
     const data = await (await getProInCate(context.params.id))
     const dataCate = await (await getAllCate())
 

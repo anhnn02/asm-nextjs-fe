@@ -14,16 +14,17 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../shop/Shop.module.scss'
 import { ICategory } from '@/models/category'
 import { path } from '@/constants'
+import { IProduct } from '@/models/product'
 
 interface ISearchProps {
-  result: SearchResult;
+  result: IProduct;
   keyword: string;
 }
 const Search = ({ result, keyword }: ISearchProps) => {
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState<any>();
   useEffect(() => {
     const getCategories = async () => {
-      const data: ICategory = await getAllCate()
+      const data: ICategory | any = await getAllCate()
       setCategories(data);
     }
     getCategories()

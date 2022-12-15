@@ -10,8 +10,8 @@ import styles from './Orders.module.scss'
 
 const OrderDetail = () => {
     const { detail, editInvoice, error } = useInvoice();
-    const [invoice, setInvoice] = useState();
-    const [total, setTotal] = useState();
+    const [invoice, setInvoice] = useState<any>();
+    const [total, setTotal] = useState<any>();
     const router = useRouter();
     const id = router.query?.id;
     useEffect(() => {
@@ -56,11 +56,11 @@ const OrderDetail = () => {
                                     invoice?.invoice?.status === 0 ? (
                                         <Button.Transparent className={'tw-bg-[#ffe1e6]'} onClick={() => btnCancelOrder()} content={'Cancel Order'} />
                                     ) : invoice?.invoice?.status === 1 ? (
-                                        <span className="tw-text-primary  tw-font-semibold">Shipping</span>
+                                        <span className="tw-text-primary tw-font-semibold">Shipping</span>
                                     ) : invoice?.invoice?.status === 2 ? (
-                                        <span className="tw-text-primary  tw-font-semibold">Delivered</span>
+                                        <span className="tw-text-primary tw-font-semibold">Delivered</span>
                                     ) : invoice?.invoice?.status === 3 ? (
-                                        <span className="tw-text-primary  tw-font-semibold">Cancel</span>
+                                        <span className="tw-text-primary tw-font-semibold">Cancel</span>
                                     ) : invoice?.invoice?.status === 4 ? (
                                         <span className="tw-text-primary tw-font-semibold">Cancelled</span>
                                     ) : ""

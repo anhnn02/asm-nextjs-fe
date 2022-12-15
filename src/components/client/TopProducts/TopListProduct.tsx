@@ -19,7 +19,7 @@ type Props = {
 const TopListProduct = () => {
   const { detail } = useProduct()
   const dispatch = useDispatch();
-  const [listTop, setListTop] = useState();
+  const [listTop, setListTop] = useState<any>();
   useEffect(() => {
     const get = async () => {
       const data: any = await filter();

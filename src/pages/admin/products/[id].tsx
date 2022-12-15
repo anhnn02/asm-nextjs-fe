@@ -28,7 +28,7 @@ const EditProduct = (props: Props) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   useEffect(() => {
     const getProduct = async () => {
-      const data = await read(id);
+      const data: any = await read(id);
       setImagePreview(data.img)
       reset({
         ...data, category: data.category._id
@@ -97,7 +97,7 @@ const EditProduct = (props: Props) => {
                     <label className={stylesAdmin['label_form']}>
                       <span className={stylesAdmin['label-span_form']}>product name</span>
                     </label>
-                    <input type="text" placeholder="Type here" className="tw-my-1  tw-input tw-input-bordered tw-max-w-full tw-w-full" {...register('name', { required: true })} />
+                    <input type="text" placeholder="Type here" className="tw-my-1 tw-input tw-input-bordered tw-max-w-full tw-w-full" {...register('name', { required: true })} />
                     {errors.name &&
                       <div className={`${stylesAdmin['input-validate_form']} ${'my-error'}`}>
                         <span>Product name is required</span>

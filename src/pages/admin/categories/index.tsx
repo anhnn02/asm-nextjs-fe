@@ -23,6 +23,7 @@ const columns = [
     title: "Action",
     dataIndex: "action",
     key: "action",
+    width:140
   },
 ];
 
@@ -36,7 +37,7 @@ const CategoryList = () => {
       name: item.name,
 
       action: (
-        <div className="">
+        <div className="tw-text-right">
           <Button
             className="tw-mx-1 button-action tw-rounded-[var(--rounded-1)] "
             type="primary"

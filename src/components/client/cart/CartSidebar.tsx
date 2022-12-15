@@ -20,9 +20,9 @@ type Props = {}
 const CartSidebar = (props: Props) => {
     const dispatch = useDispatch()
     const router = useRouter()
-    const cart = useSelector(data => data.cart.items)
-    const cartTotalQuantity = useSelector(data => data.cart.totalQuantity)
-    const isLogin = useSelector(data => data.user.isAuthenticated)
+    const cart = useSelector((data:any) => data.cart.items)
+    const cartTotalQuantity = useSelector((data:any) => data.cart.totalQuantity)
+    const isLogin = useSelector((data:any) => data.user.isAuthenticated)
 
     //total cart
     let subTotal = 0;
@@ -154,7 +154,7 @@ const CartSidebar = (props: Props) => {
                         className="tw-m-auto"
                         onClick={() => removeItemCart(item.idInCart)}
                       >
-                        <Icon.Close className="tw-text-3xl  tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
+                        <Icon.Close className="tw-text-3xl tw-text-zinc-400 tw-cursor-pointer tw-duration-75 hover:tw-text-zinc-600" />
                       </button>
                     </div>
                   </div>

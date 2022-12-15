@@ -17,9 +17,9 @@ type Props = {}
 const Header = (props: Props) => {
   const router = useRouter()
   const dispatch = useDispatch();
-  const { totalQuantity } = useSelector((state) => state.cart)
-  const userInfor = useSelector(data => data.user.current)
-  const isLogin = useSelector(data => data.user.isAuthenticated)
+  const { totalQuantity } = useSelector((state:any) => state.cart)
+  const userInfor = useSelector((data:any) => data.user.current)
+  const isLogin = useSelector((data:any) => data.user.isAuthenticated)
   const { register, handleSubmit, formState: { errors }, } = useForm()
   // search
   const getValueSearch = (value) => {
@@ -53,7 +53,7 @@ const Header = (props: Props) => {
           </div>
           <div className="">
             <Link className={styles["header-top-info__item"]} href="">
-              FAQ's
+              FAQs
             </Link>
           </div>
         </div>
