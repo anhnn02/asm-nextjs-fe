@@ -1,0 +1,223 @@
+.container {
+  @apply tw-bg-bgr tw-py-[50px]
+}
+
+.demo1 {
+  @apply tw-bg-star;
+  font-size: var(--small)
+}
+
+/* Style the grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @apply tw-max-w-5xl tw-mx-auto tw-mb-[150px] tw-gap-16;
+
+  &-button {
+    @apply tw-bg-primary tw-inline-flex tw-items-center tw-h-10 tw-px-12 tw-text-white tw-transition-colors tw-duration-150 tw-rounded-lg tw-font-medium
+  }
+
+  .container-text {
+    @apply tw-space-y-4
+  }
+
+  &-text {
+    @apply tw-pb-3 tw-font-bold;
+    font-size: var(--largest);
+
+    &-price {
+      @apply tw-m-0 tw-text-primary tw-text-3xl tw-font-semibold ;
+    }
+  }
+
+  &-heith {
+    @apply tw-py-5
+  }
+
+  &pad {
+    @apply tw-pt-10
+  }
+
+  &-info {
+    @apply tw-text-my-gray tw-pr-3 tw-py-5;
+  }
+}
+
+/* Style the img */
+.img-section {
+  @apply tw-space-y-5
+}
+.box {
+  @apply tw-flex tw-justify-center tw-items-center
+}
+.img-product{
+  @apply tw-w-full tw-h-[350px] tw-object-cover tw-rounded-[var(--rounded-1)]
+}
+.image {
+  @apply tw-w-[80px] tw-border tw-border-[#dae1e7] tw-mx-1 tw-rounded-[var(--rounded-1)] tw-bg-white;
+
+  &:hover {
+    @apply tw-border-primary
+  }
+}
+
+/* Style the number */
+.number {
+  @apply tw-flex tw-items-center tw-space-x-6 tw-font-bold tw-text-xl;
+
+  &-iconnl {
+    font-size: var(--base);
+  }
+
+  &-iconnr {
+    font-size: var(--base);
+  }
+
+}
+.shop-product-price{
+  @apply tw-px-2 ;
+}
+.shop-product-price--sale {
+  @apply tw-text-primary tw-font-bold tw-pr-1;
+    font-size: var(--largest);
+  
+}
+
+.shop-product-price--regular {
+  @apply tw-text-my-gray tw-line-through;
+}
+.shop-product__item-float--tag-sale {
+  @apply tw-left-2 tw-top-2 tw-py-[1px] tw-px-2 tw-bg-primary tw-rounded-[var(--rounded-2)] tw-text-white;
+  font-size: var(--smaller)
+}
+ 
+
+/* Style the size */
+.check {
+  @apply tw-flex ;
+  &-form {
+    @apply tw-mr-4
+  }
+  &-size {
+    @apply tw-mr-2
+  }
+}
+/* Style the desc */
+.desc {
+  @apply tw-max-w-7xl tw-mx-auto 
+}
+
+.h1 {
+  @apply tw-font-medium tw-py-6 tw-max-w-7xl tw-mx-auto tw-mt-[50px];
+  font-size: var(--largest);
+}
+/* Style the product */
+.product {
+  @apply tw-max-w-7xl tw-mx-auto tw-grid tw-grid-cols-4 tw-gap-8 ;
+  // &-item {
+  //   @apply tw-border tw-border-[#dae1e7] tw-rounded-[var(--rounded-1)] ;
+  //   &:hover{
+  //     @apply tw-shadow-xl ;
+  //   }
+  // }
+}
+
+// size
+.size-product-detail{
+  @apply tw-grid tw-grid-cols-5
+}
+.form-group {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.form-group label {
+  position: relative;
+  cursor: pointer;
+  color: var(--gray);
+}
+
+.form-group label:before {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1.5px dashed var(--gray);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 6px 9px;
+  width: 40px;
+  display: inline-block;
+  position: relative;
+  margin-right: 6px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.form-group {
+  &-35 label:before {
+    content: '35';
+  }
+
+  &-36 label:before {
+    content: '36';
+  }
+
+  &-37 label:before {
+    content: '37';
+  }
+
+  &-38 label:before {
+    content: '38';
+  }
+
+  &-39 label:before {
+    content: '39';
+  }
+
+  &-40 label:before {
+    content: '40';
+  }
+
+  &-41 label:before {
+    content: '41';
+  }
+
+  &-42 label:before {
+    content: '42';
+  }
+
+  &-43 label:before {
+    content: '43';
+  }
+}
+
+.form-group input:checked+label:before {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1.5px solid var(--primary);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 6px 9px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 6px;
+  color: var(--primary)
+}
+
+ .cart-sidebar__button {
+   @apply tw-normal-case tw-bg-transparent tw-text-primary tw-border tw-border-primary tw-w-10 tw-h-10 tw-rounded-[var(--rounded-1)];
+ }
+
+ .cart-sidebar__button:hover {
+   @apply tw-bg-primary tw-text-white tw-border-primary
+ }

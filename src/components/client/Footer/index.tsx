@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import React from 'react'
 import Icon from '../../Icon';
@@ -56,17 +57,17 @@ const Footer = (props: Props) => {
           <div className={styles['footer-social']}>
             <Link href="">
               <a href="" className={styles['footer-social__icon']}>
-                <Icon.Fb />
+                <Icon.Fb className={""}/>
               </a>
             </Link>
             <Link href="">
               <a href="" className={styles['footer-social__icon']}>
-                <Icon.Youtube />
+                <Icon.Youtube className={""} />
               </a>
             </Link>
             <Link href="">
               <a href="" className={styles['footer-social__icon']}>
-                <Icon.Ig />
+                <Icon.Ig className={""}/>
               </a>
             </Link>
           </div>

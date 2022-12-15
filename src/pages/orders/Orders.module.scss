@@ -1,0 +1,324 @@
+/* Header Multichoice*/
+
+.main-user_multichoice {
+    display: flex;
+}
+
+.content-user_multichoice {
+    width: 75%;
+    padding: 0.75rem 0 0.75rem 0.75rem;
+}
+
+.header-user_style {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    margin-bottom: 24px;
+}
+
+.icon-user_multichoice {
+    color: var(--primary);
+}
+
+.title-user_multichoice {
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-left: 12px;
+}
+
+
+/*LIST ORDER*/
+.thead_table_user {
+    text-transform: capitalize;
+    font-size: 16px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 30% 25% 20% 20% 5%;
+    padding: 0 18px;
+    align-items: center;
+    font-weight: 600;
+    color: rgb(125, 135, 156);
+}
+.th_table_user:first-child {
+    text-align: left !important;
+}
+.th_table_user {
+    flex: 1 1 0px;
+    margin: 0 6px;
+}
+
+.th_table_user-none-flex {
+    padding: 0 22px;
+}
+
+.tr-tbody_table_user {
+    cursor: pointer;
+    margin: 16px 0;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 30% 25% 20% 20% 5%;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    background: #fff;
+    padding: 6px 18px;
+}
+
+.order_item {
+    margin: 6px;
+    flex: 1 1 0px;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+.order_id {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.order_status_pending-progress {
+    padding: 0.25rem 1rem;
+    display: inline-block;
+    border-radius: 30px;
+    transition: all 150ms ease-in-out 0s;
+    font-size: 12px;
+    @apply tw-bg-gray-100 tw-text-gray-500;
+}
+.order_status_pending-shipping {
+    padding: 0.25rem 1rem;
+    display: inline-block;
+    border-radius: 30px;
+    transition: all 150ms ease-in-out 0s;
+    font-size: 12px;
+    @apply tw-bg-blue-100 tw-text-blue-400
+}
+
+.order_status_cancelled {
+    padding: 0.25rem 1rem;
+    display: inline-block;
+    border-radius: 30px;
+    transition: all 150ms ease-in-out 0s;
+    font-size: 12px;
+    @apply tw-bg-red-100 tw-text-red-400;
+}
+
+.order_status_delivered {
+    padding: 0.25rem 1rem;
+    display: inline-block;
+    border-radius: 30px;
+    transition: all 150ms ease-in-out 0s;
+    font-size: 12px;
+    @apply tw-bg-green-100 tw-text-green-400;
+}
+
+.order_view-detail {
+    outline: none;
+    margin: 0 auto;
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    transition: all 150ms ease-in-out 0s;
+}
+
+.order_view-detail:hover {
+    background-color: rgb(243, 245, 249);
+}
+
+.btn_arrow_right_view-detail {
+    width: 100%;
+    height: 100%;
+    color: #7d879c;
+
+}
+
+
+// PAGINATION
+.pagination_page {
+    margin-top: 2.0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination_item-selected {
+    border: 1px solid var(--primary);
+    display: flex;
+    outline: none;
+    margin: 0 5px;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary);
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+}
+
+.pagination_item {
+    border: 1px solid transparent;
+    display: flex;
+    outline: none;
+    margin: 0 5px;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary);
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    transition: all 150ms ease-in-out 0s;
+}
+
+.pagination_item:hover {
+    border: 1px solid var(--primary);
+    transition: all 150ms ease-in-out 0s;
+}
+
+
+// ORDER DETAIL 
+.status-note_order {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.status-order_user {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    justify-content:center;
+}
+
+.step-status_order_user {
+    position: relative;
+    height: 64px;
+    width: 64px;
+    text-align: center;
+    font-size: 32px;
+    border-radius: 50%;
+}
+
+
+.step-status_order_user_active {
+    background: var(--primary);
+    color: #fff;
+}
+
+
+.step-status_order_user_unactive {
+    background: rgb(227, 233, 239);
+    color: var(--primary);
+}
+
+.line-status_order_user {
+    height: 4px;
+    flex: 1 1 100px;
+}
+
+.line-status_order_user_active {
+    background: var(--primary);
+
+}
+
+.line-status_order_user_unactive {
+    background-color: rgb(227, 233, 239);
+}
+
+
+.icon-step_status {
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.note-status_user {
+    padding: 0.5rem;
+    border-radius: 300px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    color: var(--primary);
+    background: rgb(255, 225, 230);
+}
+
+// TABLE ORDER DETAILS
+.table_order-details {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    border-radius: 8px;
+    padding: 0px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.column-table_order-details {
+    display: flex;
+    align-items: center;
+    flex: 1 1 0px;
+    margin: 6px;
+}
+
+.thead-table_order-details {
+    display: flex;
+    flex: wrap;
+    align-items: center;
+    padding: 12px;
+    background: rgb(243, 245, 249);
+}
+
+.th_table_order-details {
+    font-size: 14px;
+    margin-right: 4px;
+    color: rgb(125, 135, 156)
+}
+
+// TR TABLE ORDER DETAILS
+.tr_table_order-details {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.td_table_order-details {
+    flex: 2 2 260px;
+    display: flex;
+    align-items: center;
+    margin: 6px;
+}
+
+.td_table_order-details_last {
+    flex: 1 1 160px;
+    margin: 6px;
+}
+
+.image-product_order-details {
+    width: 64px;
+    height: 64px;
+}
+
+.name-product_order-details {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.properties-product_order-details,
+.price_plus_quantity {
+    color: rgb(125, 135, 156);
+    font-size: 14px;
+}
+
+.shipping-total_order-details {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    border-radius: 8px;
+    padding: 20px 30px;
+}
+
+.total_order-detail {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 16px;
+}

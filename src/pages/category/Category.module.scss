@@ -1,0 +1,160 @@
+.shop {
+    @apply tw-py-10;
+
+    &-search {
+        @apply tw-flex tw-justify-between tw-items-center tw-w-[var(--container)] tw-bg-white tw-mb-10 tw-rounded-[var(--rounded-1)] tw-p-5;
+        box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+
+        &__key-search {
+            @apply tw-font-bold tw-block
+        }
+
+        &__search-text {
+            @apply tw-text-my-gray
+        }
+
+        &__search-filter {
+            @apply tw-space-x-2
+        }
+    }
+
+    &-main {
+        @apply tw-grid tw-grid-cols-[1fr_3.5fr] tw-gap-10;
+
+        .shop-sidebar {
+            @apply tw-bg-white tw-mb-10 tw-rounded-[var(--rounded-1)] tw-p-5 tw-h-fit tw-sticky tw-top-[180px];
+            box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+
+            &-section {
+                @apply tw-pb-4;
+
+                &__title {
+                    @apply tw-font-bold tw-pb-2
+                }
+            }
+
+            &-section+&-section {
+                @apply tw-border-t tw-border-my-gray
+            }
+
+            &-variation {
+                &__item {
+                    @apply tw-border-my-gray
+                }
+            }
+
+            &__cate-list {
+                @apply tw-space-y-1
+            }
+
+            &__cate-item {
+                @apply tw-text-my-gray
+            }
+
+            &__cate-item:hover {
+                @apply tw-text-primary
+            }
+
+            &__cate-item-active {
+                @apply tw-text-primary
+            }
+
+            // variation
+            &-variation {
+                .form-group {
+                    display: inline-block;
+                    margin-bottom: 8px;
+                }
+
+                .form-group input {
+                    padding: 0;
+                    height: initial;
+                    width: initial;
+                    margin-bottom: 0;
+                    display: none;
+                    cursor: pointer;
+                }
+
+                .form-group label {
+                    position: relative;
+                    cursor: pointer;
+                    color: var(--gray);
+                }
+
+                .form-group label:before {
+                    -webkit-appearance: none;
+                    background-color: transparent;
+                    border: 1.5px dashed var(--gray);
+                    border-radius: 4px;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+                    padding: 6px 9px;
+                    width: 40px;
+                    display: inline-block;
+                    position: relative;
+                    margin-right: 6px;
+                    vertical-align: middle;
+                    cursor: pointer;
+                }
+
+                .form-group {
+                    &-35 label:before {
+                        content: '35';
+                    }
+
+                    &-36 label:before {
+                        content: '36';
+                    }
+
+                    &-37 label:before {
+                        content: '37';
+                    }
+
+                    &-38 label:before {
+                        content: '38';
+                    }
+
+                    &-39 label:before {
+                        content: '39';
+                    }
+
+                    &-40 label:before {
+                        content: '40';
+                    }
+
+                    &-41 label:before {
+                        content: '41';
+                    }
+
+                    &-42 label:before {
+                        content: '42';
+                    }
+
+                    &-43 label:before {
+                        content: '43';
+                    }
+                }
+
+                .form-group input:checked+label:before {
+                    -webkit-appearance: none;
+                    background-color: transparent;
+                    border: 1.5px solid var(--primary);
+                    border-radius: 4px;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+                    padding: 6px 9px;
+                    display: inline-block;
+                    position: relative;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    margin-right: 6px;
+                    color: var(--primary)
+                }
+            }
+        }
+
+        .shop-product {
+            &-list {
+                @apply tw-grid tw-grid-cols-3 tw-gap-10;
+            }
+        }
+    }
+}

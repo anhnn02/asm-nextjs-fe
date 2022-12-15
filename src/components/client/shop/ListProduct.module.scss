@@ -26,10 +26,10 @@
         }
 
         &-text {
-            @apply tw-px-4 tw-pb-4;
+            @apply tw-p-4;
 
             .shop-product__item-title {
-                @apply tw-block tw-font-bold tw-w-[96%] tw-truncate;
+                @apply tw-block tw-font-semibold tw-w-[96%] tw-truncate;
                 font-size: var(--small)
             }
 
@@ -44,7 +44,7 @@
                     @apply tw-space-x-1 tw-text-my-gray;
                 }
                 .shop-product-variation__item + .shop-product-variation__item {
-                    @apply tw-border-l-[1.5px] tw-pl-1
+                    @apply tw-border-l-[1.5px] tw-pl-1 tw-ml-1
                 }
                 .shop-product-price {
                     font-size: var(--small)
@@ -64,8 +64,6 @@
             }
         }
 
-
-        &-float {}
     }
 
     &__item:hover {
