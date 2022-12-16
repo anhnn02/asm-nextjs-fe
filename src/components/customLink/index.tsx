@@ -6,7 +6,7 @@ import React, { Children, cloneElement, ReactElement, ReactNode } from 'react'
 interface Props extends LinkProps{
     children: ReactNode
 }
-function CustomLink({href, children, ...props}: Props) {
+function CustomLink({href, children, ...props}: any) {
     const {asPath} = useRouter()
     const child = Children.only(children) as ReactElement
     

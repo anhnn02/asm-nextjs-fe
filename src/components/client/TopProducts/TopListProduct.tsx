@@ -111,7 +111,7 @@ const TopListProduct = () => {
                     <span>...</span>
                   </div>
                 ) : (
-                  item.size.map((sizeItem) => (
+                  item.size.map((sizeItem,index) => (
                     <span key={index}
                       className={styles["shop-product-variation__item"]}
                     >
